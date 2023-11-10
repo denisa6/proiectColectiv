@@ -18,12 +18,9 @@ class RegularUser(models.Model):
     password = models.CharField(max_length=100)
     # TODO: ENCRYPTION FOR PASSWORD
 
+    class Meta:
+        app_label = 'user'
 
     def __str__(self):
         return f"{self.username}"
 
-    def save(self, *args, **kwargs):
-        if self.role == UserStatus.ADMIN:
-            self.is_staff = True
-            self.is_superuser = True
-        super().save(*args, **kwargs)
