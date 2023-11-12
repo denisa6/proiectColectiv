@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ingredient',
     'allergen',
     'tag',
+    'recipe',
 ]
 
 MIDDLEWARE = [
