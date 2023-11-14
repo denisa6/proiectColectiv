@@ -4,7 +4,7 @@ from rest_framework.exceptions import ValidationError
 
 def validate_difficulty(value):
     if value > 5 or value < 0:
-        raise ValidationError("The difficulty level is invalid. The value must be between 0 and 10.")
+        raise ValidationError("The difficulty level is invalid. The value must be between 0 and 5.")
     else:
         return value
 
