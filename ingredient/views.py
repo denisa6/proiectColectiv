@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+
+from ingredient.models import Ingredient
+
+from ingredient.serializers import IngredientSerializers
+
 
 # Create your views here.
 
-
-from django.http import HttpResponse
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+class IngredientViewSet(viewsets.ModelViewSet):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializers
