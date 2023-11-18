@@ -51,7 +51,9 @@ const AddRecipeForm = () => {
         } catch (error) {
             console.error(error);
         }
-        // window.location.href = `/recipe`; // nu prea ortodox da merge
+        setTimeout(() => {
+            window.location.href = `/`;
+        }, 500);
     };
     return (
         <div style={styles.overlay}>
