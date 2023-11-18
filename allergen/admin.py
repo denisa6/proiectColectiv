@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from allergen.models import Allergen
+
+@admin.register(Allergen)
+class AllergenAdmin(admin.ModelAdmin):
+    list_display = ['name']
