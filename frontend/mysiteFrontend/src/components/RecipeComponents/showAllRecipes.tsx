@@ -2,13 +2,14 @@ import { Recipe } from "../../models/Recipe";
 import { useState, useEffect } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import AddRecipeForm from "./addRecipeForm";
+import UpdateRecipeForm from "./updateRecipeForm";
 import DeleteRecipe from "./deleteRecipe";
 import "../recipesTable.css";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
-    //const [showComponent, setShowComponent] = useState(false);
+	const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,8 +33,6 @@ const RecipeList = () => {
             <Link to="/add-recipe">
                 <button>Add New Recipe</button>
             </Link>
-            <button type="button">empty</button>
-            <button type="button">empty</button>
             {/*  the empty ones le am pus sa vad cum le pune daca una sub alta sau langa*/}
             <h2>Recipe List</h2>
             <table className="recipe-table">
@@ -69,14 +68,28 @@ const RecipeList = () => {
                                 <button
                                     onClick={() => {
                                         setSelectedRecipeId(recipe.id!);
+										setDeleteOrUpdate(0);
                                     }}
                                 >
                                     DELETE
                                 </button>
                                 {/* </Link> */}
                             </td>
-                            {selectedRecipeId === recipe.id && (
+							<td>
+								<button
+									onClick={() => {
+                                        setSelectedRecipeId(recipe.id!);
+										setDeleteOrUpdate(1);
+                                    }}
+								>
+								UPDATE
+								</button>
+							</td>
+							{selectedRecipeId === recipe.id && deleteOrUpdate === 0 && (
                                 <DeleteRecipe recipeId={recipe.id} />
+                            )}
+							{selectedRecipeId === recipe.id && deleteOrUpdate === 1 && (
+                                <UpdateRecipeForm recipeId={recipe.id} />
                             )}
                         </tr>
                     ))}
@@ -85,8 +98,8 @@ const RecipeList = () => {
 
             <Routes>
                 <Route path="/add-recipe" Component={AddRecipeForm} />
-                {/* <Route path={`/delete-recipe/`} Component={DeleteRecipe} /> */}
             </Routes>
+
         </div>
     );
 };
