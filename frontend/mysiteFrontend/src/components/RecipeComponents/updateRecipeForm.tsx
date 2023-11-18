@@ -1,17 +1,36 @@
-import React, { useState, CSSProperties } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
+import { Recipe } from "../../models/Recipe";
 
-const AddRecipeForm = () => {
+const UpdateRecipeForm = (props: { recipeId: any }) => {
+	const [recipe, setRecipe] = useState<Recipe>({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+					`http://127.0.0.1:8000/recipe/${props.recipeId}/?format=json`
+                );
+                const data = await response.json();
+                setRecipe(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+	
     const [formData, setFormData] = useState({
         // Define your form fields here
-        difficulty: "",
-        name: "",
-        description: "",
-        time_min: "",
-        time_max: "",
-        number_people: "",
-        type_recipe: "",
-        estimated_price: "",
-        total_calories: "",
+        difficulty: recipe.difficulty,
+        name: recipe.name,
+		description: recipe.description,
+        time_min: recipe.time_min,
+        time_max: recipe.time_max,
+		number_people: recipe.number_people,
+        type_recipe: recipe.type_recipe,
+        estimated_price: recipe.estimated_price,
+        total_calories: recipe.total_calories,
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +41,12 @@ const AddRecipeForm = () => {
         }));
     };
 
-    const addRecipe = async (event: { preventDefault: () => void }) => {
+    const updateRecipe = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
         try {
-            fetch("http://127.0.0.1:8000/recipe/", {
-                method: "POST",
+            fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}/`, {
+                method: "PUT",
                 body: JSON.stringify({
                     difficulty: formData.difficulty,
                     name: formData.name,
@@ -56,8 +75,8 @@ const AddRecipeForm = () => {
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
-                <h2>Add New Recipe</h2>
-                <form onSubmit={addRecipe} style={styles.form}>
+                <h2>Update the Recipe's Fields</h2>
+                <form onSubmit={updateRecipe} style={styles.form}>
                     {/* Render your form fields here */}
                     <label style={styles.label}>
                         Difficulty:
@@ -184,4 +203,4 @@ const styles: { [key: string]: CSSProperties } = {
     },
 };
 
-export default AddRecipeForm;
+export default UpdateRecipeForm;
