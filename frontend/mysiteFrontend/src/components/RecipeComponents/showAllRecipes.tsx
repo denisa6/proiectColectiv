@@ -98,7 +98,6 @@ const RecipeList = () => {
 
             <Routes>
                 <Route path="/add-recipe" Component={AddRecipeForm} />
-                {/* <Route path={`/delete-recipe/`} Component={DeleteRecipe} /> */}
             </Routes>
 
         </div>
