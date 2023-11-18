@@ -10,7 +10,6 @@ const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
 	const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
-    //const [showComponent, setShowComponent] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
