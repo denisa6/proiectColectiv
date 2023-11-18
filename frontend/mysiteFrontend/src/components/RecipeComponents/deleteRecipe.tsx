@@ -28,8 +28,8 @@ const DeleteRecipe = (props: { recipeId: any }) => {
         <div id="dialog-content">
             <p>Are you sure you want to delete this item?</p>
             <div id="buttons-container">
-                <button onClick={handleDelete}>KILL IT</button>
-                <button onClick={handleCancel}>I am a coward</button>
+                <button onClick={handleDelete}>Yes</button>
+                <button onClick={handleCancel}>Cancel</button>
             </div>
         </div>
         // </dialog>
