@@ -1,6 +1,6 @@
 from django.db import models
 from rest_framework.exceptions import ValidationError
-
+from ingredient.models import Ingredient
 
 def validate_difficulty(value):
     if value > 5 or value < 0:
@@ -18,12 +18,18 @@ def validate_time(time):
 
 class RecipeTypeChoices(models.TextChoices):
     REGULAR = 'regular'
+    BREAKFAST = 'breakfast'
+    LUNCH = 'lunch'
+    DINNER = 'dinner'
+    DESSERT = 'dessert'
+    SNACK = 'snack'
 
 
 class Recipe(models.Model):
     difficulty = models.IntegerField(validators=[validate_difficulty])
     name = models.CharField(max_length=100)
     description = models.TextField()
+    ingredients = models.ManyToManyField(Ingredient)
     time_min = models.FloatField(validators=[validate_time])
     time_max = models.FloatField(validators=[validate_time])
     number_people = models.IntegerField()

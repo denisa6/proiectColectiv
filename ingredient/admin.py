@@ -7,4 +7,4 @@ from ingredient.models import Ingredient
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ['price', 'name', 'calorie']
+    list_display = ['price', 'name', 'calories']

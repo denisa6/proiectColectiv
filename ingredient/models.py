@@ -17,6 +17,6 @@ class Ingredient(models.Model):
     )
 
     name = models.CharField(max_length=50)
-    calorie = models.FloatField()
+    calories = models.FloatField()
     tags = models.ManyToManyField(Tag)
     allergens = models.ManyToManyField(Allergen)
