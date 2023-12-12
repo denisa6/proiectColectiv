@@ -1,0 +1,128 @@
+[
+  {
+    "model": "allergen.Allergen",
+    "pk": 1,
+    "fields": {
+      "name": "Milk"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 2,
+    "fields": {
+      "name": "Egg"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 3,
+    "fields": {
+      "name": "Peanut"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 4,
+    "fields": {
+      "name": "Soy"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 5,
+    "fields": {
+      "name": "Wheat"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 6,
+    "fields": {
+      "name": "Tree Nut"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 7,
+    "fields": {
+      "name": "Shellfish"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 8,
+    "fields": {
+      "name": "Fish"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 9,
+    "fields": {
+      "name": "Sesame"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 10,
+    "fields": {
+      "name": "Mustard"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 11,
+    "fields": {
+      "name": "Celery"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 12,
+    "fields": {
+      "name": "Corn"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 13,
+    "fields": {
+      "name": "Kiwi"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 14,
+    "fields": {
+      "name": "Banana"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 15,
+    "fields": {
+      "name": "Avocado"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 16,
+    "fields": {
+      "name": "Quinoa"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 17,
+    "fields": {
+      "name": "Buckwheat"
+    }
+  },
+  {
+    "model": "allergen.Allergen",
+    "pk": 18,
+    "fields": {
+      "name": "Paprika"
+    }
+  }
+]

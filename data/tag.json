@@ -1,0 +1,65 @@
+[
+  {
+    "model": "tag.Tag",
+    "pk": 1,
+    "fields": {
+      "name": "Vegan"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 2,
+    "fields": {
+      "name": "Vegetarian"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 3,
+    "fields": {
+      "name": "Pescatarian"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 4,
+    "fields": {
+      "name": "Paleo"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 5,
+    "fields": {
+      "name": "Keto"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 6,
+    "fields": {
+      "name": "Gluten-Free"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 7,
+    "fields": {
+      "name": "Dairy-Free"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 8,
+    "fields": {
+      "name": "Halal"
+    }
+  },
+  {
+    "model": "tag.Tag",
+    "pk": 9,
+    "fields": {
+      "name": "Kosher"
+    }
+  }
+]
