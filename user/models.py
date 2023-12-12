@@ -7,15 +7,12 @@ class UserStatus(models.TextChoices):
     REGULAR = 'regular'
 
 
-class RegularUser(models.Model):
+class RegularUser(AbstractUser):
     role = models.CharField(
         max_length=50,
         choices=UserStatus.choices,
         default=UserStatus.REGULAR
     )
-    username = models.CharField(max_length=100)
-    email = models.EmailField(blank=True)
-    password = models.CharField(max_length=100)
     # TODO: ENCRYPTION FOR PASSWORD
 
     class Meta:

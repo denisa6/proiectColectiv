@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from user.views import AuthentificationView, RegularUserRegisterView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('user.urls')),
@@ -24,4 +26,6 @@ urlpatterns = [
     path('tag/', include('tag.urls')),
     path('allergen/', include('allergen.urls')),
     path('ingredient/', include('ingredient.urls')),
+    path('dj-rest-auth/login/', AuthentificationView.as_view(), name='rest_login'),
+    path('dj-rest-auth/registration/', RegularUserRegisterView.as_view(), name='register'),
 ]
