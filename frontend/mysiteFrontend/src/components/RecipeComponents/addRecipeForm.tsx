@@ -22,6 +22,10 @@ const AddRecipeForm = () => {
         }));
     };
 
+    const handleCancel = () => {
+        window.location.href = `/showlist/`;
+    };
+
     const addRecipe = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
@@ -32,6 +36,8 @@ const AddRecipeForm = () => {
                     difficulty: formData.difficulty,
                     name: formData.name,
                     description: formData.description,
+                    // add field de ingredients: must pe a list
+                    // add photo field
                     time_min: formData.time_min,
                     time_max: formData.time_max,
                     number_people: formData.number_people,
@@ -52,8 +58,8 @@ const AddRecipeForm = () => {
             console.error(error);
         }
         setTimeout(() => {
-            window.location.href = `/`;
-        }, 500);
+            window.location.href = `/showlist`;
+        }, 50000);
     };
     return (
         <div style={styles.overlay}>
@@ -143,9 +149,12 @@ const AddRecipeForm = () => {
                         />
                     </label>
                     {/* Repeat similar blocks for other fields */}
-                    <button type="submit" style={styles.button}>
-                        Submit
-                    </button>
+                    <div id="buttons-container">
+                        <button type="submit" style={styles.button}>
+                            Submit
+                        </button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
