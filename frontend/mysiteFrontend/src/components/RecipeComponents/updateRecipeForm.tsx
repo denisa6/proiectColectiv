@@ -2,13 +2,23 @@ import React, { useState, useEffect, CSSProperties } from "react";
 import { Recipe } from "../../models/Recipe";
 
 const UpdateRecipeForm = (props: { recipeId: any }) => {
-	const [recipe, setRecipe] = useState<Recipe>({});
+    const [recipe, setRecipe] = useState<Recipe>({
+        difficulty: 0,
+        name: "",
+        description: "",
+        time_min: 0,
+        time_max: 0,
+        number_people: 0,
+        type_recipe: "",
+        estimated_price: 0,
+        total_calories: 0,
+    });
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-					`http://127.0.0.1:8000/recipe/${props.recipeId}/?format=json`
+                    `http://127.0.0.1:8000/recipe/${props.recipeId}/?format=json`
                 );
                 const data = await response.json();
                 setRecipe(data);
@@ -19,15 +29,15 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
 
         fetchData();
     }, []);
-	
+
     const [formData, setFormData] = useState({
         // Define your form fields here
         difficulty: recipe.difficulty,
         name: recipe.name,
-		description: recipe.description,
+        description: recipe.description,
         time_min: recipe.time_min,
         time_max: recipe.time_max,
-		number_people: recipe.number_people,
+        number_people: recipe.number_people,
         type_recipe: recipe.type_recipe,
         estimated_price: recipe.estimated_price,
         total_calories: recipe.total_calories,
@@ -39,6 +49,10 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
             ...prevData,
             [name]: value,
         }));
+    };
+
+    const handleCancel = () => {
+        window.location.href = `/showlist/`;
     };
 
     const updateRecipe = async (event: { preventDefault: () => void }) => {
@@ -162,9 +176,12 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                         />
                     </label>
                     {/* Repeat similar blocks for other fields */}
-                    <button type="submit" style={styles.button}>
-                        Submit
-                    </button>
+                    <div id="buttons-container">
+                        <button type="submit" style={styles.button}>
+                            Submit
+                        </button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>

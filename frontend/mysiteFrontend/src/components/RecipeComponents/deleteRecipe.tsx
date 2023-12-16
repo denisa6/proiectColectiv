@@ -20,7 +20,7 @@ const DeleteRecipe = (props: { recipeId: any }) => {
     };
 
     const handleCancel = () => {
-        window.location.href = `/`;
+        window.location.href = `/showlist/`;
     };
 
     return (

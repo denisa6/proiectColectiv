@@ -9,7 +9,7 @@ import "../recipesTable.css";
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
-	const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
+    const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +30,7 @@ const RecipeList = () => {
     return (
         <div>
             {/* Add a Link to the new form component */}
-            <Link to="/add-recipe">
+            <Link to="showlist/add-recipe">
                 <button>Add New Recipe</button>
             </Link>
             {/*  the empty ones le am pus sa vad cum le pune daca una sub alta sau langa*/}
@@ -68,38 +68,39 @@ const RecipeList = () => {
                                 <button
                                     onClick={() => {
                                         setSelectedRecipeId(recipe.id!);
-										setDeleteOrUpdate(0);
+                                        setDeleteOrUpdate(0);
                                     }}
                                 >
                                     DELETE
                                 </button>
                                 {/* </Link> */}
                             </td>
-							<td>
-								<button
-									onClick={() => {
+                            <td>
+                                <button
+                                    onClick={() => {
                                         setSelectedRecipeId(recipe.id!);
-										setDeleteOrUpdate(1);
+                                        setDeleteOrUpdate(1);
                                     }}
-								>
-								UPDATE
-								</button>
-							</td>
-							{selectedRecipeId === recipe.id && deleteOrUpdate === 0 && (
-                                <DeleteRecipe recipeId={recipe.id} />
-                            )}
-							{selectedRecipeId === recipe.id && deleteOrUpdate === 1 && (
-                                <UpdateRecipeForm recipeId={recipe.id} />
-                            )}
+                                >
+                                    UPDATE
+                                </button>
+                            </td>
+                            {selectedRecipeId === recipe.id &&
+                                deleteOrUpdate === 0 && (
+                                    <DeleteRecipe recipeId={recipe.id} />
+                                )}
+                            {selectedRecipeId === recipe.id &&
+                                deleteOrUpdate === 1 && (
+                                    <UpdateRecipeForm recipeId={recipe.id} />
+                                )}
                         </tr>
                     ))}
                 </tbody>
             </table>
 
             <Routes>
-                <Route path="/add-recipe" Component={AddRecipeForm} />
+                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
             </Routes>
-
         </div>
     );
 };

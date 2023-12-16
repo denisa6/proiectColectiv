@@ -1,16 +1,54 @@
-//import { useState } from "react";
-//import reactLogo from "./assets/react.svg";
-//import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ShowAllRecipes from "./components/RecipeComponents/showAllRecipes";
+import Welcome from "./components/LoginSignUpComponents/Welcome";
+import Login from "./components/LoginSignUpComponents/Login";
+import SignUp from "./components/LoginSignUpComponents/SignUp";
 
 function App() {
-    // const [count, setCount] = useState(0);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [email, setEmail] = useState("");
+
+    // return (
+    //     <>
+    //         <ShowAllRecipes></ShowAllRecipes>
+    //     </>
+    // );
 
     return (
-        <>
-            <ShowAllRecipes></ShowAllRecipes>
-        </>
+        <div className="App">
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <Welcome
+                            email={email}
+                            loggedIn={loggedIn}
+                            setLoggedIn={setLoggedIn}
+                        />
+                    }
+                />
+                <Route
+                    path="/login"
+                    element={
+                        <Login setLoggedIn={setLoggedIn} setEmail={setEmail} />
+                    }
+                />
+                <Route
+                    path="/signup"
+                    element={
+                        <SignUp setLoggedIn={setLoggedIn} setEmail={setEmail} />
+                    }
+                />
+
+                <Route
+                    path="/showlist/*"
+                    element={<ShowAllRecipes></ShowAllRecipes>}
+                />
+            </Routes>
+        </div>
     );
 }
 
