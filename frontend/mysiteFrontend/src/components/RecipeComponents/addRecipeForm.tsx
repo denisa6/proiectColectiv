@@ -1,11 +1,37 @@
 import React, { useState, CSSProperties } from "react";
+import Select, { ActionMeta, MultiValue } from "react-select";
+import { useEffect } from "react";
+import { Ingredient } from "../../models/Ingredient";
 
 const AddRecipeForm = () => {
+    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+    const [selectedIngredients, setSelectedIngredients] = useState<number[]>(
+        []
+    );
+
+    // fetch ingredients for the dropdown menu
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://127.0.0.1:8000/ingredient/?format=json"
+                );
+                const data = await response.json();
+                setIngredients(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const [formData, setFormData] = useState({
         // Define your form fields here
         difficulty: "",
         name: "",
         description: "",
+        ingredients: [],
         time_min: "",
         time_max: "",
         number_people: "",
@@ -22,12 +48,22 @@ const AddRecipeForm = () => {
         }));
     };
 
+    const handleSelectChange = (selectedOptions: any) => {
+        // Extract the selected ingredient IDs and update the state
+        const selectedIds = selectedOptions.map((option: any) => option.value);
+        setSelectedIngredients(selectedIds);
+    };
+
     const handleCancel = () => {
         window.location.href = `/showlist/`;
     };
 
+    // to format the photo so it  ll be accepted as a file
     const addRecipe = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
+        const imagePath = "/path/to/local/photo.jpg"; // Replace with the actual path to your local image
+        const FD = new FormData();
+        FD.append("photo", imagePath);
 
         try {
             fetch("http://127.0.0.1:8000/recipe/", {
@@ -36,14 +72,14 @@ const AddRecipeForm = () => {
                     difficulty: formData.difficulty,
                     name: formData.name,
                     description: formData.description,
-                    // add field de ingredients: must pe a list
-                    // add photo field
+                    ingredients: selectedIngredients,
                     time_min: formData.time_min,
                     time_max: formData.time_max,
                     number_people: formData.number_people,
                     type_recipe: formData.type_recipe,
                     estimated_price: formData.estimated_price,
                     total_calories: formData.total_calories,
+                    FD,
                 }),
                 headers: {
                     Accept: "application/json",
@@ -59,14 +95,24 @@ const AddRecipeForm = () => {
         }
         setTimeout(() => {
             window.location.href = `/showlist`;
-        }, 50000);
+            console.log(selectedIngredients);
+        }, 500);
     };
+
+    const selectOptions = ingredients.map((ingredient) => ({
+        value: ingredient.id,
+        label: ingredient.name,
+    }));
+
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 <h2>Add New Recipe</h2>
                 <form onSubmit={addRecipe} style={styles.form}>
                     {/* Render your form fields here */}
+
+                    {/* ingredients drop down menu*/}
+
                     <label style={styles.label}>
                         Difficulty:
                         <input
@@ -129,6 +175,9 @@ const AddRecipeForm = () => {
                             value={formData.type_recipe}
                             onChange={handleChange}
                         />
+                        {/* class RecipeTypeChoices(models.TextChoices): REGULAR =
+                        'regular' BREAKFAST = 'breakfast' LUNCH = 'lunch' DINNER
+                        = 'dinner' DESSERT = 'dessert' SNACK = 'snack' */}
                     </label>
                     <label style={styles.label}>
                         Estimated price:
@@ -148,7 +197,32 @@ const AddRecipeForm = () => {
                             onChange={handleChange}
                         />
                     </label>
-                    {/* Repeat similar blocks for other fields */}
+                    <Select
+                        isMulti
+                        options={selectOptions}
+                        onChange={handleSelectChange}
+                        placeholder="Select Ingredients"
+                        className="w-full md:w-10rem"
+                        styles={{
+                            container: (provided) => ({
+                                ...provided,
+                                backgroundColor: "black",
+                            }),
+                            menu: (provided) => ({
+                                ...provided,
+                                maxHeight: "150px",
+                                backgroundColor: "black",
+                            }),
+                            option: (provided, state) => ({
+                                ...provided,
+                                backgroundColor: state.isFocused
+                                    ? "blue"
+                                    : "black", // Set the hover color here
+                                color: state.isFocused ? "white" : "inherit", // Text color on hover
+                            }),
+                        }}
+                    />
+
                     <div id="buttons-container">
                         <button type="submit" style={styles.button}>
                             Submit
@@ -160,7 +234,6 @@ const AddRecipeForm = () => {
         </div>
     );
 };
-
 const styles: { [key: string]: CSSProperties } = {
     overlay: {
         position: "fixed",

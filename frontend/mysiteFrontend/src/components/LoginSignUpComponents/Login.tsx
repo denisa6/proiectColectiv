@@ -50,13 +50,23 @@ const Login = (props: any) => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
+                    if (data.detail == "Not found.") {
+                        setTimeout(() => {
+                            navigate("/");
+                        }, 500);
+                    } else {
+                        setTimeout(() => {
+                            navigate("/showlist");
+                        }, 500);
+                    }
                 });
         } catch (error) {
             console.error(error);
         }
-        setTimeout(() => {
-            navigate("/showlist");
-        }, 500);
+
+        // setTimeout(() => {
+        //     navigate("/showlist");
+        // }, 500);
     };
 
     const handleCancel = () => {

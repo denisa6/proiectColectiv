@@ -2,7 +2,7 @@ import { Recipe } from "../../models/Recipe";
 import { useState, useEffect } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import AddRecipeForm from "./addRecipeForm";
-import UpdateRecipeForm from "./updateRecipeForm";
+//import UpdateRecipeForm from "./updateRecipeForm";
 import DeleteRecipe from "./deleteRecipe";
 import "../recipesTable.css";
 
@@ -89,10 +89,10 @@ const RecipeList = () => {
                                 deleteOrUpdate === 0 && (
                                     <DeleteRecipe recipeId={recipe.id} />
                                 )}
-                            {selectedRecipeId === recipe.id &&
+                            {/* {selectedRecipeId === recipe.id &&
                                 deleteOrUpdate === 1 && (
                                     <UpdateRecipeForm recipeId={recipe.id} />
-                                )}
+                                )} */}
                         </tr>
                     ))}
                 </tbody>
