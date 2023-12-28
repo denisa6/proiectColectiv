@@ -20,3 +20,6 @@ class Ingredient(models.Model):
     calories = models.FloatField()
     tags = models.ManyToManyField(Tag)
     allergens = models.ManyToManyField(Allergen)
+
+    class Meta:
+        app_label = 'ingredient'

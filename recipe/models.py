@@ -47,3 +47,6 @@ class Recipe(models.Model):
     total_calories = models.FloatField()
     photo = models.ImageField(upload_to='photos/', default=get_random_photo_filename)
     creator = models.ForeignKey(RegularUser, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        app_label = 'recipe'
