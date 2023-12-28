@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from rest_framework import viewsets
 
@@ -42,4 +43,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 recipes = Recipe.objects.filter(total_calories__gte=int(request_data['total_calories_min']))
         elif 'total_calories_max' in request_data:
             recipes = Recipe.objects.filter(total_calories__lte=int(request_data['total_calories_max']))
+        page_number = request_data.get('page')
+
+        if page_number:
+            paginator = Paginator(recipes, 5)
+            page_obj = paginator.get_page(page_number)
+            recipes = page_obj.object_list
         return recipes
