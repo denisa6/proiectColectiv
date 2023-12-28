@@ -1,6 +1,7 @@
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from dj_rest_auth.serializers import LoginSerializer
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from user.models import RegularUser, UserStatus
 
@@ -23,6 +24,9 @@ class AuthentificationSerializer(LoginSerializer, serializers.ModelSerializer):
         username = attrs.get('username')
         password = attrs.get('password')
         user = self._validate_username(username, password)
+        if user is None:
+            msg = 'Unable to log in with provided credentials.'
+            raise ValidationError(msg)
 
         attrs['user'] = user
         return attrs
