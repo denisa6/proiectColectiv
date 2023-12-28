@@ -4,6 +4,7 @@ from io import BytesIO
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from rest_framework import viewsets, status
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
@@ -115,6 +116,16 @@ def split_description(description_text, max_paragraph_length=300):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+
+    def update(self, request, *args, **kwargs):
+        # Get the instance of the recipe
+        instance = self.get_object()
+
+        # Check if the current user is the creator of the recipe
+        if request.user != instance.creator:
+            return Response({'detail': 'You are not allowed to update this recipe.'}, status=status.HTTP_403_FORBIDDEN)
+
+        super().update(request) 
 
     @api_view(['GET'])
     def recipe_detail(self, request, id):
