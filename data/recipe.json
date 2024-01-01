@@ -270,5 +270,600 @@
       "total_calories": 0.0,
       "photo": "photos/3.png"
     }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 17,
+    "fields": {
+      "difficulty": 2,
+      "name": "Quinoa and Avocado Salad",
+      "description": "Cook quinoa according to package instructions.\nDice ripe avocados and mix with cooked quinoa.\nAdd cherry tomatoes, black beans, and chopped cilantro.\nDrizzle with olive oil and lime juice, season with salt and pepper.\nToss gently and refrigerate for 30 minutes before serving.",
+      "ingredients": [1, 9, 13, 15, 16, 14, 25, 33, 32],
+      "time_min": 40.0,
+      "time_max": 45.0,
+      "number_people": 4,
+      "type_recipe": "lunch",
+      "estimated_price": 30,
+      "total_calories": 800.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 18,
+    "fields": {
+      "difficulty": 3,
+      "name": "Veggie Stir-Fry with Tofu",
+      "description": "Press tofu to remove excess water and cut into cubes.\nSauté mixed vegetables (bell peppers, broccoli, carrots) in sesame oil.\nAdd tofu and stir-fry until golden brown.\nMix soy sauce, garlic, and ginger, pour over the stir-fry.\nServe over brown rice or noodles.",
+      "ingredients": [8, 35, 10, 23, 37, 5, 26, 25, 11],
+      "time_min": 30.0,
+      "time_max": 45.0,
+      "number_people": 3,
+      "type_recipe": "dinner",
+      "estimated_price": 25,
+      "total_calories": 1200.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 19,
+    "fields": {
+      "difficulty": 2,
+      "name": "Greek Chickpea Salad",
+      "description": "Combine canned chickpeas, cherry tomatoes, cucumber, and feta cheese.\nToss with olive oil, lemon juice, and oregano.\nSeason with salt and pepper.\nChill in the fridge for an hour before serving.",
+      "ingredients": [12, 13, 18, 38, 14, 25, 33, 32],
+      "time_min": 60.0,
+      "time_max": 70.0,
+      "number_people": 4,
+      "type_recipe": "lunch",
+      "estimated_price": 20,
+      "total_calories": 1000.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 20,
+    "fields": {
+      "difficulty": 1,
+      "name": "Berry Overnight Oats",
+      "description": "In a jar, mix rolled oats, yogurt, and almond milk.\nAdd mixed berries (strawberries, blueberries, raspberries).\nSweeten with honey or maple syrup.\nRefrigerate overnight.\nTop with sliced almonds before serving.",
+      "ingredients": [2, 3, 4, 36, 17, 16, 7, 40],
+      "time_min": 10.0,
+      "time_max": 15.0,
+      "number_people": 2,
+      "type_recipe": "breakfast",
+      "estimated_price": 15,
+      "total_calories": 500.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 21,
+    "fields": {
+      "difficulty": 3,
+      "name": "Spinach and Feta Omelette",
+      "description": "Whisk eggs and pour into a heated non-stick pan.\nAdd spinach, diced tomatoes, and crumbled feta.\nFold the omelette and cook until the eggs are set.\nSeason with salt and pepper.\nGarnish with fresh herbs (parsley or chives).",
+      "ingredients": [24, 20, 13, 38, 33, 32],
+      "time_min": 15.0,
+      "time_max": 30.0,
+      "number_people": 1,
+      "type_recipe": "breakfast",
+      "estimated_price": 10,
+      "total_calories": 350.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 22,
+    "fields": {
+      "difficulty": 1,
+      "name": "Peanut Butter Banana Smoothie",
+      "description": "Blend frozen banana, peanut butter, Greek yogurt, and almond milk.\nAdd a handful of ice cubes for a refreshing texture.\nSweeten with a touch of honey if desired.\nPour into a glass and enjoy!",
+      "ingredients": [21, 27, 3, 4, 7],
+      "time_min": 5.0,
+      "time_max": 15.0,
+      "number_people": 1,
+      "type_recipe": "breakfast",
+      "estimated_price": 8,
+      "total_calories": 400.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 23,
+    "fields": {
+      "difficulty": 1,
+      "name": "Veggie Hummus Wraps",
+      "description": "Spread a thin layer of hummus on a whole-grain tortilla.\nAdd sliced cucumbers, bell peppers, cherry tomatoes, and shredded carrots.\nSprinkle with feta cheese and a pinch of black pepper.\nRoll up the tortilla tightly and cut into bite-sized pieces.",
+      "ingredients": [44, 45, 18, 15, 38],
+      "time_min": 10.0,
+      "time_max": 15.0,
+      "number_people": 2,
+      "type_recipe": "snack",
+      "estimated_price": 12,
+      "total_calories": 300.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 23,
+    "fields": {
+      "difficulty": 1,
+      "name": "Avocado Toast with Radishes",
+      "description": "Toast whole-grain bread slices.\nSpread mashed avocado on the toasted bread.\nTop with thinly sliced radishes.\nDrizzle with olive oil and sprinkle with sea salt.\nGarnish with microgreens or fresh herbs.",
+      "ingredients": [14, 9],
+      "time_min": 15.0,
+      "time_max": 20.0,
+      "number_people": 2,
+      "type_recipe": "snack",
+      "estimated_price": 10,
+      "total_calories": 250.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 24,
+    "fields": {
+      "difficulty": 1,
+      "name": "Greek Yogurt Parfait",
+      "description": "In a glass, layer Greek yogurt, granola, and mixed berries.\nRepeat the layers until the glass is filled.\nDrizzle honey on top for sweetness.\nGarnish with mint leaves or chopped nuts.",
+      "ingredients": [3, 36, 17, 16, 7],
+      "time_min": 20.0,
+      "time_max": 30.0,
+      "number_people": 1,
+      "type_recipe": "snack",
+      "estimated_price": 8,
+      "total_calories": 350.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 25,
+    "fields": {
+      "difficulty": 2,
+      "name": "Quinoa Chocolate Pudding",
+      "description": "Cook quinoa according to package instructions.\nIn a blender, combine cooked quinoa, chocolate, almond milk, and sugar.\nBlend until smooth and creamy.\nChill in the refrigerator for at least 2 hours before serving.\nGarnish with sliced strawberries before serving.",
+      "ingredients": [1, 30, 4, 32, 28],
+      "time_min": 30.0,
+      "time_max": 45.0,
+      "number_people": 4,
+      "type_recipe": "dessert",
+      "estimated_price": 15,
+      "total_calories": 400.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 26,
+    "fields": {
+      "difficulty": 1,
+      "name": "Avocado Banana Smoothie Bowl",
+      "description": "Blend together avocados, bananas, Greek yogurt, honey, and a splash of milk until smooth.\nPour the smoothie into a bowl.\nTop with sliced strawberries, bananas, and a drizzle of honey.\nOptional: Add a sprinkle of shredded coconut or granola.",
+      "ingredients": [9, 29, 7, 37, 20, 28],
+      "time_min": 10.0,
+      "time_max": 15.0,
+      "number_people": 2,
+      "type_recipe": "dessert",
+      "estimated_price": 12,
+      "total_calories": 350.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 27,
+    "fields": {
+      "difficulty": 2,
+      "name": "Mediterranean Chickpea Salad",
+      "description": "In a large bowl, combine chickpeas, cherry tomatoes, cucumber, feta cheese, and black olives.\nDrizzle olive oil over the salad and toss gently.\nSeason with salt, pepper, and a squeeze of lemon juice.\nServe chilled and garnish with fresh parsley.",
+      "ingredients": [12, 13, 18, 38, 14],
+      "time_min": 15.0,
+      "time_max": 25.0,
+      "number_people": 4,
+      "type_recipe": "lunch",
+      "estimated_price": 18,
+      "total_calories": 300.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 28,
+    "fields": {
+      "difficulty": 2,
+      "name": "Banana Chocolate Chip Muffins",
+      "description": "Preheat the oven to 350°F (175°C) and line a muffin tin with paper liners.\nIn a bowl, mix mashed bananas, flour, sugar, baking powder, and a pinch of salt.\nFold in chocolate chips.\nSpoon the batter into muffin cups and bake for 20-25 minutes or until a toothpick comes out clean.\nAllow to cool before serving.",
+      "ingredients": [29, 33, 32, 31, 30],
+      "time_min": 30.0,
+      "time_max": 45.0,
+      "number_people": 12,
+      "type_recipe": "dessert",
+      "estimated_price": 14,
+      "total_calories": 250.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 29,
+    "fields": {
+      "difficulty": 1,
+      "name": "Spiced Roasted Chickpeas",
+      "description": "Preheat the oven to 400°F (200°C).\nRinse and pat dry chickpeas.\nToss chickpeas with olive oil, smoked paprika, cumin, and a pinch of cayenne.\nSpread chickpeas on a baking sheet and roast for 25-30 minutes until crispy.\nCool before serving as a crunchy snack.",
+      "ingredients": [12, 14],
+      "time_min": 35.0,
+      "time_max": 45.0,
+      "number_people": 6,
+      "type_recipe": "snack",
+      "estimated_price": 10,
+      "total_calories": 180.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 30,
+    "fields": {
+      "difficulty": 2,
+      "name": "Berry Parfait with Almond Granola",
+      "description": "In a glass, layer Greek yogurt with mixed berries and sliced strawberries.\nTop each layer with a sprinkle of homemade almond granola.\nRepeat the layers and finish with a drizzle of honey.\nServe chilled for a refreshing breakfast.",
+      "ingredients": [7, 28, 6, 37],
+      "time_min": 15.0,
+      "time_max": 25.0,
+      "number_people": 2,
+      "type_recipe": "breakfast",
+      "estimated_price": 12,
+      "total_calories": 400.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 31,
+    "fields": {
+      "difficulty": 3,
+      "name": "Grilled Salmon with Lemon-Dill Sauce",
+      "description": "Marinate salmon fillets in a mixture of olive oil, lemon juice, minced garlic, and chopped fresh dill.\nGrill salmon for 4-5 minutes per side or until it flakes easily with a fork.\nPrepare a sauce with Greek yogurt, lemon zest, and additional dill.\nServe grilled salmon with the lemon-dill sauce and a side of steamed broccoli.",
+      "ingredients": [2, 14, 26, 7, 10],
+      "time_min": 30.0,
+      "time_max": 40.0,
+      "number_people": 4,
+      "type_recipe": "dinner",
+      "estimated_price": 25,
+      "total_calories": 450.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 32,
+    "fields": {
+      "difficulty": 1,
+      "name": "Avocado & Tomato Salsa",
+      "description": "Dice avocados and tomatoes.\nMix with finely chopped red onions, cilantro, lime juice, and a pinch of salt.\nServe the avocado and tomato salsa with whole-grain tortilla chips.",
+      "ingredients": [9, 13, 25],
+      "time_min": 15.0,
+      "time_max": 20.0,
+      "number_people": 4,
+      "type_recipe": "snack",
+      "estimated_price": 15,
+      "total_calories": 220.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 33,
+    "fields": {
+      "difficulty": 4,
+      "name": "Gourmet Stuffed Chicken Breast",
+      "description": "Butterfly the chicken breasts and fill with a mixture of sautéed spinach, feta, and sun-dried tomatoes.\nSecure the breasts with toothpicks and bake until golden brown.\nServe over a bed of quinoa, drizzled with balsamic glaze.",
+      "ingredients": [1, 5, 38],
+      "time_min": 45.0,
+      "time_max": 60.0,
+      "number_people": 2,
+      "type_recipe": "dinner",
+      "estimated_price": 30,
+      "total_calories": 600.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 34,
+    "fields": {
+      "difficulty": 5,
+      "name": "Decadent Chocolate Mousse",
+      "description": "Elevate your dessert game with this decadent chocolate mousse.\n\nMelt dark chocolate and let it cool.\nWhip heavy cream until stiff peaks form.\nGently fold the melted chocolate into the whipped cream.\nChill for at least 4 hours before serving.",
+      "ingredients": [30, 32],
+      "time_min": 30.0,
+      "time_max": 40.0,
+      "number_people": 4,
+      "type_recipe": "dessert",
+      "estimated_price": 20,
+      "total_calories": 800.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 35,
+    "fields": {
+      "difficulty": 4,
+      "name": "Seared Beef Tenderloin with Red Wine Reduction",
+      "description": "Impress your guests with this elegant beef tenderloin dish.\n\nSeason beef tenderloin with salt and pepper.\nSear on high heat for a nice crust, then finish in the oven.\nIn the same pan, create a red wine reduction with onions and beef broth.\nSlice the beef and drizzle with the rich red wine reduction.",
+      "ingredients": [25, 36, 14],
+      "time_min": 40.0,
+      "time_max": 60.0,
+      "number_people": 2,
+      "type_recipe": "lunch",
+      "estimated_price": 40,
+      "total_calories": 700.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 36,
+    "fields": {
+      "difficulty": 4,
+      "name": "Quinoa and Kale Power Bowl",
+      "description": "Cook Quinoa: Rinse quinoa thoroughly. In a saucepan, combine quinoa with double the amount of water. Bring to a boil, then simmer until water is absorbed and quinoa is tender. Fluff with a fork.\n\nPrepare Kale: Wash kale leaves and remove stems. Chop into bite-sized pieces. In a pan, sauté chopped garlic in olive oil until golden. Add kale and sauté until wilted but still vibrant.\n\nPoach Eggs: Bring a pot of water to a gentle simmer. Create a whirlpool in the water and carefully drop in eggs one at a time. Poach for 3-4 minutes for a runny yolk.\n\nAssemble Bowl: In serving bowls, layer cooked quinoa, sautéed kale, and a poached egg. Top with sliced avocado and drizzle with balsamic glaze.\n\nServe: Garnish with salt and pepper to taste. Serve immediately, mixing the runny egg yolk into the bowl for added creaminess.",
+      "ingredients": [1, 3, 26, 14, 19, 9],
+      "time_min": 30.0,
+      "time_max": 35.0,
+      "number_people": 2,
+      "type_recipe": "breakfast",
+      "estimated_price": 15,
+      "total_calories": 500.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 37,
+    "fields": {
+      "difficulty": 4,
+      "name": "Salmon and Lentil Salad",
+      "description": "Pan-Seared Salmon: Season salmon fillets with salt and pepper. In a hot pan with olive oil, sear salmon for 3-4 minutes on each side until golden and cooked through.\n\nPrepare Lentil Salad: Cook lentils according to package instructions. Let them cool. In a bowl, combine lentils, halved cherry tomatoes, and diced cucumber.\n\nMake Lemon Vinaigrette: In a small bowl, whisk together lemon juice, olive oil, salt, and pepper. Adjust to taste.\n\nCombine and Serve: Flake the pan-seared salmon over the lentil salad. Drizzle the lemon vinaigrette over the top. Toss gently to combine.\n\nServe: Divide into serving plates. Garnish with fresh herbs if desired. Serve immediately.",
+      "ingredients": [2, 8, 13, 18, 14],
+      "time_min": 35.0,
+      "time_max": 45.0,
+      "number_people": 2,
+      "type_recipe": "lunch",
+      "estimated_price": 25,
+      "total_calories": 600.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 38,
+    "fields": {
+      "difficulty": 5,
+      "name": "Chicken and Broccoli Stir-Fry",
+      "description": "Prepare Ingredients: Slice chicken into thin strips. Cut broccoli into florets. Julienne carrots and bell peppers. Mince garlic and ginger.\n\nStir-Fry Chicken: In a wok or large pan, heat oil over high heat. Stir-fry chicken until browned and cooked through. Remove from the pan.\n\nCook Vegetables: In the same pan, add more oil if needed. Sauté garlic and ginger until fragrant. Add broccoli, carrots, and bell peppers. Stir-fry until vegetables are tender-crisp.\n\nMake Sauce: In a small bowl, mix soy sauce. Pour over the vegetables. Add the cooked chicken back to the pan. Stir until everything is coated and heated through.\n\nServe Over Rice: Serve the stir-fry over cooked brown rice.",
+      "ingredients": [5, 10, 23, 35, 26],
+      "time_min": 30.0,
+      "time_max": 40.0,
+      "number_people": 2,
+      "type_recipe": "dinner",
+      "estimated_price": 30,
+      "total_calories": 550.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 39,
+    "fields": {
+      "difficulty": 5,
+      "name": "Chocolate Banana Bread Pudding",
+      "description": "Prepare Ingredients: Preheat the oven to 350°F (180°C). Cube bread, chop chocolate, and slice bananas.\n\nCreate Bread Mixture: In a bowl, combine cubed bread, chopped chocolate, and sliced bananas.\n\nMake Custard: In another bowl, whisk together milk, eggs, and sugar until well combined.\n\nCombine and Bake: Pour the custard mixture over the bread mixture. Allow it to soak for 15 minutes. Transfer to a baking dish and bake for 40-45 minutes or until the center is set.\n\nServe: Allow the pudding to cool slightly before serving. Optionally, dust with powdered sugar or serve with a scoop of vanilla ice cream.",
+      "ingredients": [30, 29, 20, 19, 32],
+      "time_min": 60.0,
+      "time_max": 90.0,
+      "number_people": 4,
+      "type_recipe": "dessert",
+      "estimated_price": 20,
+      "total_calories": 700.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 40,
+    "fields": {
+      "difficulty": 4,
+      "name": "Spicy Chickpea and Almond Mix",
+      "description": "Roast Chickpeas and Almonds: Preheat the oven to 400°F (200°C). Toss chickpeas and almonds with your favorite spices.\n\nBake: Spread the chickpeas and almonds on a baking sheet. Roast in the oven for 20-25 minutes or until golden and crispy.\n\nCool and Serve: Allow the spicy chickpea and almond mix to cool before serving. Store in an airtight container for a crunchy snack.",
+      "ingredients": [12, 4],
+      "time_min": 25.0,
+      "time_max": 40.0,
+      "number_people": 4,
+      "type_recipe": "snack",
+      "estimated_price": 10,
+      "total_calories": 300.0,
+      "photo": "photos/2.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 41,
+    "fields": {
+      "difficulty": 3,
+      "name": "Avocado and Tomato Breakfast Sandwich",
+      "description": "Mash Avocado: Mash the avocado and spread it on toasted whole wheat English muffins.\n\nPrepare Eggs: Cook eggs to your liking (poached, scrambled, or fried).\n\nAssemble Sandwich: Layer sliced tomatoes, eggs, and crumbled feta cheese on the avocado-covered English muffins.\n\nSeason: Sprinkle with salt and pepper to taste. Optionally, add hot sauce for some heat.\n\nServe: Put the halves together to create a delicious and nutritious breakfast sandwich.",
+      "ingredients": [9, 13, 19, 38],
+      "time_min": 20.0,
+      "time_max": 30.0,
+      "number_people": 2,
+      "type_recipe": "breakfast",
+      "estimated_price": 12,
+      "total_calories": 450.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 42,
+    "fields": {
+      "difficulty": 3,
+      "name": "Quinoa Salad with Grilled Chicken",
+      "description": "Cook Quinoa: Prepare quinoa according to package instructions. Let it cool.\n\nGrill Chicken: Grill seasoned chicken until fully cooked. Slice into strips.\n\nChop Vegetables: Dice bell peppers and cucumber. Crumble feta cheese.\n\nAssemble Salad: In a large bowl, combine cooked quinoa, grilled chicken, diced bell peppers, cucumber, and feta cheese.\n\nMake Dressing: Whisk together olive oil and lemon juice. Drizzle over the salad and toss to combine.\n\nServe: Divide into bowls, and enjoy a refreshing and protein-packed lunch.",
+      "ingredients": [1, 35, 18, 38, 14],
+      "time_min": 30.0,
+      "time_max": 40.0,
+      "number_people": 4,
+      "type_recipe": "lunch",
+      "estimated_price": 20,
+      "total_calories": 550.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 43,
+    "fields": {
+      "difficulty": 4,
+      "name": "Beef and Vegetable Stir-Fry with Brown Rice",
+      "description": "Slice Beef: Cut beef into thin strips.\n\nStir-Fry Beef: In a wok or pan, heat sesame oil. Stir-fry beef until browned. Remove from the pan.\n\nCook Vegetables: In the same pan, stir-fry broccoli, carrots, and snap peas until tender-crisp. Add minced ginger.\n\nCombine Ingredients: Add the cooked beef back to the pan. Pour soy sauce over the mixture. Stir until everything is coated.\n\nServe Over Rice: Serve the beef and vegetable stir-fry over cooked brown rice.",
+      "ingredients": [36, 10, 23, 11],
+      "time_min": 25.0,
+      "time_max": 35.0,
+      "number_people": 3,
+      "type_recipe": "dinner",
+      "estimated_price": 25,
+      "total_calories": 650.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 44,
+    "fields": {
+      "difficulty": 5,
+      "name": "Raspberry Chocolate Mousse",
+      "description": "Melt Chocolate: Melt dark chocolate over a double boiler. Let it cool slightly.\n\nWhip Cream: In a separate bowl, whip heavy cream until stiff peaks form.\n\nMake Chocolate Mousse: Gently fold melted chocolate into the whipped cream until smooth.\n\nPrepare Raspberry Sauce: Blend raspberries with sugar to create a sauce.\n\nLayer Dessert: In serving glasses, alternate layers of chocolate mousse and raspberry sauce.\n\nChill and Garnish: Refrigerate for at least 2 hours. Garnish with fresh raspberries and mint leaves before serving.",
+      "ingredients": [19, 32],
+      "time_min": 40.0,
+      "time_max": 60.0,
+      "number_people": 4,
+      "type_recipe": "dessert",
+      "estimated_price": 18,
+      "total_calories": 500.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 45,
+    "fields": {
+      "difficulty": 2,
+      "name": "Mediterranean Hummus Platter",
+      "description": "Assemble Platter: Spread hummus on a large platter.\n\nArrange Ingredients: Place cherry tomatoes, sliced cucumber, Kalamata olives, and crumbled feta cheese on top of the hummus.\n\nServe with Pita: Warm pita bread and serve alongside the platter.",
+      "ingredients": [13, 18, 38],
+      "time_min": 15.0,
+      "time_max": 20.0,
+      "number_people": 4,
+      "type_recipe": "snack",
+      "estimated_price": 16,
+      "total_calories": 400.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 46,
+    "fields": {
+      "difficulty": 3,
+      "name": "Oatmeal and Banana Pancakes",
+      "description": "Blend Batter: In a blender, combine oats, bananas, milk, eggs, baking powder, and honey. Blend until smooth.\n\nCook Pancakes: Heat a griddle or pan. Pour batter onto the hot surface to form pancakes. Cook until bubbles appear, then flip and cook the other side.\n\nStack and Serve: Stack the pancakes and drizzle with honey. Optionally, add sliced bananas on top.",
+      "ingredients": [6, 29, 20, 19, 31, 37],
+      "time_min": 20.0,
+      "time_max": 25.0,
+      "number_people": 3,
+      "type_recipe": "breakfast",
+      "estimated_price": 14,
+      "total_calories": 480.0,
+      "photo": "photos/3.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 47,
+    "fields": {
+      "difficulty": 4,
+      "name": "Lemon Herb Grilled Salmon",
+      "description": "Prepare Marinade: In a bowl, mix olive oil, minced garlic, chopped fresh dill, lemon juice, salt, and pepper.\n\nMarinate Salmon: Coat salmon fillets with the marinade and let them sit for at least 30 minutes.\n\nGrill Salmon: Grill the marinated salmon fillets until they are cooked through and have a nice char.\n\nGarnish and Serve: Squeeze fresh lemon juice over the grilled salmon and garnish with additional dill. Serve with your favorite side dishes.",
+      "ingredients": [2, 26, 14],
+      "time_min": 40.0,
+      "time_max": 60.0,
+      "number_people": 2,
+      "type_recipe": "dinner",
+      "estimated_price": 22,
+      "total_calories": 400.0,
+      "photo": "photos/1.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 48,
+    "fields": {
+      "difficulty": 5,
+      "name": "Dark Chocolate and Raspberry Tart",
+      "description": "Prepare Tart Crust: Mix flour, melted butter, and sugar. Press the mixture into a tart pan and bake until golden brown.\n\nMelt Chocolate: Melt dark chocolate and pour it over the cooled tart crust.\n\nArrange Raspberries: Place fresh raspberries on top of the melted chocolate.\n\nChill and Serve: Allow the tart to chill in the refrigerator for at least 2 hours before serving. Slice and enjoy!",
+      "ingredients": [32, 33],
+      "time_min": 60.0,
+      "time_max": 80.0,
+      "number_people": 6,
+      "type_recipe": "dessert",
+      "estimated_price": 15,
+      "total_calories": 350.0,
+      "photo": "photos/4.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 49,
+    "fields": {
+      "difficulty": 2,
+      "name": "Caprese Skewers with Balsamic Glaze",
+      "description": "Assemble Skewers: Thread cherry tomatoes, fresh mozzarella balls, and basil leaves onto skewers.\n\nDrizzle with Olive Oil: Arrange the skewers on a serving platter and drizzle with olive oil.\n\nSeason: Sprinkle with salt and pepper to taste.\n\nServe with Balsamic Glaze: Drizzle balsamic glaze over the skewers just before serving. Enjoy this refreshing and easy-to-make snack.",
+      "ingredients": [13, 40, 14],
+      "time_min": 15.0,
+      "time_max": 30.0,
+      "number_people": 4,
+      "type_recipe": "snack",
+      "estimated_price": 12,
+      "total_calories": 250.0,
+      "photo": "photos/5.png"
+    }
+  },
+  {
+    "model": "recipe.Recipe",
+    "pk": 50,
+    "fields": {
+      "difficulty": 2,
+      "name": "Banana Nut Overnight Oats",
+      "description": "Combine Ingredients: In a jar, mix oats, milk, sliced bananas, Greek yogurt, honey, and chopped walnuts.\n\nStir Well: Stir the mixture until well combined, ensuring oats are fully coated.\n\nRefrigerate Overnight: Cover the jar and refrigerate overnight or for at least 4 hours.\n\nServe: The next morning, give the oats a good stir and enjoy a delicious and nutritious breakfast.",
+      "ingredients": [6, 20, 29, 7, 37],
+      "time_min": 10.0,
+      "time_max": 20.0,
+      "number_people": 2,
+      "type_recipe": "breakfast",
+      "estimated_price": 10,
+      "total_calories": 350.0,
+      "photo": "photos/3.png"
+    }
   }
 ]
