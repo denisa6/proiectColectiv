@@ -18,5 +18,8 @@ class Ingredient(models.Model):
 
     name = models.CharField(max_length=50)
     calories = models.FloatField()
-    tags = models.ManyToManyField(Tag)
-    allergens = models.ManyToManyField(Allergen)
+    tags = models.ManyToManyField(Tag, blank=True)
+    allergens = models.ManyToManyField(Allergen, blank=True)
+
+    class Meta:
+        app_label = 'ingredient'

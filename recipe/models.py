@@ -1,6 +1,10 @@
+import random
+
 from django.db import models
 from rest_framework.exceptions import ValidationError
 from ingredient.models import Ingredient
+from user.models import RegularUser
+
 
 def validate_difficulty(value):
     if value > 5 or value < 0:
@@ -25,6 +29,11 @@ class RecipeTypeChoices(models.TextChoices):
     SNACK = 'snack'
 
 
+def get_random_photo_filename():
+    random_photo_number = random.randint(1, 5)
+    return f'photos/{random_photo_number}.jpg'
+
+
 class Recipe(models.Model):
     difficulty = models.IntegerField(validators=[validate_difficulty])
     name = models.CharField(max_length=100)
@@ -36,5 +45,8 @@ class Recipe(models.Model):
     type_recipe = models.CharField(max_length=50, choices=RecipeTypeChoices.choices, default=RecipeTypeChoices.REGULAR)
     estimated_price = models.IntegerField()
     total_calories = models.FloatField()
-    photo = models.ImageField(upload_to='photos/', default='default.png')
+    photo = models.ImageField(upload_to='photos/', default=get_random_photo_filename)
+    creator = models.ForeignKey(RegularUser, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        app_label = 'recipe'
