@@ -380,7 +380,7 @@
       "difficulty": 1,
       "name": "Veggie Hummus Wraps",
       "description": "Spread a thin layer of hummus on a whole-grain tortilla.\nAdd sliced cucumbers, bell peppers, cherry tomatoes, and shredded carrots.\nSprinkle with feta cheese and a pinch of black pepper.\nRoll up the tortilla tightly and cut into bite-sized pieces.",
-      "ingredients": [44, 45, 18, 15, 38],
+      "ingredients": [18, 15, 38],
       "time_min": 10.0,
       "time_max": 15.0,
       "number_people": 2,
