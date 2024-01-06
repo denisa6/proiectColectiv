@@ -1,3 +1,5 @@
+import { getAuthToken } from "../../util/auth";
+
 const DeleteRecipe = (props: { recipeId: any }) => {
     const handleDelete = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
@@ -6,6 +8,9 @@ const DeleteRecipe = (props: { recipeId: any }) => {
 
         fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}`, {
             method: "DELETE",
+            headers: {
+                Authorization: "Bearer " + getAuthToken(),
+            },
         })
             .then((response) => {
                 response.json();
@@ -15,7 +20,7 @@ const DeleteRecipe = (props: { recipeId: any }) => {
                 console.log(data);
             });
         setTimeout(() => {
-            window.location.href = `/`;
+            window.location.href = `/showlist/`;
         }, 500);
     };
 

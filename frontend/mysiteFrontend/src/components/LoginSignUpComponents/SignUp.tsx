@@ -69,6 +69,17 @@ const SignUp = (props: any) => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
+                    console.log(
+                        JSON.stringify({
+                            username: username,
+                            email: email,
+                            password1: password1,
+                            password2: password2,
+                            first_name: first_name,
+                            last_name: last_name,
+                            role: "regular",
+                        })
+                    );
                 });
         } catch (error) {
             console.error(error);

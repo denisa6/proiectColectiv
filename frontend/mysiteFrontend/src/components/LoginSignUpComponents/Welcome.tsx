@@ -38,7 +38,7 @@ const Welcome = (props: { loggedIn: any; email: any; setLoggedIn: any }) => {
                     onClick={onButtonClickSignUp}
                     value={"Sign Up"}
                 />
-                {loggedIn ? <div>Your email address is {email}</div> : <div />}
+                {loggedIn ? <div>Your username is {email}</div> : <div />}
             </div>
         </div>
     );

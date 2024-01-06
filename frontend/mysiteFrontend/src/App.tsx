@@ -6,6 +6,9 @@ import ShowAllRecipes from "./components/RecipeComponents/showAllRecipes";
 import Welcome from "./components/LoginSignUpComponents/Welcome";
 import Login from "./components/LoginSignUpComponents/Login";
 import SignUp from "./components/LoginSignUpComponents/SignUp";
+import Logout from "./components/LoginSignUpComponents/Logout";
+
+import UserRecipeList from "./components/RecipeComponents/userRecipes";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -46,6 +49,12 @@ function App() {
                 <Route
                     path="/showlist/*"
                     element={<ShowAllRecipes></ShowAllRecipes>}
+                />
+                <Route path="/logout" element={<Logout></Logout>} />
+
+                <Route
+                    path="/userRecipes"
+                    element={<UserRecipeList></UserRecipeList>}
                 />
             </Routes>
         </div>

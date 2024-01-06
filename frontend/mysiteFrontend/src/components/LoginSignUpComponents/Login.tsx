@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuthToken } from "../../util/auth";
 
 const Login = (props: any) => {
     const [username, setUsername] = useState("");
@@ -45,18 +46,41 @@ const Login = (props: any) => {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json;charset=UTF-8",
+                    //Authorization: "Bearer " + getAuthToken(),
                 },
             })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
+                    const token = data.key;
+                    localStorage.setItem("token", token);
+
+                    const username = data.username;
+                    localStorage.setItem("username", username);
+
+                    const userID = data.id;
+                    localStorage.setItem("userID", userID);
+
+                    const userRole = data.role;
+                    localStorage.setItem("userRole", userRole);
+
+                    if (data.detail == "Not found.") {
+                        setTimeout(() => {
+                            navigate("/");
+                        }, 500);
+                    } else {
+                        setTimeout(() => {
+                            navigate("/showlist");
+                        }, 500);
+                    }
                 });
         } catch (error) {
             console.error(error);
         }
-        setTimeout(() => {
-            navigate("/showlist");
-        }, 500);
+
+        // setTimeout(() => {
+        //     navigate("/showlist");
+        // }, 500);
     };
 
     const handleCancel = () => {
@@ -72,7 +96,7 @@ const Login = (props: any) => {
             <div className={"inputContainer"}>
                 <input
                     value={username}
-                    placeholder="Enter your email here"
+                    placeholder="Enter your username here"
                     onChange={(ev) => setUsername(ev.target.value)}
                     className={"inputBox"}
                 />
