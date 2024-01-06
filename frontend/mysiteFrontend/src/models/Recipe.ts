@@ -11,6 +11,7 @@ export interface Recipe {
     type_recipe:string;
     estimated_price:number;
     total_calories:number;
-    photo: string; // web url ???
+    photo: string; 
+    creator:string;
 }
 
