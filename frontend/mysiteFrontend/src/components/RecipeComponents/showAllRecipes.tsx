@@ -4,12 +4,13 @@ import { Link, Route, Routes } from "react-router-dom";
 import AddRecipeForm from "./addRecipeForm";
 import UpdateRecipeForm from "./updateRecipeForm";
 import DeleteRecipe from "./deleteRecipe";
+import RecipeDetailsForm from "./recipeDetailsForm";
 import "../recipesTable.css";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
-    const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
+    const [desiredCommand, setDesiredCommand] = useState(0);
     const [filterName, setFilterName] = useState("");
     const [filterDifficulty, setFilterDifficulty] = useState("");
     const [filterIngredients, setFilterIngredients] = useState("");
@@ -278,10 +279,10 @@ const RecipeList = () => {
                                 <button
                                     onClick={() => {
                                         setSelectedRecipeId(recipe.id!);
-                                        setDeleteOrUpdate(0);
+                                        setDesiredCommand(0);
                                     }}
                                 >
-                                    DELETE
+                                Delete
                                 </button>
                                 {/* </Link> */}
                             </td>
@@ -289,20 +290,31 @@ const RecipeList = () => {
                                 <button
                                     onClick={() => {
                                         setSelectedRecipeId(recipe.id!);
-                                        setDeleteOrUpdate(1);
+                                        setDesiredCommand(1);
                                     }}
                                 >
-                                    UPDATE
+                                Update
                                 </button>
                             </td>
-                            {selectedRecipeId === recipe.id &&
-                                deleteOrUpdate === 0 && (
-                                    <DeleteRecipe recipeId={recipe.id} />
-                                )}
-                            {selectedRecipeId === recipe.id &&
-                                deleteOrUpdate === 1 && (
-                                    <UpdateRecipeForm recipeId={recipe.id} />
-                                )}
+                            <td>
+                                <button
+                                    onClick={() => {
+                                        setSelectedRecipeId(recipe.id!);
+                                        setDesiredCommand(2);
+                                    }}
+                                >
+                                    View Details
+                                </button>
+                            </td>
+                            {selectedRecipeId === recipe.id && desiredCommand === 0 && (
+                                <DeleteRecipe recipeId={recipe.id} />
+                            )}
+                            {selectedRecipeId === recipe.id && desiredCommand === 1 && (
+                                <UpdateRecipeForm recipeId={recipe.id} />
+                            )}
+                            {selectedRecipeId === recipe.id && desiredCommand === 2 && (
+                                    <RecipeDetailsForm recipeId={recipe.id} />
+                            )}
                         </tr>
                     ))}
                 </tbody>
