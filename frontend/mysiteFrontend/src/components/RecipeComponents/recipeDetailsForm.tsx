@@ -38,6 +38,29 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
         fetchData();
     }, []);
 
+    const handleDownloadPDF = async () => {
+        try {
+            // Assuming there is an endpoint on the backend for generating and serving the PDF
+            const response = await fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}/download/`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/pdf",
+                },
+            });
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = recipe.name + "_details.pdf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error("Error downloading PDF:", error);
+        }
+    };
+
     useEffect(() => {
         setFormData({
             difficulty: recipe.difficulty,
@@ -50,8 +73,10 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
             type_recipe: recipe.type_recipe,
             estimated_price: recipe.estimated_price,
             total_calories: recipe.total_calories,
-            photo: recipe.photo
+            photo: recipe.photo,
         });
+        console.log("Photo URL:", recipe.photo);
+        console.log("Recipe:", recipe);
     }, [recipe]);
 
     useEffect(() => {
@@ -82,21 +107,32 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
     return (
         <div style={styles.overlay}>
             <div style={styles.modal} modal-class="modal-fullscreen">
+                <div style={styles.header}>
+                    <button onClick={handleDownloadPDF}>Download PDF</button>
+                    <button style={styles.exitButton} onClick={handleCancel}>
+                        Exit
+                    </button>
+                </div>
                 <h1>{recipe.name}</h1>
-                <h2>Description:</h2>
-                <p>{formData.description}</p>
+                {formData.photo && (
+                    <div>
+                        <img src={formData.photo} alt="My Image"/>
+                    </div>
+                )}
+                <h2>Recipe Information: </h2>
+                <p><small><i>{"Difficulty: ".concat(String(formData.difficulty))}</i></small></p>
+                <p><small><i>{"Estimated Time: ".concat(String(formData.time_min))} - {formData.time_max}</i></small>
+                </p>
+                <p><small><i>{"Number of People: ".concat(String(formData.number_people))}</i></small></p>
+                <p><small><i>{"Recipe Type: ".concat(formData.type_recipe)}</i></small></p>
+                <p><small><i>{"Estimated Price: ".concat(String(formData.estimated_price))}</i></small></p>
+                <p><small><i>{"Total Calories: ".concat(String(formData.total_calories))} </i></small></p>
                 <h2>Ingredients: </h2>
                 <p>{ingredientNames.join(", ")}</p>
-                <h2>Recipe Information: </h2>
-                <p><small><i>{"Difficulty: ".concat(formData.difficulty)}</i></small></p>
-                <p><small><i>{"Estimated Time: ".concat(formData.time_min)} - {formData.time_max}</i></small></p>
-                <p><small><i>{"Number of People: ".concat(formData.number_people)}</i></small></p>
-                <p><small><i>{"Recipe Type: ".concat(formData.type_recipe)}</i></small></p>
-                <p><small><i>{"Estimated Price: ".concat(formData.estimated_price)}</i></small></p>
-                <p><small><i>{"Total Calories: ".concat(formData.total_calories)} </i></small></p>
-                <div id="buttons-container">
-                        <button onClick={handleCancel}>Exit</button>
-                    </div>
+                <h2>Description:</h2>
+                <p>{formData.description}</p>
+
+
             </div>
         </div>
     );
@@ -120,6 +156,10 @@ const styles: { [key: string]: CSSProperties } = {
         borderRadius: "8px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
         textAlign: "left",
+        width: "80%", // Set the width as needed
+        height: "80%", // Set the height as needed
+        overflow: "auto", // Add scrollbar if content exceeds the available space
+        boxSizing: "border-box",
     },
     form: {
         display: "flex",
@@ -133,6 +173,26 @@ const styles: { [key: string]: CSSProperties } = {
     button: {
         padding: "10px",
         marginTop: "10px",
+    },
+
+    header: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "10px",
+    },
+
+    exitButton: {
+        background: "none",
+        border: "none",
+        color: "#fff",
+        cursor: "pointer",
+        fontSize: "16px",
+    },
+
+    content: {
+        overflow: "auto", // Add scrollbar if content exceeds the available space
+        maxHeight: "calc(100% - 40px)", // Set the maximum height, considering header and padding
     },
 };
 
