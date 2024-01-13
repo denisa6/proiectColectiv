@@ -13,7 +13,7 @@
       "type_recipe": "dessert",
       "estimated_price": 50,
       "total_calories": 1200.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -30,7 +30,7 @@
       "type_recipe": "lunch",
       "estimated_price": 25,
       "total_calories": 500.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -47,7 +47,7 @@
       "type_recipe": "dinner",
       "estimated_price": 45,
       "total_calories": 3600.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -64,7 +64,7 @@
       "type_recipe": "dinner",
       "estimated_price": 20,
       "total_calories": 1500.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -81,7 +81,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 15,
       "total_calories": 600.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -98,7 +98,7 @@
       "type_recipe": "dessert",
       "estimated_price": 20,
       "total_calories": 1200.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -115,7 +115,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 25,
       "total_calories": 800.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -132,7 +132,7 @@
       "type_recipe": "dinner",
       "estimated_price": 45,
       "total_calories": 3600.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -149,7 +149,7 @@
       "type_recipe": "lunch",
       "estimated_price": 30,
       "total_calories": 500.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -166,7 +166,7 @@
       "type_recipe": "dinner",
       "estimated_price": 50,
       "total_calories": 2500.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -183,7 +183,7 @@
       "type_recipe": "dinner",
       "estimated_price": 40,
       "total_calories": 900.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -200,7 +200,7 @@
       "type_recipe": "dinner",
       "estimated_price": 30,
       "total_calories": 750.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -217,7 +217,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 15,
       "total_calories": 1000.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -234,7 +234,7 @@
       "type_recipe": "dessert",
       "estimated_price": 10,
       "total_calories": 500.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -251,7 +251,7 @@
       "type_recipe": "dessert",
       "estimated_price": 25,
       "total_calories": 1200.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -268,7 +268,7 @@
       "type_recipe": "dinner",
       "estimated_price": 0,
       "total_calories": 0.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -285,7 +285,7 @@
       "type_recipe": "lunch",
       "estimated_price": 30,
       "total_calories": 800.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -302,7 +302,7 @@
       "type_recipe": "dinner",
       "estimated_price": 25,
       "total_calories": 1200.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -319,7 +319,7 @@
       "type_recipe": "lunch",
       "estimated_price": 20,
       "total_calories": 1000.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -336,7 +336,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 15,
       "total_calories": 500.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -353,7 +353,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 10,
       "total_calories": 350.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -370,7 +370,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 8,
       "total_calories": 400.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -387,7 +387,7 @@
       "type_recipe": "snack",
       "estimated_price": 12,
       "total_calories": 300.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -404,7 +404,7 @@
       "type_recipe": "snack",
       "estimated_price": 10,
       "total_calories": 250.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -421,7 +421,7 @@
       "type_recipe": "snack",
       "estimated_price": 8,
       "total_calories": 350.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -438,7 +438,7 @@
       "type_recipe": "dessert",
       "estimated_price": 15,
       "total_calories": 400.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -455,7 +455,7 @@
       "type_recipe": "dessert",
       "estimated_price": 12,
       "total_calories": 350.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -472,7 +472,7 @@
       "type_recipe": "lunch",
       "estimated_price": 18,
       "total_calories": 300.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -489,7 +489,7 @@
       "type_recipe": "dessert",
       "estimated_price": 14,
       "total_calories": 250.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -506,7 +506,7 @@
       "type_recipe": "snack",
       "estimated_price": 10,
       "total_calories": 180.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -523,7 +523,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 12,
       "total_calories": 400.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -540,7 +540,7 @@
       "type_recipe": "dinner",
       "estimated_price": 25,
       "total_calories": 450.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -557,7 +557,7 @@
       "type_recipe": "snack",
       "estimated_price": 15,
       "total_calories": 220.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -574,7 +574,7 @@
       "type_recipe": "dinner",
       "estimated_price": 30,
       "total_calories": 600.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -591,7 +591,7 @@
       "type_recipe": "dessert",
       "estimated_price": 20,
       "total_calories": 800.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -608,7 +608,7 @@
       "type_recipe": "lunch",
       "estimated_price": 40,
       "total_calories": 700.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -625,7 +625,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 15,
       "total_calories": 500.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -642,7 +642,7 @@
       "type_recipe": "lunch",
       "estimated_price": 25,
       "total_calories": 600.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -659,7 +659,7 @@
       "type_recipe": "dinner",
       "estimated_price": 30,
       "total_calories": 550.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -676,7 +676,7 @@
       "type_recipe": "dessert",
       "estimated_price": 20,
       "total_calories": 700.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -693,7 +693,7 @@
       "type_recipe": "snack",
       "estimated_price": 10,
       "total_calories": 300.0,
-      "photo": "photos/2.png"
+      "photo": "photos/2.jpg"
     }
   },
   {
@@ -710,7 +710,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 12,
       "total_calories": 450.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -727,7 +727,7 @@
       "type_recipe": "lunch",
       "estimated_price": 20,
       "total_calories": 550.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -744,7 +744,7 @@
       "type_recipe": "dinner",
       "estimated_price": 25,
       "total_calories": 650.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -761,7 +761,7 @@
       "type_recipe": "dessert",
       "estimated_price": 18,
       "total_calories": 500.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -778,7 +778,7 @@
       "type_recipe": "snack",
       "estimated_price": 16,
       "total_calories": 400.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -795,7 +795,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 14,
       "total_calories": 480.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   },
   {
@@ -812,7 +812,7 @@
       "type_recipe": "dinner",
       "estimated_price": 22,
       "total_calories": 400.0,
-      "photo": "photos/1.png"
+      "photo": "photos/1.jpg"
     }
   },
   {
@@ -829,7 +829,7 @@
       "type_recipe": "dessert",
       "estimated_price": 15,
       "total_calories": 350.0,
-      "photo": "photos/4.png"
+      "photo": "photos/4.jpg"
     }
   },
   {
@@ -846,7 +846,7 @@
       "type_recipe": "snack",
       "estimated_price": 12,
       "total_calories": 250.0,
-      "photo": "photos/5.png"
+      "photo": "photos/5.jpg"
     }
   },
   {
@@ -863,7 +863,7 @@
       "type_recipe": "breakfast",
       "estimated_price": 10,
       "total_calories": 350.0,
-      "photo": "photos/3.png"
+      "photo": "photos/3.jpg"
     }
   }
 ]

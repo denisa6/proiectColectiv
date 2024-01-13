@@ -9,6 +9,7 @@ import "../recipesTable.css";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [allrecipes, setAllRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
     const [desiredCommand, setDesiredCommand] = useState(0);
     const [filterName, setFilterName] = useState("");
@@ -22,13 +23,19 @@ const RecipeList = () => {
     const [filterCalMin, setFilterCalMin] = useState("");
     const [filterCalMax, setFilterCalMax] = useState("");
     const [showFilterModalName, setShowFilterModalName] = useState(false);
-    const isAnyFilterModalOpen = showFilterModalName;
+    const isAnyFilterModalOpen = showFilterModalName ;
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const response2 = await fetch(
+                    `http://127.0.0.1:8000/recipe/?format=json`
+                );
+                const data2 = await response2.json();
+                setAllRecipes(data2);
                 const response = await fetch(
-                    "http://127.0.0.1:8000/recipe/?format=json"
+                    `http://127.0.0.1:8000/recipe/?page=${currentPage}&format=json`
                 );
                 const data = await response.json();
                 setRecipes(data);
@@ -44,7 +51,43 @@ const RecipeList = () => {
         setShowFilterModalName((prev) => !prev);
     };
 
-    const handleFilterSubmit = async () => {
+    const handleClickPrev = () => {
+        setCurrentPage(currentPage - 1);
+             console.log(currentPage);
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(
+                        `http://127.0.0.1:8000/recipe/?page=${currentPage - 1}&format=json`
+                    );
+                    const data = await response.json();
+                    setRecipes(data);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }
+        fetchData();
+
+    };
+
+    const handleClickNext = () => {
+        setCurrentPage(currentPage + 1);
+            console.log(currentPage)
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(
+                        `http://127.0.0.1:8000/recipe/?page=${currentPage + 1}&format=json`
+                    );
+                    const data = await response.json();
+                    setRecipes(data);
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }
+
+        fetchData();
+    };
+
+   const handleFilterSubmit = async () => {
         try {
             // Make a backend API call to filter recipes by name
             let url = `http://127.0.0.1:8000/recipe/?name=${filterName}&format=json`;
@@ -252,7 +295,6 @@ const RecipeList = () => {
                         {/* <th>ID</th> */}
                         <th>Difficulty</th>
                         <th>Name</th>
-                        <th>Description</th>
                         <th>Time (min)</th>
                         <th>Number of People</th>
                         <th>Type of Recipe</th>
@@ -266,7 +308,6 @@ const RecipeList = () => {
                             {/* <td>{recipe.id}</td> */}
                             <td>{recipe.difficulty}</td>
                             <td>{recipe.name}</td>
-                            <td>{recipe.description}</td>
                             <td>
                                 {recipe.time_min} - {recipe.time_max}
                             </td>
@@ -320,11 +361,20 @@ const RecipeList = () => {
                 </tbody>
             </table>
 
-            <Routes>
-                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
-            </Routes>
-        </div>
-    );
-};
 
-export default RecipeList;
+            <button style={{marginRight: "10px"}} onClick={handleClickPrev} disabled={currentPage === 1}>
+                Prev
+            </button>
+            <button style={{marginRight: "10px"}}>{currentPage}</button>
+            <button style={{marginRight: "10px"}} onClick={handleClickNext} disabled={currentPage === Math.ceil(allrecipes.length / 5)}>Next</button>
+
+                <Routes>
+                    <Route path="showlist/add-recipe" Component={AddRecipeForm}/>
+                </Routes>
+            </div>
+            );
+            };
+
+            export default RecipeList;
+
+

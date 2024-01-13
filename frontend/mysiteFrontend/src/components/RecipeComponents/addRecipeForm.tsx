@@ -394,7 +394,6 @@ const AddRecipeForm = () => {
                                 accept="image/png, image/jpeg"
                                 value={recipeData.photo}
                                 onChange={handleRecipeDataChange}
-                                required
                             />
                         </p>
                     </div>
