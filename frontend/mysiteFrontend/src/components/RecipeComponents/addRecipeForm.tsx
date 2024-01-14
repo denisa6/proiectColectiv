@@ -178,7 +178,7 @@ const AddRecipeForm = () => {
             setTimeout(() => {
                 window.location.href = `/showlist`;
                 console.log(selectedIngredients);
-            }, 50000);
+            }, 500);
         }
     };
 
@@ -197,95 +197,12 @@ const AddRecipeForm = () => {
         { value: "dessert", label: "Dessert" },
         { value: "snack", label: "Snack" },
     ];
-    // const inputFields = [
-    //     { label: "Difficulty", type: "number", name: "difficulty" },
-    //     { label: "Name", type: "text", name: "name" },
-    //     { label: "Description", type: "text", name: "description" },
-    //     { label: "Time min", type: "number", name: "time_min" },
-    //     { label: "Time max", type: "number", name: "time_max" },
-    //     { label: "Number of people", type: "number", name: "number_people" },
-    //     { label: "Recipe type", type: "text", name: "type_recipe" },
-    //     { label: "Estimated price", type: "number", name: "estimated_price" },
-    //     { label: "Total calories", type: "number", name: "total_calories" },
-    // ];
-    // const CustomOption = (props: any) => (
-    //     <components.Option {...props}>
-    //         <input
-    //             type="radio"
-    //             value={props.value}
-    //             checked={props.isSelected}
-    //             onChange={() => null}
-    //         />
-    //         {props.label}
-    //     </components.Option>
-    // );
-
-    // const CustomMenu = (props: any) => {
-    //     const rowCount = 3; // Set the number of rows
-
-    //     return (
-    //         <components.Menu {...props}>
-    //             <div style={{ maxHeight: "150px", overflowY: "scroll" }}>
-    //                 {Array.from(
-    //                     { length: Math.ceil(props.children.length / rowCount) },
-    //                     (_, index) => (
-    //                         <div key={index} style={{ display: "flex" }}>
-    //                             {props.children.slice(
-    //                                 index * rowCount,
-    //                                 (index + 1) * rowCount
-    //                             )}
-    //                         </div>
-    //                     )
-    //                 )}
-    //             </div>
-    //         </components.Menu>
-    //     );
-    // };
-    // const selectOptions = [
-    //     { value: "option1", label: "Option 1" },
-    //     { value: "option2", label: "Option 2" },
-    //     { value: "option3", label: "Option 3" },
-    //     { value: "option4", label: "Option 4" },
-    //     { value: "option5", label: "Option 5" },
-    //     { value: "option6", label: "Option 6" },
-    //     { value: "option7", label: "Option 7" },
-    //     { value: "option8", label: "Option 8" },
-    //     { value: "option9", label: "Option 9" },
-    //     { value: "option10", label: "Option 10" },
-    //     { value: "option11", label: "Option 11" },
-    //     { value: "option12", label: "Option 12" },
-    //     { value: "option13", label: "Option 13" },
-    //     { value: "option14", label: "Option 14" },
-    //     { value: "option15", label: "Option 15" },
-    //     { value: "option16", label: "Option 16" },
-    //     { value: "option17", label: "Option 17" },
-    //     { value: "option18", label: "Option 18" },
-    //     { value: "option19", label: "Option 19" },
-    //     { value: "option20", label: "Option 20" },
-    //     // Add more options as needed
-    // ];
 
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 <h2>Add New Recipe</h2>
                 <form onSubmit={addRecipe} style={styles.form}>
-                    {/* //                 {inputFields.map((field) => {
-    //                     const value = field.name;
-
-    //                     return (
-    //                         <label key={field.name} style={styles.label}>
-    //                             {field.label}:
-    //                             <input
-    //                                 type={field.type}
-    //                                 name={field.name}
-    //                                 value={recipeData[value]}
-    //                                 onChange={handleRecipeDataChange}
-    //                             />
-    //                         </label>
-    //                     );
-    //                 })} */}
-
                     <label style={styles.label}>
                         Difficulty:
                         <input
@@ -443,7 +360,7 @@ const AddRecipeForm = () => {
                                 type="file"
                                 id="photo"
                                 accept="image/png, image/jpeg"
-                                // value={recipeData.photo}
+                                //value={recipeData.photo}
                                 onChange={handleRecipeDataChange}
                             />
                         </p>

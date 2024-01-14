@@ -8,6 +8,9 @@ import { getUserID } from "../../util/auth";
 const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [desiredCommand, setDesiredCommand] = useState(-1);
+    console.log(props.recipeDetail.creator);
+    console.log(props.recipeDetail.creator);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -76,7 +79,10 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             total_calories: props.recipeDetail.total_calories,
             photo: props.recipeDetail.photo,
         });
+        console.log(props.recipeDetail?.photo);
+        console.log("cvbhnjkl;");
     }, [props.recipeDetail]);
+
     useEffect(() => {
         const recipeIngredients = ingredients.filter(
             (ingredient) =>
@@ -123,11 +129,22 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     </button> */}
                 </div>
                 <h1>{props.recipeDetail.name}</h1>
-                {formData.photo && (
+                {/* {formData.photo && (
                     <div>
                         <img src={formData.photo} alt="My Image" />
                     </div>
+                )} */}
+                {true && (
+                    <td>
+                        <img
+                            src={props.recipeDetail?.photo}
+                            alt="Problem getting your photo"
+                            width="300"
+                            height="200"
+                        />
+                    </td>
                 )}
+
                 <h2>Recipe Information: </h2>
                 <p>
                     <small>
@@ -236,32 +253,32 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     {/* <button onClick={handleCancel}>Exit</button> */}
                     <button onClick={handleExitDetail}>Exit</button>
                 </div>
+                {props.recipeDetail.creator == getUserID() && (
+                    <div>
+                        {" "}
+                        <td>
+                            {/* <Link to={`/delete-recipe`}> */}
+                            <button
+                                onClick={() => {
+                                    setDesiredCommand(0);
+                                }}
+                            >
+                                Delete
+                            </button>
+                            {/* </Link> */}
+                        </td>
+                        <td>
+                            <button
+                                onClick={() => {
+                                    setDesiredCommand(1);
+                                }}
+                            >
+                                Update
+                            </button>
+                        </td>
+                    </div>
+                )}
             </div>
-            {props.recipeDetail.creator == getUserID() && (
-                <div>
-                    {" "}
-                    <td>
-                        {/* <Link to={`/delete-recipe`}> */}
-                        <button
-                            onClick={() => {
-                                setDesiredCommand(0);
-                            }}
-                        >
-                            Delete
-                        </button>
-                        {/* </Link> */}
-                    </td>
-                    <td>
-                        <button
-                            onClick={() => {
-                                setDesiredCommand(1);
-                            }}
-                        >
-                            Update
-                        </button>
-                    </td>
-                </div>
-            )}
             {desiredCommand === 0 && (
                 <DeleteRecipe recipeToDelete={props.recipeDetail} />
             )}

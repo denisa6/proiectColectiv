@@ -79,7 +79,7 @@ const Login = (props: any) => {
                         setTimeout(() => {
                             navigate("/showlist");
                         }, 500);
-                        setRightCredentials(false);
+                        setRightCredentials(true);
                     }
                 });
         } catch (error) {

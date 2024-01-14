@@ -16,6 +16,13 @@ from rest_framework.response import Response
 from recipe.models import Recipe
 from recipe.serializers import RecipeSerializer
 
+import base64
+from PIL import Image as PILImage, UnidentifiedImageError
+
+def extract_base64_image(data_uri):
+    # Split the data URI to extract the base64-encoded image data
+    _, base64_data = data_uri.split(',', 1)
+    return base64_data
 
 # Create your views here.
 
@@ -57,10 +64,31 @@ def recipe_generator(recipe):
     # Description
     description_text = "Description:\n" + str(recipe.description)
     elements.extend(split_description(description_text))
+########################
+    try:
+        # Extract base64-encoded image data
+        img_data = base64.b64decode(extract_base64_image(recipe.photo))
+        img_io = BytesIO(img_data)
+        img = PILImage.open(img_io)
 
-    photo_path = recipe.photo.path  # Assuming the photo field is an ImageField
-    recipe_photo = Image(photo_path, width=400, height=300)
-    elements.append(recipe_photo)
+        # Convert the image to 'RGB' mode before saving as JPEG
+        img = img.convert('RGB')
+
+        # Resize the image if necessary
+        max_width = 400
+        if img.width > max_width:
+            ratio = max_width / float(img.width)
+            img = img.resize((max_width, int(img.height * ratio)))
+
+        # Embed the image in the PDF
+        img_io = BytesIO()
+        img.save(img_io, 'JPEG')
+        img_io.seek(0)
+        elements.append(Image(img_io, width=400, height=img.height))
+    except UnidentifiedImageError as e:
+        # Handle the error
+        print(f"Error decoding image: {e}")
+        # You can add additional logging or return an error message if needed
 
     # Build the PDF document
     p.build(elements)
@@ -175,7 +203,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         page_number = request_data.get('page')
 
         if page_number:
-            paginator = Paginator(recipes, 5)
+            paginator = Paginator(recipes, 10)
             page_obj = paginator.get_page(page_number)
             recipes = page_obj.object_list
         return recipes

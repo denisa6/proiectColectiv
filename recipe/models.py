@@ -45,7 +45,7 @@ class Recipe(models.Model):
     type_recipe = models.CharField(max_length=50, choices=RecipeTypeChoices.choices, default=RecipeTypeChoices.REGULAR)
     estimated_price = models.IntegerField()
     total_calories = models.FloatField()
-    photo = models.ImageField(upload_to='photos/', default=get_random_photo_filename)
+    photo = models.TextField(blank = True)
     creator = models.ForeignKey(RegularUser, on_delete=models.CASCADE, null=True)
 
     class Meta:

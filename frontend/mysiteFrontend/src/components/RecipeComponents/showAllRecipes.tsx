@@ -6,6 +6,7 @@ import UpdateRecipeForm from "./updateRecipeForm";
 import DeleteRecipe from "./deleteRecipe";
 import RecipeDetailsForm from "./recipeDetailsForm";
 import "../recipesTable.css";
+import UserRecipeList from "./userRecipes";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -158,167 +159,142 @@ const RecipeList = () => {
                 <Link to="/logout">
                     <button style={styles.logoutButton}>Logout</button>
                 </Link>
+
+                <Link to="userRecipes">
+                    <button>see your recipes </button>
+                </Link>
+
+                <div style={{ marginBottom: "10px" }}>
+                    <button
+                        style={styles.filterButton}
+                        onClick={handleFilterClickName}
+                    >
+                        Filter by Name
+                    </button>
+                </div>
             </div>
-
-            <div style={styles.modalContainer}>
-                <div style={styles.header}>
-                    <Link to="/logout">
-                        <button style={styles.logoutButton}>Logout</button>
-                    </Link>
-
-                    <Link to="/userRecipes">
-                        <button>see your recipes </button>
-                    </Link>
-                    <Link to="/userRecipes">
-                        <button>see your recipes </button>
-                    </Link>
-
-                    <div style={{ marginBottom: "10px" }}>
-                        <button
-                            style={styles.filterButton}
-                            onClick={handleFilterClickName}
-                        >
-                            Filter by Name
-                        </button>
-                    </div>
-                    <div style={{ marginBottom: "10px" }}>
-                        <button
-                            style={styles.filterButton}
-                            onClick={handleFilterClickName}
-                        >
-                            Filter by Name
-                        </button>
+            {showFilterModalName && (
+                <div className="filter-modal" style={styles.filterModal}>
+                    <div className="filter-modal" style={styles.filterModal}>
+                        <p>
+                            {" "}
+                            Name:{" "}
+                            <input
+                                type="text"
+                                placeholder=""
+                                value={filterName}
+                                onChange={(e) => setFilterName(e.target.value)}
+                            />
+                        </p>
+                        <p>
+                            {" "}
+                            Difficulty:{" "}
+                            <input
+                                type="text"
+                                placeholder=" Between 1 and 5"
+                                value={filterDifficulty}
+                                onChange={(e) =>
+                                    setFilterDifficulty(e.target.value)
+                                }
+                            />
+                        </p>
+                        <p>
+                            Ingredient:{" "}
+                            <input
+                                type="text"
+                                placeholder=""
+                                value={filterIngredients}
+                                onChange={(e) =>
+                                    setFilterIngredients(e.target.value)
+                                }
+                            />
+                        </p>
+                        <p>
+                            Time:{" "}
+                            <input
+                                type="text"
+                                placeholder=""
+                                value={filterTime}
+                                onChange={(e) => setFilterTime(e.target.value)}
+                            />
+                        </p>
+                        <p>
+                            Number of people:{" "}
+                            <input
+                                type="text"
+                                placeholder=""
+                                value={filterNbPeople}
+                                onChange={(e) =>
+                                    setFilterNbPeople(e.target.value)
+                                }
+                            />
+                        </p>
+                        <p>
+                            Type of recipe:{" "}
+                            <select
+                                id="typeRecipeDropdown"
+                                value={filterTypeRecipe}
+                                onChange={(e) =>
+                                    setFilterTypeRecipe(e.target.value)
+                                }
+                            >
+                                <option value="">Select an option:</option>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="dessert">Dessert</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </p>
+                        <p>
+                            Price:{" "}
+                            <input
+                                type="text"
+                                placeholder=" Minimum"
+                                value={filterPriceMin}
+                                onChange={(e) =>
+                                    setFilterPriceMin(e.target.value)
+                                }
+                                style={{ marginRight: "10px" }}
+                            />
+                            <input
+                                type="text"
+                                placeholder=" Maximum"
+                                value={filterPriceMax}
+                                onChange={(e) =>
+                                    setFilterPriceMax(e.target.value)
+                                }
+                            />
+                        </p>
+                        <p>
+                            Calories:{" "}
+                            <input
+                                type="text"
+                                placeholder=" Minimum "
+                                value={filterCalMin}
+                                onChange={(e) =>
+                                    setFilterCalMin(e.target.value)
+                                }
+                                style={{ marginRight: "10px" }}
+                            />
+                            <input
+                                type="text"
+                                placeholder=" Maximum "
+                                value={filterCalMax}
+                                onChange={(e) =>
+                                    setFilterCalMax(e.target.value)
+                                }
+                            />
+                        </p>
                     </div>
                 </div>
-                {showFilterModalName && (
-                    <div className="filter-modal" style={styles.filterModal}>
-                        <div
-                            className="filter-modal"
-                            style={styles.filterModal}
-                        >
-                            <p>
-                                {" "}
-                                Name:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    value={filterName}
-                                    onChange={(e) =>
-                                        setFilterName(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                {" "}
-                                Difficulty:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=" Between 1 and 5"
-                                    value={filterDifficulty}
-                                    onChange={(e) =>
-                                        setFilterDifficulty(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                Ingredient:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    value={filterIngredients}
-                                    onChange={(e) =>
-                                        setFilterIngredients(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                Time:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    value={filterTime}
-                                    onChange={(e) =>
-                                        setFilterTime(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                Number of people:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    value={filterNbPeople}
-                                    onChange={(e) =>
-                                        setFilterNbPeople(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                Type of recipe:{" "}
-                                <select
-                                    id="typeRecipeDropdown"
-                                    value={filterTypeRecipe}
-                                    onChange={(e) =>
-                                        setFilterTypeRecipe(e.target.value)
-                                    }
-                                >
-                                    <option value="">Select an option:</option>
-                                    <option value="breakfast">Breakfast</option>
-                                    <option value="lunch">Lunch</option>
-                                    <option value="dinner">Dinner</option>
-                                    <option value="dessert">Dessert</option>
-                                    <option value="snack">Snack</option>
-                                </select>
-                            </p>
-                            <p>
-                                Price:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=" Minimum"
-                                    value={filterPriceMin}
-                                    onChange={(e) =>
-                                        setFilterPriceMin(e.target.value)
-                                    }
-                                    style={{ marginRight: "10px" }}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder=" Maximum"
-                                    value={filterPriceMax}
-                                    onChange={(e) =>
-                                        setFilterPriceMax(e.target.value)
-                                    }
-                                />
-                            </p>
-                            <p>
-                                Calories:{" "}
-                                <input
-                                    type="text"
-                                    placeholder=" Minimum "
-                                    value={filterCalMin}
-                                    onChange={(e) =>
-                                        setFilterCalMin(e.target.value)
-                                    }
-                                    style={{ marginRight: "10px" }}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder=" Maximum "
-                                    value={filterCalMax}
-                                    onChange={(e) =>
-                                        setFilterCalMax(e.target.value)
-                                    }
-                                />
-                            </p>
-                        </div>
-                    </div>
-                )}
+            )}
 
-                <p></p>
-                {isAnyFilterModalOpen && (
-                    <button onClick={handleFilterSubmit}>Submit Filters</button>
-                )}
-            </div>
+            <p></p>
+            {isAnyFilterModalOpen && (
+                <button onClick={handleFilterSubmit}>Submit Filters</button>
+            )}
+
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
                 <button style={styles.addButton}>Add New Recipe</button>
@@ -389,45 +365,14 @@ const RecipeList = () => {
                 Next
             </button>
 
-            <button
-                style={{ marginRight: "10px" }}
-                onClick={handleClickPrev}
-                disabled={currentPage === 1}
-            >
-                Prev
-            </button>
-            <button style={{ marginRight: "10px" }}>{currentPage}</button>
-            <button
-                style={{ marginRight: "10px" }}
-                onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
-            >
-                Next
-            </button>
-
             <Routes>
                 {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
                 <Route path="showlist/add-recipe" Component={AddRecipeForm} />
             </Routes>
-            <button
-                style={{ marginRight: "10px" }}
-                onClick={handleClickPrev}
-                disabled={currentPage === 1}
-            >
-                Prev
-            </button>
-            <button style={{ marginRight: "10px" }}>{currentPage}</button>
-            <button
-                style={{ marginRight: "10px" }}
-                onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
-            >
-                Next
-            </button>
 
             <Routes>
                 {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
-                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
+                <Route path="userRecipes" Component={UserRecipeList} />
             </Routes>
         </div>
     );
