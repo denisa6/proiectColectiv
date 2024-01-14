@@ -380,22 +380,28 @@ const RecipeList = () => {
                 {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
                 <Route path="showlist/add-recipe" Component={AddRecipeForm} />
             </Routes>
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickPrev}
+                disabled={currentPage === 1}
+            >
+                Prev
+            </button>
+            <button style={{ marginRight: "10px" }}>{currentPage}</button>
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickNext}
+                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
+            >
+                Next
+            </button>
+
+            <Routes>
+                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
+            </Routes>
         </div>
     );
 };
-
-            <button style={{marginRight: "10px"}} onClick={handleClickPrev} disabled={currentPage === 1}>
-                Prev
-            </button>
-            <button style={{marginRight: "10px"}}>{currentPage}</button>
-            <button style={{marginRight: "10px"}} onClick={handleClickNext} disabled={currentPage === Math.ceil(allrecipes.length / 5)}>Next</button>
-
-                <Routes>
-                    <Route path="showlist/add-recipe" Component={AddRecipeForm}/>
-                </Routes>
-            </div>
-            );
-            };
 
 /////===========================================   STYLES  =====================================================
 // const styles: { [key: string]: CSSProperties } = {

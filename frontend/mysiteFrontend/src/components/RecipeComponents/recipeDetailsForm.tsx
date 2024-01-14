@@ -7,6 +7,7 @@ import { getUserID } from "../../util/auth";
 const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [desiredCommand, setDesiredCommand] = useState(-1);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,7 +28,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
         try {
             // Assuming there is an endpoint on the backend for generating and serving the PDF
             const response = await fetch(
-                `http://127.0.0.1:8000/recipe/${props.recipeId}/download/`,
+                `http://127.0.0.1:8000/recipe/${props.recipeDetail.id}/download/`,
                 {
                     method: "GET",
                     headers: {
@@ -40,7 +41,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = recipe.name + "_details.pdf";
+            a.download = props.recipeDetail.name + "_details.pdf";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -51,23 +52,24 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
 
     useEffect(() => {
         setFormData({
-            difficulty: recipe.difficulty,
-            name: recipe.name,
-            description: recipe.description,
-            ingredients: recipe.ingredients,
-            time_min: recipe.time_min,
-            time_max: recipe.time_max,
-            number_people: recipe.number_people,
-            type_recipe: recipe.type_recipe,
-            estimated_price: recipe.estimated_price,
-            total_calories: recipe.total_calories,
-            photo: recipe.photo,
+            difficulty: props.recipeDetail.difficulty,
+            name: props.recipeDetail.name,
+            description: props.recipeDetail.description,
+            ingredients: props.recipeDetail.ingredients,
+            time_min: props.recipeDetail.time_min,
+            time_max: props.recipeDetail.time_max,
+            number_people: props.recipeDetail.number_people,
+            type_recipe: props.recipeDetail.type_recipe,
+            estimated_price: props.recipeDetail.estimated_price,
+            total_calories: props.recipeDetail.total_calories,
+            photo: props.recipeDetail.photo,
         });
-    }, [recipe]);
+    }, [props.recipeDetail]);
 
     useEffect(() => {
         const recipeIngredients = ingredients.filter(
-            (ingredient) => recipe.ingredients.indexOf(ingredient.id) > -1
+            (ingredient) =>
+                props.recipeDetail.ingredients.indexOf(ingredient.id) > -1
         );
         setIngredientNames([]);
         recipeIngredients.forEach((ingredient) =>
@@ -109,7 +111,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                         Exit
                     </button>
                 </div>
-                <h1>{recipe.name}</h1>
+                <h1>{props.recipeDetail.name}</h1>
                 {formData.photo && (
                     <div>
                         <img src={formData.photo} alt="My Image" />
@@ -170,14 +172,20 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                 <h2>Recipe Information: </h2>
                 <p>
                     <small>
-                        <i>{"Difficulty: ".concat(formData.difficulty)}</i>
+                        <i>
+                            {"Difficulty: ".concat(
+                                formData.difficulty.toString()
+                            )}
+                        </i>
                     </small>
                 </p>
                 <p>
                     <small>
                         <i>
-                            {"Estimated Time: ".concat(formData.time_min)} -{" "}
-                            {formData.time_max}
+                            {"Estimated Time: ".concat(
+                                formData.time_min.toString()
+                            )}{" "}
+                            - {formData.time_max}
                         </i>
                     </small>
                 </p>
@@ -185,7 +193,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     <small>
                         <i>
                             {"Number of People: ".concat(
-                                formData.number_people
+                                formData.number_people.toString()
                             )}
                         </i>
                     </small>
@@ -199,7 +207,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     <small>
                         <i>
                             {"Estimated Price: ".concat(
-                                formData.estimated_price
+                                formData.estimated_price.toString()
                             )}
                         </i>
                     </small>
@@ -207,7 +215,9 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                 <p>
                     <small>
                         <i>
-                            {"Total Calories: ".concat(formData.total_calories)}{" "}
+                            {"Total Calories: ".concat(
+                                formData.total_calories.toString()
+                            )}{" "}
                         </i>
                     </small>
                 </p>
