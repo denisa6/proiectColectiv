@@ -7,6 +7,7 @@ const Login = (props: any) => {
     const [password, setPassword] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [rightCredentials, setRightCredentials] = useState(true);
 
     const navigate = useNavigate();
 
@@ -46,7 +47,6 @@ const Login = (props: any) => {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json;charset=UTF-8",
-                    //Authorization: "Bearer " + getAuthToken(),
                 },
             })
                 .then((response) => response.json())
@@ -64,14 +64,22 @@ const Login = (props: any) => {
                     const userRole = data.role;
                     localStorage.setItem("userRole", userRole);
 
-                    if (data.detail == "Not found.") {
-                        setTimeout(() => {
-                            navigate("/");
-                        }, 500);
+                    console.log(data.non_field_errors);
+
+                    if (
+                        data.non_field_errors &&
+                        data.non_field_errors[0] ==
+                            "Unable to log in with provided credentials."
+                    ) {
+                        // setTimeout(() => {
+                        //     navigate("/");
+                        // }, 500);
+                        setRightCredentials(false);
                     } else {
                         setTimeout(() => {
                             navigate("/showlist");
                         }, 500);
+                        setRightCredentials(false);
                     }
                 });
         } catch (error) {
@@ -121,8 +129,14 @@ const Login = (props: any) => {
                     onClick={onButtonClick}
                     value={"Log in"}
                 />
+                <input
+                    className={"inputButton"}
+                    type="button"
+                    onClick={handleCancel}
+                    value={"Cancel"}
+                />
+                {!rightCredentials && <div> you are STUPID</div>}
             </div>
-            <button onClick={handleCancel}>Cancel</button>
         </div>
     );
 };

@@ -13,6 +13,10 @@ const SignUp = (props: any) => {
 
     const navigate = useNavigate();
 
+    const handleCancel = () => {
+        window.location.href = `/`;
+    };
+
     const addNewUser = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
@@ -178,6 +182,12 @@ const SignUp = (props: any) => {
                     type="button"
                     onClick={addNewUser}
                     value={"Sign Up"}
+                />
+                <input
+                    className={"inputButton"}
+                    type="button"
+                    onClick={handleCancel}
+                    value={"Cancel"}
                 />
             </div>
         </div>

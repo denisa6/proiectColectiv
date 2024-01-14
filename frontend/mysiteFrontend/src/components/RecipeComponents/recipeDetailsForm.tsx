@@ -1,27 +1,13 @@
-import React, { useState, useEffect, CSSProperties } from "react";
-import { Recipe } from "../../models/Recipe";
+import { useState, useEffect, CSSProperties } from "react";
 import { Ingredient } from "../../models/Ingredient";
 
-const RecipeDetailsForm = (props: { recipeId: any }) => {
-	const [recipe, setRecipe] = useState<Recipe>({});
+import DeleteRecipe from "./deleteRecipe";
+import UpdateRecipeForm from "./updateRecipeForm";
+import { getUserID } from "../../util/auth";
+
+const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `http://127.0.0.1:8000/recipe/${props.recipeId}/?format=json`
-                );
-                const data = await response.json();
-                setRecipe(data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
+    const [desiredCommand, setDesiredCommand] = useState(-1);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -41,18 +27,21 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
     const handleDownloadPDF = async () => {
         try {
             // Assuming there is an endpoint on the backend for generating and serving the PDF
-            const response = await fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}/download/`, {
-                method: "GET",
-                headers: {
-                    Accept: "application/pdf",
-                },
-            });
+            const response = await fetch(
+                `http://127.0.0.1:8000/recipe/${props.recipeDetail.id}/download/`,
+                {
+                    method: "GET",
+                    headers: {
+                        Accept: "application/pdf",
+                    },
+                }
+            );
 
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = recipe.name + "_details.pdf";
+            a.download = props.recipeDetail.name + "_details.pdf";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -60,29 +49,46 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
             console.error("Error downloading PDF:", error);
         }
     };
+    const currentIngredientsSet = new Set();
+    props.recipeDetail.ingredients.forEach((item: number) => {
+        // Ensure 'ingredients' array is defined and item is a valid index
+        if (ingredients && ingredients[item] && ingredients[item].name) {
+            currentIngredientsSet.add(ingredients[item].name);
+        } else {
+            console.error(
+                `Invalid index or missing 'name' property for ingredient at index ${item}`
+            );
+        }
+    });
+    const currentIngredients = Array.from(currentIngredientsSet);
 
     useEffect(() => {
         setFormData({
-            difficulty: recipe.difficulty,
-            name: recipe.name,
-            description: recipe.description,
-            ingredients: recipe.ingredients,
-            time_min: recipe.time_min,
-            time_max: recipe.time_max,
-            number_people: recipe.number_people,
-            type_recipe: recipe.type_recipe,
-            estimated_price: recipe.estimated_price,
-            total_calories: recipe.total_calories,
-            photo: recipe.photo,
+            difficulty: props.recipeDetail.difficulty,
+            name: props.recipeDetail.name,
+            description: props.recipeDetail.description,
+            ingredients: props.recipeDetail.ingredients,
+            time_min: props.recipeDetail.time_min,
+            time_max: props.recipeDetail.time_max,
+            number_people: props.recipeDetail.number_people,
+            type_recipe: props.recipeDetail.type_recipe,
+            estimated_price: props.recipeDetail.estimated_price,
+            total_calories: props.recipeDetail.total_calories,
+            photo: props.recipeDetail.photo,
         });
-        console.log("Photo URL:", recipe.photo);
-        console.log("Recipe:", recipe);
-    }, [recipe]);
-
+    }, [props.recipeDetail]);
     useEffect(() => {
-        const recipeIngredients = ingredients.filter((ingredient) => recipe.ingredients.indexOf(ingredient.id) > -1);
+        const recipeIngredients = ingredients.filter(
+            (ingredient) =>
+                props.recipeDetail.ingredients.indexOf(ingredient.id) > -1
+        );
         setIngredientNames([]);
-        recipeIngredients.forEach(ingredient => setIngredientNames(ingredientArr => [...ingredientArr, ingredient.name]));
+        recipeIngredients.forEach((ingredient) =>
+            setIngredientNames((ingredientArr) => [
+                ...ingredientArr,
+                ingredient.name,
+            ])
+        );
     }, [ingredients]);
 
     const [formData, setFormData] = useState({
@@ -96,44 +102,172 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
         type_recipe: "",
         estimated_price: 0,
         total_calories: 0,
-        photo: ""
+        photo: "",
     });
 
     const [ingredientNames, setIngredientNames] = useState<string[]>([]);
 
-    const handleCancel = () => {
+    const handleExitDetail = () => {
         window.location.href = `/showlist/`;
+    };
+    const handleCancel = () => {
+        setDesiredCommand(-1);
     };
     return (
         <div style={styles.overlay}>
             <div style={styles.modal} modal-class="modal-fullscreen">
                 <div style={styles.header}>
                     <button onClick={handleDownloadPDF}>Download PDF</button>
-                    <button style={styles.exitButton} onClick={handleCancel}>
+                    {/* <button style={styles.exitButton} onClick={handleCancel}>
                         Exit
-                    </button>
+                    </button> */}
                 </div>
-                <h1>{recipe.name}</h1>
+                <h1>{props.recipeDetail.name}</h1>
                 {formData.photo && (
                     <div>
-                        <img src={formData.photo} alt="My Image"/>
+                        <img src={formData.photo} alt="My Image" />
                     </div>
                 )}
                 <h2>Recipe Information: </h2>
-                <p><small><i>{"Difficulty: ".concat(String(formData.difficulty))}</i></small></p>
-                <p><small><i>{"Estimated Time: ".concat(String(formData.time_min))} - {formData.time_max}</i></small>
+                <p>
+                    <small>
+                        <i>
+                            {"Difficulty: ".concat(String(formData.difficulty))}
+                        </i>
+                    </small>
                 </p>
-                <p><small><i>{"Number of People: ".concat(String(formData.number_people))}</i></small></p>
-                <p><small><i>{"Recipe Type: ".concat(formData.type_recipe)}</i></small></p>
-                <p><small><i>{"Estimated Price: ".concat(String(formData.estimated_price))}</i></small></p>
-                <p><small><i>{"Total Calories: ".concat(String(formData.total_calories))} </i></small></p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Time: ".concat(
+                                String(formData.time_min)
+                            )}{" "}
+                            - {formData.time_max}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Number of People: ".concat(
+                                String(formData.number_people)
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Price: ".concat(
+                                String(formData.estimated_price)
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Total Calories: ".concat(
+                                String(formData.total_calories)
+                            )}{" "}
+                        </i>
+                    </small>
+                </p>
                 <h2>Ingredients: </h2>
-                <p>{ingredientNames.join(", ")}</p>
-                <h2>Description:</h2>
-                <p>{formData.description}</p>
-
-
+                <p>{currentIngredients.join(", ")}</p>
+                <h2>Recipe Information: </h2>
+                <p>
+                    <small>
+                        <i>
+                            {"Difficulty: ".concat(
+                                formData.difficulty.toString()
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Time: ".concat(
+                                formData.time_min.toString()
+                            )}{" "}
+                            - {formData.time_max}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Number of People: ".concat(
+                                formData.number_people.toString()
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Price: ".concat(
+                                formData.estimated_price.toString()
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Total Calories: ".concat(
+                                formData.total_calories.toString()
+                            )}{" "}
+                        </i>
+                    </small>
+                </p>
+                <div id="buttons-container">
+                    {/* <button onClick={handleCancel}>Exit</button> */}
+                    <button onClick={handleExitDetail}>Exit</button>
+                </div>
             </div>
+            {props.recipeDetail.creator == getUserID() && (
+                <div>
+                    {" "}
+                    <td>
+                        {/* <Link to={`/delete-recipe`}> */}
+                        <button
+                            onClick={() => {
+                                setDesiredCommand(0);
+                            }}
+                        >
+                            Delete
+                        </button>
+                        {/* </Link> */}
+                    </td>
+                    <td>
+                        <button
+                            onClick={() => {
+                                setDesiredCommand(1);
+                            }}
+                        >
+                            Update
+                        </button>
+                    </td>
+                </div>
+            )}
+            {desiredCommand === 0 && (
+                <DeleteRecipe recipeToDelete={props.recipeDetail} />
+            )}
+            {desiredCommand === 1 && (
+                <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
+            )}
         </div>
     );
 };
