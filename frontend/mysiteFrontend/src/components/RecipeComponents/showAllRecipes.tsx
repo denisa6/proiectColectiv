@@ -158,132 +158,159 @@ const RecipeList = () => {
                 <Link to="/logout">
                     <button style={styles.logoutButton}>Logout</button>
                 </Link>
+            </div>
 
-                <Link to="/userRecipes">
-                    <button>see your recipes </button>
-                </Link>
+            <div style={styles.modalContainer}>
+                <div style={styles.header}>
+                    <Link to="/logout">
+                        <button style={styles.logoutButton}>Logout</button>
+                    </Link>
 
-                <div style={{ marginBottom: "10px" }}>
-                    <button
-                        style={styles.filterButton}
-                        onClick={handleFilterClickName}
-                    >
-                        Filter by Name
-                    </button>
+                    <Link to="/userRecipes">
+                        <button>see your recipes </button>
+                    </Link>
+                    <Link to="/userRecipes">
+                        <button>see your recipes </button>
+                    </Link>
+
+                    <div style={{ marginBottom: "10px" }}>
+                        <button
+                            style={styles.filterButton}
+                            onClick={handleFilterClickName}
+                        >
+                            Filter by Name
+                        </button>
+                    </div>
+                    <div style={{ marginBottom: "10px" }}>
+                        <button
+                            style={styles.filterButton}
+                            onClick={handleFilterClickName}
+                        >
+                            Filter by Name
+                        </button>
+                    </div>
                 </div>
-
                 {showFilterModalName && (
                     <div className="filter-modal" style={styles.filterModal}>
-                        <p>
-                            {" "}
-                            Name:{" "}
-                            <input
-                                type="text"
-                                placeholder=""
-                                value={filterName}
-                                onChange={(e) => setFilterName(e.target.value)}
-                            />
-                        </p>
-                        <p>
-                            {" "}
-                            Difficulty:{" "}
-                            <input
-                                type="text"
-                                placeholder=" Between 1 and 5"
-                                value={filterDifficulty}
-                                onChange={(e) =>
-                                    setFilterDifficulty(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Ingredient:{" "}
-                            <input
-                                type="text"
-                                placeholder=""
-                                value={filterIngredients}
-                                onChange={(e) =>
-                                    setFilterIngredients(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Time:{" "}
-                            <input
-                                type="text"
-                                placeholder=""
-                                value={filterTime}
-                                onChange={(e) => setFilterTime(e.target.value)}
-                            />
-                        </p>
-                        <p>
-                            Number of people:{" "}
-                            <input
-                                type="text"
-                                placeholder=""
-                                value={filterNbPeople}
-                                onChange={(e) =>
-                                    setFilterNbPeople(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Type of recipe:{" "}
-                            <select
-                                id="typeRecipeDropdown"
-                                value={filterTypeRecipe}
-                                onChange={(e) =>
-                                    setFilterTypeRecipe(e.target.value)
-                                }
-                            >
-                                <option value="">Select an option:</option>
-                                <option value="breakfast">Breakfast</option>
-                                <option value="lunch">Lunch</option>
-                                <option value="dinner">Dinner</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="snack">Snack</option>
-                            </select>
-                        </p>
-                        <p>
-                            Price:{" "}
-                            <input
-                                type="text"
-                                placeholder=" Minimum"
-                                value={filterPriceMin}
-                                onChange={(e) =>
-                                    setFilterPriceMin(e.target.value)
-                                }
-                                style={{ marginRight: "10px" }}
-                            />
-                            <input
-                                type="text"
-                                placeholder=" Maximum"
-                                value={filterPriceMax}
-                                onChange={(e) =>
-                                    setFilterPriceMax(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Calories:{" "}
-                            <input
-                                type="text"
-                                placeholder=" Minimum "
-                                value={filterCalMin}
-                                onChange={(e) =>
-                                    setFilterCalMin(e.target.value)
-                                }
-                                style={{ marginRight: "10px" }}
-                            />
-                            <input
-                                type="text"
-                                placeholder=" Maximum "
-                                value={filterCalMax}
-                                onChange={(e) =>
-                                    setFilterCalMax(e.target.value)
-                                }
-                            />
-                        </p>
+                        <div
+                            className="filter-modal"
+                            style={styles.filterModal}
+                        >
+                            <p>
+                                {" "}
+                                Name:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    value={filterName}
+                                    onChange={(e) =>
+                                        setFilterName(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                {" "}
+                                Difficulty:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=" Between 1 and 5"
+                                    value={filterDifficulty}
+                                    onChange={(e) =>
+                                        setFilterDifficulty(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Ingredient:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    value={filterIngredients}
+                                    onChange={(e) =>
+                                        setFilterIngredients(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Time:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    value={filterTime}
+                                    onChange={(e) =>
+                                        setFilterTime(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Number of people:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=""
+                                    value={filterNbPeople}
+                                    onChange={(e) =>
+                                        setFilterNbPeople(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Type of recipe:{" "}
+                                <select
+                                    id="typeRecipeDropdown"
+                                    value={filterTypeRecipe}
+                                    onChange={(e) =>
+                                        setFilterTypeRecipe(e.target.value)
+                                    }
+                                >
+                                    <option value="">Select an option:</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="dessert">Dessert</option>
+                                    <option value="snack">Snack</option>
+                                </select>
+                            </p>
+                            <p>
+                                Price:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=" Minimum"
+                                    value={filterPriceMin}
+                                    onChange={(e) =>
+                                        setFilterPriceMin(e.target.value)
+                                    }
+                                    style={{ marginRight: "10px" }}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder=" Maximum"
+                                    value={filterPriceMax}
+                                    onChange={(e) =>
+                                        setFilterPriceMax(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Calories:{" "}
+                                <input
+                                    type="text"
+                                    placeholder=" Minimum "
+                                    value={filterCalMin}
+                                    onChange={(e) =>
+                                        setFilterCalMin(e.target.value)
+                                    }
+                                    style={{ marginRight: "10px" }}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder=" Maximum "
+                                    value={filterCalMax}
+                                    onChange={(e) =>
+                                        setFilterCalMax(e.target.value)
+                                    }
+                                />
+                            </p>
+                        </div>
                     </div>
                 )}
 
@@ -303,6 +330,7 @@ const RecipeList = () => {
                     <tr>
                         <th>Difficulty</th>
                         <th>Name</th>
+                        {/* <th>Description</th> */}
                         <th>Time (min)</th>
                         <th>Number of People</th>
                         <th>Type of Recipe</th>
@@ -316,6 +344,7 @@ const RecipeList = () => {
                             {/* <td>{recipe.id}</td> */}
                             <td>{recipe.difficulty}</td>
                             <td>{recipe.name}</td>
+                            {/* <td>{recipe.description}</td> */}
                             <td>
                                 {recipe.time_min} - {recipe.time_max}
                             </td>
@@ -397,50 +426,14 @@ const RecipeList = () => {
             </button>
 
             <Routes>
+                {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
                 <Route path="showlist/add-recipe" Component={AddRecipeForm} />
             </Routes>
         </div>
     );
 };
 
-/////===========================================   STYLES  =====================================================
-// const styles: { [key: string]: CSSProperties } = {
-//     overlay: {
-//         // position: "fixed",
-//         // top: 0,
-//         // left: 0,
-//         // width: "100%",
-//         // height: "100%",
-//         // backgroundColor: "rgba(0, 0, 0, 0.5)",
-//         // display: "flex",
-//         // alignItems: "center",
-//         // justifyContent: "center",
-//     },
-//     modal: {
-//         background: "#91972a",
-//         padding: "20px",
-//         borderRadius: "8px",
-//         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-//         textAlign: "center",
-//         color: "black",
-//     },
-//     form: {
-//         display: "flex",
-//         flexDirection: "column" as "column",
-//         alignItems: "center",
-//     },
-//     label: {
-//         marginBottom: 10,
-//         textAlign: "center",
-//         color: "black",
-//     },
-//     button: {
-//         padding: "10px",
-//         marginTop: "10px",
-//         backgroundColor: "#d8d174",
-//         color: "black",
-//     },
-// };
+//////===========================================   STYLES  =====================================================
 
 const styles: { [key: string]: CSSProperties } = {
     pageContainer: {
@@ -480,4 +473,5 @@ const styles: { [key: string]: CSSProperties } = {
     },
     // Add more styles as needed
 };
+
 export default RecipeList;

@@ -1,5 +1,6 @@
 import { useState, useEffect, CSSProperties } from "react";
 import { Ingredient } from "../../models/Ingredient";
+
 import DeleteRecipe from "./deleteRecipe";
 import UpdateRecipeForm from "./updateRecipeForm";
 import { getUserID } from "../../util/auth";
@@ -7,7 +8,6 @@ import { getUserID } from "../../util/auth";
 const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [desiredCommand, setDesiredCommand] = useState(-1);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -49,6 +49,18 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             console.error("Error downloading PDF:", error);
         }
     };
+    const currentIngredientsSet = new Set();
+    props.recipeDetail.ingredients.forEach((item: number) => {
+        // Ensure 'ingredients' array is defined and item is a valid index
+        if (ingredients && ingredients[item] && ingredients[item].name) {
+            currentIngredientsSet.add(ingredients[item].name);
+        } else {
+            console.error(
+                `Invalid index or missing 'name' property for ingredient at index ${item}`
+            );
+        }
+    });
+    const currentIngredients = Array.from(currentIngredientsSet);
 
     useEffect(() => {
         setFormData({
@@ -65,7 +77,6 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             photo: props.recipeDetail.photo,
         });
     }, [props.recipeDetail]);
-
     useEffect(() => {
         const recipeIngredients = ingredients.filter(
             (ingredient) =>
@@ -107,9 +118,9 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             <div style={styles.modal} modal-class="modal-fullscreen">
                 <div style={styles.header}>
                     <button onClick={handleDownloadPDF}>Download PDF</button>
-                    <button style={styles.exitButton} onClick={handleCancel}>
+                    {/* <button style={styles.exitButton} onClick={handleCancel}>
                         Exit
-                    </button>
+                    </button> */}
                 </div>
                 <h1>{props.recipeDetail.name}</h1>
                 {formData.photo && (
@@ -168,7 +179,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     </small>
                 </p>
                 <h2>Ingredients: </h2>
-                <p>{ingredientNames.join(", ")}</p>
+                <p>{currentIngredients.join(", ")}</p>
                 <h2>Recipe Information: </h2>
                 <p>
                     <small>
@@ -222,9 +233,41 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                     </small>
                 </p>
                 <div id="buttons-container">
-                    <button onClick={handleCancel}>Exit</button>
+                    {/* <button onClick={handleCancel}>Exit</button> */}
+                    <button onClick={handleExitDetail}>Exit</button>
                 </div>
             </div>
+            {props.recipeDetail.creator == getUserID() && (
+                <div>
+                    {" "}
+                    <td>
+                        {/* <Link to={`/delete-recipe`}> */}
+                        <button
+                            onClick={() => {
+                                setDesiredCommand(0);
+                            }}
+                        >
+                            Delete
+                        </button>
+                        {/* </Link> */}
+                    </td>
+                    <td>
+                        <button
+                            onClick={() => {
+                                setDesiredCommand(1);
+                            }}
+                        >
+                            Update
+                        </button>
+                    </td>
+                </div>
+            )}
+            {desiredCommand === 0 && (
+                <DeleteRecipe recipeToDelete={props.recipeDetail} />
+            )}
+            {desiredCommand === 1 && (
+                <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
+            )}
         </div>
     );
 };
