@@ -23,7 +23,7 @@ const Welcome = (props: { loggedIn: any; email: any; setLoggedIn: any }) => {
             <div className={"titleContainer"}>
                 <div>Welcome!</div>
             </div>
-            <div>This is the home page.</div>
+            <div>I hope you are hungry! 🍗😁</div>
             <div className={"buttonContainer"}>
                 <input
                     className={"inputButton"}

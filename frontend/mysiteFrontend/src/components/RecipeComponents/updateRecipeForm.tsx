@@ -9,29 +9,8 @@ import {
     getUsername,
 } from "../../util/auth";
 
-const UpdateRecipeForm = (props: { recipeId: any }) => {
-    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-    const [selectedIngredients, setSelectedIngredients] = useState<number[]>(
-        []
-    );
-    const [uploadedPhoto, setUploadedPhoto] = useState<File | null>(null);
-    const [recipeData, setRecipeData] = useState({
-        // Define your form fields here
-        difficulty: "",
-        name: "",
-        description: "",
-        ingredients: [],
-        time_min: "",
-        time_max: "",
-        number_people: "",
-        type_recipe: "",
-        estimated_price: "",
-        total_calories: "",
-        photo: undefined,
-        creator: getUserID(),
-    });
-
-    // fetch ingredients for the dropdown menu
+const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
+    // fetch ingredients for the dropdown menu + get current  ingredients
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -44,10 +23,77 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                 console.error("Error fetching data:", error);
             }
         };
-
         fetchData();
     }, []);
 
+    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+    const [selectedIngredients, setSelectedIngredients] = useState<number[]>(
+        []
+    );
+    const [selectedRecipeType, setSelectedRecipeType] = useState(String);
+    const [uploadedPhoto, setUploadedPhoto] = useState<File | null>(null);
+
+    const [recipeData, setRecipeData] = useState({
+        // Define your form fields here
+        difficulty: props.recipeToUpdate.difficulty,
+        name: props.recipeToUpdate.name,
+        description: props.recipeToUpdate.description,
+        ingredients: props.recipeToUpdate.ingredients,
+        time_min: props.recipeToUpdate.time_min,
+        time_max: props.recipeToUpdate.time_max,
+        number_people: props.recipeToUpdate.number_people,
+        type_recipe: props.recipeToUpdate.type_recipe,
+        estimated_price: props.recipeToUpdate.estimated_price,
+        total_calories: props.recipeToUpdate.total_calories,
+        photo: undefined,
+        creator: getUserID(),
+    });
+
+    const selectOptions = ingredients.map((ingredient) => ({
+        value: ingredient.id,
+        label: ingredient.name,
+    }));
+
+    const selectOptionsIngredients = selectOptions.sort((a, b) =>
+        a.label.localeCompare(b.label)
+    );
+
+    const selectOptionsRecipeTypes = [
+        { value: "lunch", label: "Lunch" },
+        { value: "breakfast", label: "Breakfast" },
+        { value: "dinner", label: "Dinner" },
+        { value: "dessert", label: "Dessert" },
+        { value: "snack", label: "Snack" },
+    ];
+
+    const currentIngredientsSet = new Set();
+    props.recipeToUpdate.ingredients.forEach((item: number) => {
+        // Ensure 'ingredients' array is defined and item is a valid index
+        if (ingredients && ingredients[item] && ingredients[item].name) {
+            currentIngredientsSet.add(ingredients[item].name);
+        } else {
+            console.error(
+                `Invalid index or missing 'name' property for ingredient at index ${item}`
+            );
+        }
+    });
+    const currentIngredients = Array.from(currentIngredientsSet);
+
+    // -----------  HANDLERS -----------
+
+    const handleSelectRecipeTypeChange = (selectedOption: any) => {
+        setSelectedRecipeType(selectedOption.value);
+    };
+
+    const handleSelectIngredientChange = (selectedOptions: any) => {
+        // Extract the selected ingredient IDs and update the state
+        const selectedIds = selectedOptions.map((option: any) => option.value);
+        setSelectedIngredients(selectedIds);
+    };
+
+    const handleCancel = () => {
+        window.location.href = `/showlist/`;
+    };
     const handleRecipeDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         if (name === "photo") {
@@ -65,64 +111,12 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
             [name]: value,
         }));
     };
-
-    // const [formData, setFormData] = useState({
-    //     // Define your form fields here
-    //     difficulty: recipeData.difficulty,
-    //     name: recipeData.name,
-    //     description: recipeData.description,
-    //     ingredients: selectedIngredients,
-    //     time_min: recipeData.time_min,
-    //     time_max: recipeData.time_max,
-    //     number_people: recipeData.number_people,
-    //     type_recipe: recipeData.type_recipe,
-    //     estimated_price: recipeData.estimated_price,
-    //     total_calories: recipeData.total_calories,
-    // });
-
-    const handleSelectIngredientChange = (selectedOptions: any) => {
-        // Extract the selected ingredient IDs and update the state
-        const selectedIds = selectedOptions.map((option: any) => option.value);
-        setSelectedIngredients(selectedIds);
-    };
-
-    const handleCancel = () => {
-        window.location.href = `/showlist/`;
-    };
-
-    const selectOptions = ingredients.map((ingredient) => ({
-        value: ingredient.id,
-        label: ingredient.name,
-    }));
-    const selectOptionsIngredients = selectOptions.sort((a, b) =>
-        a.label.localeCompare(b.label)
-    );
-
+    console.log(props.recipeToUpdate);
+    //-----------  call UPDATE -----
     const updateRecipe = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
-        console.log(getUserID());
-        console.log(getUserID());
-        console.log(getUserID());
-
-        const data = JSON.stringify({
-            difficulty: recipeData.difficulty,
-            name: recipeData.name,
-            description: recipeData.description,
-            ingredients: selectedIngredients,
-            time_min: recipeData.time_min,
-            time_max: recipeData.time_max,
-            number_people: recipeData.number_people,
-            type_recipe: recipeData.type_recipe,
-            estimated_price: recipeData.estimated_price,
-            total_calories: recipeData.total_calories,
-            photo: recipeData.photo,
-            creator: getUserID(),
-        });
-
-        console.log(data);
-
         try {
-            fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}/`, {
+            fetch(`http://127.0.0.1:8000/recipe/${props.recipeToUpdate.id}/`, {
                 method: "PUT",
                 body: JSON.stringify({
                     difficulty: recipeData.difficulty,
@@ -132,7 +126,7 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                     time_min: recipeData.time_min,
                     time_max: recipeData.time_max,
                     number_people: recipeData.number_people,
-                    type_recipe: recipeData.type_recipe,
+                    type_recipe: selectedRecipeType,
                     estimated_price: recipeData.estimated_price,
                     total_calories: recipeData.total_calories,
                     photo: recipeData.photo,
@@ -154,7 +148,7 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
         }
         setTimeout(() => {
             window.location.href = `/showlist`;
-        }, 5000000);
+        }, 500);
     };
     return (
         <div style={styles.overlay}>
@@ -171,6 +165,7 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                             onChange={handleRecipeDataChange}
                         />
                     </label>
+
                     <label style={styles.label}>
                         Name:
                         <input
@@ -217,18 +212,6 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                         />
                     </label>
                     <label style={styles.label}>
-                        Recipe type:
-                        <input
-                            type="string"
-                            name="type_recipe"
-                            value={recipeData.type_recipe}
-                            onChange={handleRecipeDataChange}
-                        />
-                        {/* class RecipeTypeChoices(models.TextChoices): REGULAR =
-                        'regular' BREAKFAST = 'breakfast' LUNCH = 'lunch' DINNER
-                        = 'dinner' DESSERT = 'dessert' SNACK = 'snack' */}
-                    </label>
-                    <label style={styles.label}>
                         Estimated price:
                         <input
                             type="number"
@@ -246,6 +229,13 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                             onChange={handleRecipeDataChange}
                         />
                     </label>
+                    <p>
+                        Your current ingredients are:{" "}
+                        {currentIngredients.join(", ")}. <br></br>Please note
+                        that you will need to select them again. Sorry for the
+                        inconvenience.💖
+                    </p>
+
                     <Select
                         isMulti
                         options={selectOptionsIngredients}
@@ -279,8 +269,55 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                             }),
                         }}
                     />
+                    <Select
+                        options={selectOptionsRecipeTypes}
+                        onChange={handleSelectRecipeTypeChange}
+                        placeholder="Select Recipe Type"
+                        className="w-full md:w-10rem"
+                        styles={{
+                            container: (provided) => ({
+                                ...provided,
+                                backgroundColor: "#91972a",
+                            }),
+                            menu: (provided) => ({
+                                ...provided,
+                                maxHeight: "150px",
+                                backgroundColor: "#b6c454",
+                            }),
+                            control: (provided) => ({
+                                ...provided,
+                                backgroundColor: "#d8d174",
+                                color: "black", // Set the text color inside the select button
+                                borderColor: "black", // Set the border color
+                                textEmphasisColor: "black",
+                                textDecorationColor: "black",
+                            }),
+                            option: (provided, state) => ({
+                                ...provided,
+                                backgroundColor: state.isFocused
+                                    ? "#91972a"
+                                    : "#b6c454", // Set the hover color here
+                                color: state.isFocused ? "black" : "black", // Text color on hover
+                            }),
+                        }}
+                    />
                     <div>
                         <h5>Upload your yummy image 😜❤ </h5>
+                        {/* {props.recipeToUpdate.photo && (
+                            <div>
+                                <img
+                                    alt="not found"
+                                    width={"250px"}
+                                    src={URL.createObjectURL(
+                                        props.recipeToUpdate.photo
+                                    )}
+                                />
+                                <br />
+                                <button onClick={() => setUploadedPhoto(null)}>
+                                    Remove
+                                </button>
+                            </div>
+                        )} */}
                         <p>
                             <input
                                 type="file"
@@ -288,7 +325,6 @@ const UpdateRecipeForm = (props: { recipeId: any }) => {
                                 accept="image/png, image/jpeg"
                                 value={recipeData.photo}
                                 onChange={handleRecipeDataChange}
-                                required
                             />
                         </p>
                     </div>

@@ -9,7 +9,19 @@ const AddRecipeForm = () => {
     const [selectedIngredients, setSelectedIngredients] = useState<number[]>(
         []
     );
-    const [uploadedPhoto, setUploadedPhoto] = useState<File | null>(null);
+    const [selectedRecipeType, setSelectedRecipeType] = useState(String);
+    const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
+
+    interface ExtendedFile extends File {
+        base64?: string; // Extend the File type with an optional base64 property
+    }
+
+    interface PhotoData {
+        base64URL: string; // Assuming result is a string
+        file: ExtendedFile; // Assuming file is of type File
+    }
+
+    const [photoData, setPhotoData] = useState<PhotoData | null>(null);
 
     const [recipeData, setRecipeData] = useState({
         // Define your form fields here
@@ -23,7 +35,7 @@ const AddRecipeForm = () => {
         type_recipe: "",
         estimated_price: "",
         total_calories: "",
-        photo: undefined,
+        photo: "",
         creator: "",
     });
 
@@ -44,23 +56,59 @@ const AddRecipeForm = () => {
         fetchData();
     }, []);
 
+    //==================================== PHOTO STUPID CRAP ======================================================================
+    // PHOTO INPUT CHANGE HANDLER
+
+    const getBase64 = (
+        file: File,
+        callback: (result: string) => void
+    ): void => {
+        let baseURL = "";
+        let reader = new FileReader();
+
+        // Convert the file to base64 text
+        reader.readAsDataURL(file);
+
+        // on reader load something...
+        reader.onload = () => {
+            baseURL = reader.result as string;
+            callback(baseURL);
+        };
+    };
+
+    //==========================================================================================================
+
     const handleRecipeDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        if (name === "photo") {
+        console.log(name, value);
+
+        if (e.target.id === "photo") {
             const files = e.target.files;
 
             if (files && files.length > 0) {
                 const selectedFile = files[0];
-                console.log(selectedFile);
-                setUploadedPhoto(selectedFile);
-                console.log("kljjghdasfml;");
+
+                getBase64(selectedFile, (result: string) => {
+                    const photoString = result;
+                    setRecipeData((prevData) => ({
+                        ...prevData,
+                        ["photo"]: photoString,
+                    }));
+                    console.log(photoString);
+                });
             }
+        } else {
+            setRecipeData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
         }
-        setRecipeData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
     };
+    useEffect(() => {
+        // Check if all required fields are completed
+        const photoReady = recipeData.photo !== null;
+        setIsPhotoReadyComplete(photoReady);
+    }, [recipeData.photo]);
 
     const handleSelectIngredientChange = (selectedOptions: any) => {
         // Extract the selected ingredient IDs and update the state
@@ -68,64 +116,70 @@ const AddRecipeForm = () => {
         setSelectedIngredients(selectedIds);
     };
 
+    const handleSelectRecipeTypeChange = (selectedOption: any) => {
+        setSelectedRecipeType(selectedOption.value);
+        console.log(selectedOption.value);
+    };
+
     const handleCancel = () => {
         window.location.href = `/showlist/`;
     };
 
     const addRecipe = async (event: { preventDefault: () => void }) => {
-        event.preventDefault();
+        if (isPhotoReadyComplete) {
+            console.log(isPhotoReadyComplete);
+            console.log(recipeData.photo);
+            event.preventDefault();
 
-        // const FD = new FormData();
+            // const FD = new FormData();
 
-        // Object.entries(recipeData).forEach(([key, value]) => {
-        //     if (value !== undefined) {
-        //         FD.append(key, value.toString());
-        //         console.log(key);
-        //         console.log(value);
-        //         console.log(FD.getAll);
-        //     }
-        // });
+            // Object.entries(recipeData).forEach(([key, value]) => {
+            //     if (value !== undefined) {
+            //         FD.append(key, value.toString());
+            //         console.log(key);
+            //         console.log(value);
+            //         console.log(FD.getAll);
+            //     }
+            // });
 
-        //FD.append("photo", uploadedPhoto as unknown as File);
+            //FD.append("photo", uploadedPhoto as unknown as File);
 
-        try {
-            fetch("http://127.0.0.1:8000/recipe/", {
-                method: "POST",
-                body: JSON.stringify({
-                    difficulty: recipeData.difficulty,
-                    name: recipeData.name,
-                    description: recipeData.description,
-                    ingredients: selectedIngredients,
-                    time_min: recipeData.time_min,
-                    time_max: recipeData.time_max,
-                    number_people: recipeData.number_people,
-                    type_recipe: recipeData.type_recipe,
-                    estimated_price: recipeData.estimated_price,
-                    total_calories: recipeData.total_calories,
-                    photo: recipeData.photo,
-                    creator: getUserID(),
-                    //FD,
-                }),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type":
-                        "application/json;charset=UTF-8;multipart/form-data",
-
-                    // Authorization: "Bearer " + getAuthToken(),
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                });
-        } catch (error) {
-            console.error(error);
-            console.error(uploadedPhoto);
+            try {
+                fetch("http://127.0.0.1:8000/recipe/", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        difficulty: recipeData.difficulty,
+                        name: recipeData.name,
+                        description: recipeData.description,
+                        ingredients: selectedIngredients,
+                        time_min: recipeData.time_min,
+                        time_max: recipeData.time_max,
+                        number_people: recipeData.number_people,
+                        type_recipe: selectedRecipeType,
+                        estimated_price: recipeData.estimated_price,
+                        total_calories: recipeData.total_calories,
+                        photo: recipeData.photo,
+                        creator: getUserID(),
+                        //FD,
+                    }),
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type":
+                            "application/json;charset=UTF-8;multipart/form-data",
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                    });
+            } catch (error) {
+                console.error(error);
+            }
+            setTimeout(() => {
+                window.location.href = `/showlist`;
+                console.log(selectedIngredients);
+            }, 50000);
         }
-        setTimeout(() => {
-            window.location.href = `/showlist`;
-            console.log(selectedIngredients);
-        }, 500);
     };
 
     const selectOptions = ingredients.map((ingredient) => ({
@@ -136,6 +190,13 @@ const AddRecipeForm = () => {
         a.label.localeCompare(b.label)
     );
 
+    const selectOptionsRecipeTypes = [
+        { value: "lunch", label: "Lunch" },
+        { value: "breakfast", label: "Breakfast" },
+        { value: "dinner", label: "Dinner" },
+        { value: "dessert", label: "Dessert" },
+        { value: "snack", label: "Snack" },
+    ];
     // const inputFields = [
     //     { label: "Difficulty", type: "number", name: "difficulty" },
     //     { label: "Name", type: "text", name: "name" },
@@ -280,18 +341,6 @@ const AddRecipeForm = () => {
                         />
                     </label>
                     <label style={styles.label}>
-                        Recipe type:
-                        <input
-                            type="string"
-                            name="type_recipe"
-                            value={recipeData.type_recipe}
-                            onChange={handleRecipeDataChange}
-                        />
-                        {/* class RecipeTypeChoices(models.TextChoices): REGULAR =
-                        'regular' BREAKFAST = 'breakfast' LUNCH = 'lunch' DINNER
-                        = 'dinner' DESSERT = 'dessert' SNACK = 'snack' */}
-                    </label>
-                    <label style={styles.label}>
                         Estimated price:
                         <input
                             type="number"
@@ -342,57 +391,59 @@ const AddRecipeForm = () => {
                             }),
                         }}
                     />
-                    {/* <Select
-                        isMulti
-                        options={selectOptions}
-                        components={{ Option: CustomOption, Menu: CustomMenu }}
-                        onChange={handleSelectIngredientChange}
-                        placeholder="Select Ingredients"
+                    <Select
+                        options={selectOptionsRecipeTypes}
+                        onChange={handleSelectRecipeTypeChange}
+                        placeholder="Select Recipe Type"
                         className="w-full md:w-10rem"
                         styles={{
                             container: (provided) => ({
                                 ...provided,
-                                backgroundColor: "black",
+                                backgroundColor: "#91972a",
                             }),
                             menu: (provided) => ({
                                 ...provided,
-                                width: "auto",
-                                backgroundColor: "black",
+                                maxHeight: "150px",
+                                backgroundColor: "#b6c454",
+                            }),
+                            control: (provided) => ({
+                                ...provided,
+                                backgroundColor: "#d8d174",
+                                color: "black", // Set the text color inside the select button
+                                borderColor: "black", // Set the border color
+                                textEmphasisColor: "black",
+                                textDecorationColor: "black",
                             }),
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused
-                                    ? "red"
-                                    : "black",
-                                color: state.isFocused ? "white" : "inherit",
-                                fontSize: "12px", // Adjust the font size as needed
+                                    ? "#91972a"
+                                    : "#b6c454", // Set the hover color here
+                                color: state.isFocused ? "black" : "black", // Text color on hover
                             }),
                         }}
-                    /> */}
+                    />
 
                     <div>
                         <h5>Upload your yummy image 😜❤ </h5>
 
-                        {/* {uploadedPhoto && (
-                            <div>
+                        <div>
+                            {recipeData.photo && (
                                 <img
-                                    alt="not found"
-                                    width={"250px"}
-                                    src={URL.createObjectURL(uploadedPhoto)}
+                                    src={`${recipeData.photo}`} // Make sure to specify the correct image type
+                                    alt="Problem getting your photo"
+                                    width="300" // Set the width as needed
+                                    height="200" // Set the height as needed
                                 />
-                                <br />
-                                <button onClick={() => setUploadedPhoto(null)}>
-                                    Remove
-                                </button>
-                            </div>
-                        )} */}
+                            )}
+                        </div>
 
                         <p>
                             <input
                                 type="file"
                                 id="photo"
                                 accept="image/png, image/jpeg"
-                                value={recipeData.photo}
+                                // value={recipeData.photo}
                                 onChange={handleRecipeDataChange}
                             />
                         </p>

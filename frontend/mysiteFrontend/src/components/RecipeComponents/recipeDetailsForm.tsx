@@ -1,27 +1,12 @@
-import React, { useState, useEffect, CSSProperties } from "react";
-import { Recipe } from "../../models/Recipe";
+import { useState, useEffect, CSSProperties } from "react";
 import { Ingredient } from "../../models/Ingredient";
+import DeleteRecipe from "./deleteRecipe";
+import UpdateRecipeForm from "./updateRecipeForm";
+import { getUserID } from "../../util/auth";
 
-const RecipeDetailsForm = (props: { recipeId: any }) => {
-	const [recipe, setRecipe] = useState<Recipe>({});
+const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(
-                    `http://127.0.0.1:8000/recipe/${props.recipeId}/?format=json`
-                );
-                const data = await response.json();
-                setRecipe(data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
+    const [desiredCommand, setDesiredCommand] = useState(-1);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -41,12 +26,15 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
     const handleDownloadPDF = async () => {
         try {
             // Assuming there is an endpoint on the backend for generating and serving the PDF
-            const response = await fetch(`http://127.0.0.1:8000/recipe/${props.recipeId}/download/`, {
-                method: "GET",
-                headers: {
-                    Accept: "application/pdf",
-                },
-            });
+            const response = await fetch(
+                `http://127.0.0.1:8000/recipe/${props.recipeId}/download/`,
+                {
+                    method: "GET",
+                    headers: {
+                        Accept: "application/pdf",
+                    },
+                }
+            );
 
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
@@ -75,14 +63,19 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
             total_calories: recipe.total_calories,
             photo: recipe.photo,
         });
-        console.log("Photo URL:", recipe.photo);
-        console.log("Recipe:", recipe);
     }, [recipe]);
 
     useEffect(() => {
-        const recipeIngredients = ingredients.filter((ingredient) => recipe.ingredients.indexOf(ingredient.id) > -1);
+        const recipeIngredients = ingredients.filter(
+            (ingredient) => recipe.ingredients.indexOf(ingredient.id) > -1
+        );
         setIngredientNames([]);
-        recipeIngredients.forEach(ingredient => setIngredientNames(ingredientArr => [...ingredientArr, ingredient.name]));
+        recipeIngredients.forEach((ingredient) =>
+            setIngredientNames((ingredientArr) => [
+                ...ingredientArr,
+                ingredient.name,
+            ])
+        );
     }, [ingredients]);
 
     const [formData, setFormData] = useState({
@@ -96,13 +89,16 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
         type_recipe: "",
         estimated_price: 0,
         total_calories: 0,
-        photo: ""
+        photo: "",
     });
 
     const [ingredientNames, setIngredientNames] = useState<string[]>([]);
 
-    const handleCancel = () => {
+    const handleExitDetail = () => {
         window.location.href = `/showlist/`;
+    };
+    const handleCancel = () => {
+        setDesiredCommand(-1);
     };
     return (
         <div style={styles.overlay}>
@@ -116,23 +112,108 @@ const RecipeDetailsForm = (props: { recipeId: any }) => {
                 <h1>{recipe.name}</h1>
                 {formData.photo && (
                     <div>
-                        <img src={formData.photo} alt="My Image"/>
+                        <img src={formData.photo} alt="My Image" />
                     </div>
                 )}
                 <h2>Recipe Information: </h2>
-                <p><small><i>{"Difficulty: ".concat(String(formData.difficulty))}</i></small></p>
-                <p><small><i>{"Estimated Time: ".concat(String(formData.time_min))} - {formData.time_max}</i></small>
+                <p>
+                    <small>
+                        <i>
+                            {"Difficulty: ".concat(String(formData.difficulty))}
+                        </i>
+                    </small>
                 </p>
-                <p><small><i>{"Number of People: ".concat(String(formData.number_people))}</i></small></p>
-                <p><small><i>{"Recipe Type: ".concat(formData.type_recipe)}</i></small></p>
-                <p><small><i>{"Estimated Price: ".concat(String(formData.estimated_price))}</i></small></p>
-                <p><small><i>{"Total Calories: ".concat(String(formData.total_calories))} </i></small></p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Time: ".concat(
+                                String(formData.time_min)
+                            )}{" "}
+                            - {formData.time_max}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Number of People: ".concat(
+                                String(formData.number_people)
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Price: ".concat(
+                                String(formData.estimated_price)
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Total Calories: ".concat(
+                                String(formData.total_calories)
+                            )}{" "}
+                        </i>
+                    </small>
+                </p>
                 <h2>Ingredients: </h2>
                 <p>{ingredientNames.join(", ")}</p>
-                <h2>Description:</h2>
-                <p>{formData.description}</p>
-
-
+                <h2>Recipe Information: </h2>
+                <p>
+                    <small>
+                        <i>{"Difficulty: ".concat(formData.difficulty)}</i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Time: ".concat(formData.time_min)} -{" "}
+                            {formData.time_max}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Number of People: ".concat(
+                                formData.number_people
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Estimated Price: ".concat(
+                                formData.estimated_price
+                            )}
+                        </i>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <i>
+                            {"Total Calories: ".concat(formData.total_calories)}{" "}
+                        </i>
+                    </small>
+                </p>
+                <div id="buttons-container">
+                    <button onClick={handleCancel}>Exit</button>
+                </div>
             </div>
         </div>
     );

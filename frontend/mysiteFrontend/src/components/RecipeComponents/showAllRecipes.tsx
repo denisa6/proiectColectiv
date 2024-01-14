@@ -1,5 +1,5 @@
 import { Recipe } from "../../models/Recipe";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import AddRecipeForm from "./addRecipeForm";
 import UpdateRecipeForm from "./updateRecipeForm";
@@ -11,6 +11,9 @@ const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [allrecipes, setAllRecipes] = useState<Recipe[]>([]);
     const [selectedRecipeId, setSelectedRecipeId] = useState(-1);
+    const [selectedRecipeToUpdate, setSelectedRecipeToUpdate] =
+        useState<Recipe>();
+    const [deleteOrUpdate, setDeleteOrUpdate] = useState(0);
     const [desiredCommand, setDesiredCommand] = useState(0);
     const [filterName, setFilterName] = useState("");
     const [filterDifficulty, setFilterDifficulty] = useState("");
@@ -23,8 +26,9 @@ const RecipeList = () => {
     const [filterCalMin, setFilterCalMin] = useState("");
     const [filterCalMax, setFilterCalMax] = useState("");
     const [showFilterModalName, setShowFilterModalName] = useState(false);
-    const isAnyFilterModalOpen = showFilterModalName ;
+    const isAnyFilterModalOpen = showFilterModalName;
     const [currentPage, setCurrentPage] = useState(1);
+    const [recipeForDetail, setRecipeForDetail] = useState<Recipe>();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,41 +57,44 @@ const RecipeList = () => {
 
     const handleClickPrev = () => {
         setCurrentPage(currentPage - 1);
-             console.log(currentPage);
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(
-                        `http://127.0.0.1:8000/recipe/?page=${currentPage - 1}&format=json`
-                    );
-                    const data = await response.json();
-                    setRecipes(data);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
+        console.log(currentPage);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `http://127.0.0.1:8000/recipe/?page=${
+                        currentPage - 1
+                    }&format=json`
+                );
+                const data = await response.json();
+                setRecipes(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
+        };
         fetchData();
-
     };
 
     const handleClickNext = () => {
         setCurrentPage(currentPage + 1);
-            console.log(currentPage)
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(
-                        `http://127.0.0.1:8000/recipe/?page=${currentPage + 1}&format=json`
-                    );
-                    const data = await response.json();
-                    setRecipes(data);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
+        console.log(currentPage);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `http://127.0.0.1:8000/recipe/?page=${
+                        currentPage + 1
+                    }&format=json`
+                );
+                const data = await response.json();
+                setRecipes(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
+        };
 
         fetchData();
     };
 
-   const handleFilterSubmit = async () => {
+    const handleFilterSubmit = async () => {
         try {
             // Make a backend API call to filter recipes by name
             let url = `http://127.0.0.1:8000/recipe/?name=${filterName}&format=json`;
@@ -146,25 +153,27 @@ const RecipeList = () => {
     };
 
     return (
-        <div>
-            <Link to="/logout">
-                <button>Logout </button>
-            </Link>
+        <div style={styles.modalContainer}>
+            <div style={styles.header}>
+                <Link to="/logout">
+                    <button style={styles.logoutButton}>Logout</button>
+                </Link>
 
-            <Link to="/userRecipes">
-                <button>see your recipes </button>
-            </Link>
+                <Link to="/userRecipes">
+                    <button>see your recipes </button>
+                </Link>
 
-            <div style={{ marginBottom: "10px" }}>
-                <button
-                    style={{ marginRight: "10px" }}
-                    onClick={handleFilterClickName}
-                >
-                    Filter by Name
-                </button>
+                <div style={{ marginBottom: "10px" }}>
+                    <button
+                        style={styles.filterButton}
+                        onClick={handleFilterClickName}
+                    >
+                        Filter by Name
+                    </button>
+                </div>
 
                 {showFilterModalName && (
-                    <div className="filter-modal">
+                    <div className="filter-modal" style={styles.filterModal}>
                         <p>
                             {" "}
                             Name:{" "}
@@ -285,14 +294,13 @@ const RecipeList = () => {
             </div>
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
-                <button>Add New Recipe</button>
+                <button style={styles.addButton}>Add New Recipe</button>
             </Link>
             {/*  the empty ones le am pus sa vad cum le pune daca una sub alta sau langa*/}
             <h2>Recipe List</h2>
             <table className="recipe-table">
                 <thead>
                     <tr>
-                        {/* <th>ID</th> */}
                         <th>Difficulty</th>
                         <th>Name</th>
                         <th>Time (min)</th>
@@ -315,28 +323,7 @@ const RecipeList = () => {
                             <td>{recipe.type_recipe}</td>
                             <td>{recipe.estimated_price}</td>
                             <td>{recipe.total_calories}</td>
-                            <td>
-                                {/* <Link to={`/delete-recipe`}> */}
-                                <button
-                                    onClick={() => {
-                                        setSelectedRecipeId(recipe.id!);
-                                        setDesiredCommand(0);
-                                    }}
-                                >
-                                Delete
-                                </button>
-                                {/* </Link> */}
-                            </td>
-                            <td>
-                                <button
-                                    onClick={() => {
-                                        setSelectedRecipeId(recipe.id!);
-                                        setDesiredCommand(1);
-                                    }}
-                                >
-                                Update
-                                </button>
-                            </td>
+
                             <td>
                                 <button
                                     onClick={() => {
@@ -347,20 +334,55 @@ const RecipeList = () => {
                                     View Details
                                 </button>
                             </td>
-                            {selectedRecipeId === recipe.id && desiredCommand === 0 && (
-                                <DeleteRecipe recipeId={recipe.id} />
-                            )}
-                            {selectedRecipeId === recipe.id && desiredCommand === 1 && (
-                                <UpdateRecipeForm recipeId={recipe.id} />
-                            )}
-                            {selectedRecipeId === recipe.id && desiredCommand === 2 && (
-                                    <RecipeDetailsForm recipeId={recipe.id} />
-                            )}
+                            {selectedRecipeId === recipe.id &&
+                                desiredCommand === 2 && (
+                                    <RecipeDetailsForm recipeDetail={recipe} />
+                                    // setRecipeForDetail(recipe);
+                                )}
                         </tr>
                     ))}
                 </tbody>
             </table>
 
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickPrev}
+                disabled={currentPage === 1}
+            >
+                Prev
+            </button>
+            <button style={{ marginRight: "10px" }}>{currentPage}</button>
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickNext}
+                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
+            >
+                Next
+            </button>
+
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickPrev}
+                disabled={currentPage === 1}
+            >
+                Prev
+            </button>
+            <button style={{ marginRight: "10px" }}>{currentPage}</button>
+            <button
+                style={{ marginRight: "10px" }}
+                onClick={handleClickNext}
+                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
+            >
+                Next
+            </button>
+
+            <Routes>
+                {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
+                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
+            </Routes>
+        </div>
+    );
+};
 
             <button style={{marginRight: "10px"}} onClick={handleClickPrev} disabled={currentPage === 1}>
                 Prev
@@ -375,6 +397,81 @@ const RecipeList = () => {
             );
             };
 
-            export default RecipeList;
+/////===========================================   STYLES  =====================================================
+// const styles: { [key: string]: CSSProperties } = {
+//     overlay: {
+//         // position: "fixed",
+//         // top: 0,
+//         // left: 0,
+//         // width: "100%",
+//         // height: "100%",
+//         // backgroundColor: "rgba(0, 0, 0, 0.5)",
+//         // display: "flex",
+//         // alignItems: "center",
+//         // justifyContent: "center",
+//     },
+//     modal: {
+//         background: "#91972a",
+//         padding: "20px",
+//         borderRadius: "8px",
+//         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+//         textAlign: "center",
+//         color: "black",
+//     },
+//     form: {
+//         display: "flex",
+//         flexDirection: "column" as "column",
+//         alignItems: "center",
+//     },
+//     label: {
+//         marginBottom: 10,
+//         textAlign: "center",
+//         color: "black",
+//     },
+//     button: {
+//         padding: "10px",
+//         marginTop: "10px",
+//         backgroundColor: "#d8d174",
+//         color: "black",
+//     },
+// };
 
-
+const styles: { [key: string]: CSSProperties } = {
+    pageContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "20px",
+    },
+    header: {
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: "10px",
+        width: "100%",
+    },
+    logoutButton: {
+        alignSelf: "flex-end",
+    },
+    addButton: {
+        marginRight: "10px",
+    },
+    filterButton: {
+        marginRight: "10px",
+    },
+    filterModal: {
+        // Customize styles for the filter modal
+    },
+    pageContent: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+    },
+    pageContentWithFilter: {
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%",
+    },
+    // Add more styles as needed
+};
+export default RecipeList;
