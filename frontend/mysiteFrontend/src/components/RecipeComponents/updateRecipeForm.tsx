@@ -303,21 +303,16 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                     />
                     <div>
                         <h5>Upload your yummy image 😜❤ </h5>
-                        {/* {props.recipeToUpdate.photo && (
-                            <div>
+                        <div>
+                            {recipeData.photo && (
                                 <img
-                                    alt="not found"
-                                    width={"250px"}
-                                    src={URL.createObjectURL(
-                                        props.recipeToUpdate.photo
-                                    )}
+                                    src={`${recipeData.photo}`} // Make sure to specify the correct image type
+                                    alt="Problem getting your photo"
+                                    width="300" // Set the width as needed
+                                    height="200" // Set the height as needed
                                 />
-                                <br />
-                                <button onClick={() => setUploadedPhoto(null)}>
-                                    Remove
-                                </button>
-                            </div>
-                        )} */}
+                            )}
+                        </div>
                         <p>
                             <input
                                 type="file"
