@@ -42,7 +42,7 @@ const DeleteRecipe = (props: { recipeToDelete: any }) => {
                 <p>Are you sure you want to delete this item?</p>
                 <div id="buttons-container">
                     <button onClick={handleDelete}>Yes</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <button onClick={handleCancel}>I am a COWARD</button>
                 </div>
             </div>
         );
