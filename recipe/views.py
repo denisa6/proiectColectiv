@@ -12,6 +12,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image, Para
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from recipe.models import Recipe
 from recipe.serializers import RecipeSerializer
@@ -207,5 +208,52 @@ class RecipeViewSet(viewsets.ModelViewSet):
             page_obj = paginator.get_page(page_number)
             recipes = page_obj.object_list
         return recipes
+
+class RecipeUserView(APIView):
+    # def get(self, request, id):
+    #     recipes = Recipe.objects.filter(creator=id)
+    #     serializer = RecipeSerializer(recipes, many=True)
+    #     return Response(serializer.data)
+
+    def get(self, request, id):
+        recipes = Recipe.objects.filter(creator=id)
+        request_data = self.request.GET
+        if 'difficulty' in request_data:
+            recipes = recipes.filter(difficulty=int(request_data['difficulty']))
+        if 'name' in request_data:
+            recipes = recipes.filter(name__icontains=request_data['name'])
+        if 'ingredients' in request_data:
+            recipes = recipes.filter(ingredients__name__icontains=request_data['ingredients'])
+        if 'time' in request_data:
+            recipes = recipes.filter(time_min__lte=int(request_data['time']), time_max__gte=int(request_data['time']))
+        if 'number_people' in request_data:
+            recipes = recipes.filter(number_people=request_data['number_people'])
+        if 'type_recipe' in request_data:
+            recipes = recipes.filter(type_recipe=request_data['type_recipe'])
+        if 'estimated_price_min' in request_data:
+            if 'estimated_price_max' in request_data:
+                recipes = recipes.filter(estimated_price__gte=int(request_data['estimated_price_min']),
+                                                estimated_price__lte=int(request_data['estimated_price_max']))
+            else:
+                recipes = recipes.filter(estimated_price__gte=int(request_data['estimated_price_min']))
+        elif 'estimated_price_max' in request_data:
+            recipes = recipes.filter(estimated_price__lte=int(request_data['estimated_price_max']))
+        if 'total_calories_min' in request_data:
+            if 'total_calories_max' in request_data:
+                recipes = recipes.filter(total_calories__gte=int(request_data['total_calories_min']),
+                                                total_calories__lte=int(request_data['total_calories_max']))
+            else:
+                recipes = recipes.filter(total_calories__gte=int(request_data['total_calories_min']))
+        elif 'total_calories_max' in request_data:
+            recipes = recipes.filter(total_calories__lte=int(request_data['total_calories_max']))
+        page_number = request_data.get('page')
+
+        if page_number:
+            paginator = Paginator(recipes, 10)
+            page_obj = paginator.get_page(page_number)
+            recipes = page_obj.object_list
+
+        serializer = RecipeSerializer(recipes, many=True)
+        return Response(serializer.data)
 
 

@@ -25,13 +25,27 @@ const DeleteRecipe = (props: { recipeToDelete: any }) => {
                 console.log(data);
             });
         setTimeout(() => {
-            window.location.href = `/showlist/`;
+            const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
             //setShouldShow(0);
         }, 500);
     };
 
     const handleCancel = () => {
-        window.location.href = `/showlist/`;
+        const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
         //setShouldShow(0);
         // <RecipeDetailsForm recipeDetail={props.recipeToDelete} />;
     };

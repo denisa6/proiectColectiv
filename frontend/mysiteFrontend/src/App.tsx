@@ -53,6 +53,10 @@ function App() {
                 />
                 <Route path="/logout" element={<Logout></Logout>} />
 
+                <Route
+                    path="/userRecipes"
+                    element={<UserRecipeList ></UserRecipeList>}
+                />
             </Routes>
         </div>
     );

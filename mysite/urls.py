@@ -25,6 +25,7 @@ urlpatterns = [
     path('users/', include('user.urls')),
     path('recipe/', include('recipe.urls')),
     path('tag/', include('tag.urls')),
+    path('bad_jokes/', include('bad_jokes.urls')),
     path('allergen/', include('allergen.urls')),
     path('ingredient/', include('ingredient.urls')),
     path('dj-rest-auth/login/', AuthentificationView.as_view(), name='rest_login'),

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {CSSProperties, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../util/auth";
 
@@ -8,6 +8,7 @@ const Login = (props: any) => {
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [rightCredentials, setRightCredentials] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -112,16 +113,27 @@ const Login = (props: any) => {
             </div>
             <br />
             <div className={"inputContainer"}>
-                <input
-                    value={password}
-                    placeholder="Enter your password here"
-                    onChange={(ev) => setPassword(ev.target.value)}
-                    className={"inputBox"}
-                    type={"password"}
-                />
+                <div className="passwordInputContainer">
+                    <input
+                        value={password}
+                        placeholder="Enter your password here"
+                        onChange={(ev) => setPassword(ev.target.value)}
+                        className={"inputBox passwordInput"}
+                        type={showPassword ? "text" : "password"}
+                    />
+                    {/* Eye icon button to toggle password visibility */}
+                    <button
+                        className={"eyeButton"}
+                        type="button"
+
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? "👻" : "👻"}
+                    </button>
+                </div>
                 <label className="errorLabel">{passwordError}</label>
             </div>
-            <br />
+            <br/>
             <div className={"inputContainer"}>
                 <input
                     className={"inputButton"}
@@ -142,3 +154,8 @@ const Login = (props: any) => {
 };
 
 export default Login;
+
+
+
+
+
