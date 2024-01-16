@@ -10,7 +10,7 @@ from rest_framework.permissions import AllowAny
 
 from user.models import RegularUser
 from user.permissions import IsSelfOrAdmin
-from user.serializers import RegularUserSerializer, AuthentificationSerializer
+from user.serializers import RegularUserSerializer, AuthentificationSerializer, RegularUserSerializerAll
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ from user.serializers import RegularUserSerializer, AuthentificationSerializer
 
 class RegularUserListView(viewsets.ModelViewSet):
     queryset = RegularUser.objects.all()
-    serializer_class = RegularUserSerializer
+    serializer_class = RegularUserSerializerAll
 
 
 class RegularUserRegisterView(RegisterView):

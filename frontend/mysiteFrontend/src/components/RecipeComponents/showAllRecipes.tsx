@@ -31,17 +31,19 @@ const RecipeList = () => {
     const isAnyFilterModalOpen = showFilterModalName;
     const [currentPage, setCurrentPage] = useState(1);
     const [recipeForDetail, setRecipeForDetail] = useState<Recipe>();
+    const [showDeleteFilters, setShowDeleteFilters] = useState(false);
+    let [filters, setFilters] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response2 = await fetch(
-                    `http://127.0.0.1:8000/recipe/?format=json`
+                    `http://127.0.0.1:8000/recipe/?${filters}&format=json`
                 );
                 const data2 = await response2.json();
                 setAllRecipes(data2);
                 const response = await fetch(
-                    `http://127.0.0.1:8000/recipe/?page=${currentPage}&format=json`
+                    `http://127.0.0.1:8000/recipe/?page=${currentPage}&${filters}&format=json`
                 );
                 const data = await response.json();
                 setRecipes(data);
@@ -55,6 +57,7 @@ const RecipeList = () => {
 
     const handleFilterClickName = () => {
         setShowFilterModalName((prev) => !prev);
+        setShowDeleteFilters((prev) => !prev);
     };
 
     const handleClickPrev = () => {
@@ -62,10 +65,15 @@ const RecipeList = () => {
         console.log(currentPage);
         const fetchData = async () => {
             try {
+                const response2 = await fetch(
+                    `http://127.0.0.1:8000/recipe/?${filters}&format=json`
+                );
+                const data2 = await response2.json();
+                setAllRecipes(data2);
                 const response = await fetch(
                     `http://127.0.0.1:8000/recipe/?page=${
                         currentPage - 1
-                    }&format=json`
+                    }&${filters}&format=json`
                 );
                 const data = await response.json();
                 setRecipes(data);
@@ -81,12 +89,17 @@ const RecipeList = () => {
         console.log(currentPage);
         const fetchData = async () => {
             try {
+                const response2 = await fetch(
+                    `http://127.0.0.1:8000/recipe/?${filters}&format=json`
+                );
+                const data2 = await response2.json();
+                setAllRecipes(data2);
                 const response = await fetch(
                     `http://127.0.0.1:8000/recipe/?page=${
                         currentPage + 1
-                    }&format=json`
+                    }&${filters}&format=json`
                 );
-                const data = await response.json();
+                const data = await response.json()  ;
                 setRecipes(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -96,11 +109,27 @@ const RecipeList = () => {
         fetchData();
     };
 
-    const handleFilterSubmit = async () => {
+   const handleDeleteFilters = () => {
+        setFilterName("");
+        setFilterDifficulty("");
+        setFilterIngredients("");
+        setFilterTime("");
+        setFilterNbPeople("");
+        setFilterTypeRecipe("");
+        setFilterPriceMin("");
+        setFilterPriceMax("");
+        setFilterCalMin("");
+        setFilterCalMax("");
+        setFilters("");
+        setCurrentPage(1);
+    };
+
+   const handleFilterSubmit = async () => {
         try {
             // Make a backend API call to filter recipes by name
             let url = `http://127.0.0.1:8000/recipe/?name=${filterName}&format=json`;
-            let filters = "";
+            filters = "";
+            setCurrentPage(1);
             if (filterName.trim() !== "") {
                 filters = filters + `name=${filterName}`;
             }
@@ -131,8 +160,14 @@ const RecipeList = () => {
             if (filterCalMax !== "") {
                 filters = filters + `&total_calories_max=${filterCalMax}`;
             }
-            url = `http://127.0.0.1:8000/recipe/?${filters}&format=json`;
+            url = `http://127.0.0.1:8000/recipe/?page=${currentPage}&${filters}&format=json`;
             console.log(url);
+            setFilters(filters);
+            const response2 = await fetch(
+                    `http://127.0.0.1:8000/recipe/?${filters}&format=json`
+                );
+                const data2 = await response2.json();
+                setAllRecipes(data2);
             const response = await fetch(url, {
                 method: "GET",
                 headers: {
@@ -162,7 +197,7 @@ const RecipeList = () => {
                     <button style={styles.logoutButton}>Logout</button>
                 </Link>
 
-                <Link to="userRecipes">
+                <Link to="/userRecipes">
                     <button>see your recipes </button>
                 </Link>
 
@@ -296,6 +331,9 @@ const RecipeList = () => {
             {isAnyFilterModalOpen && (
                 <button onClick={handleFilterSubmit}>Submit Filters</button>
             )}
+            {isAnyFilterModalOpen && (
+                <button onClick={handleDeleteFilters}>Delete Filters</button>
+            )}
 
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
@@ -362,7 +400,7 @@ const RecipeList = () => {
             <button
                 style={{ marginRight: "10px" }}
                 onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 5)}
+                disabled={currentPage === Math.ceil(allrecipes.length / 10)}
             >
                 Next
             </button>

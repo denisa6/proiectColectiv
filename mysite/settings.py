@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ingredient',
     'allergen',
     'tag',
+    'bad_jokes',
     'recipe',
 ]
 

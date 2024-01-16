@@ -114,7 +114,14 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredientNames, setIngredientNames] = useState<string[]>([]);
 
     const handleExitDetail = () => {
-        window.location.href = `/showlist/`;
+        const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
     };
     const handleCancel = () => {
         setDesiredCommand(-1);

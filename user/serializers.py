@@ -6,7 +6,7 @@ from rest_framework.exceptions import ValidationError
 from user.models import RegularUser, UserStatus
 
 
-class RegularUserSerializer(serializers.ModelSerializer):
+class RegularUserSerializerAll(serializers.ModelSerializer):
     class Meta:
         model = RegularUser
         fields = ['id', 'username', 'email', 'password', 'role']

@@ -10,7 +10,8 @@ import {
 } from "../../util/auth";
 
 const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
-    // fetch ingredients for the dropdown menu + get current  ingredients
+    const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,6 +26,23 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
         };
         fetchData();
     }, []);
+
+     const getBase64 = (
+        file: File,
+        callback: (result: string) => void
+    ): void => {
+        let baseURL = "";
+        let reader = new FileReader();
+
+        // Convert the file to base64 text
+        reader.readAsDataURL(file);
+
+        // on reader load something...
+        reader.onload = () => {
+            baseURL = reader.result as string;
+            callback(baseURL);
+        };
+    };
 
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [selectedIngredients, setSelectedIngredients] = useState<number[]>(
@@ -45,7 +63,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
         type_recipe: props.recipeToUpdate.type_recipe,
         estimated_price: props.recipeToUpdate.estimated_price,
         total_calories: props.recipeToUpdate.total_calories,
-        photo: undefined,
+        photo: "",
         creator: getUserID(),
     });
 
@@ -92,18 +110,31 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     };
 
     const handleCancel = () => {
-        window.location.href = `/showlist/`;
+        const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
     };
     const handleRecipeDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        if (name === "photo") {
+        if (e.target.id === "photo") {
             const files = e.target.files;
 
             if (files && files.length > 0) {
                 const selectedFile = files[0];
-                console.log(selectedFile);
-                setUploadedPhoto(selectedFile);
-                console.log("kljjghdasfml;");
+
+                getBase64(selectedFile, (result: string) => {
+                    const photoString = result;
+                    setRecipeData((prevData) => ({
+                        ...prevData,
+                        ["photo"]: photoString,
+                    }));
+                    setIsPhotoReadyComplete(true);
+                });
             }
         }
         setRecipeData((prevData) => ({
@@ -111,6 +142,11 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
             [name]: value,
         }));
     };
+    useEffect(() => {
+        // Check if all required fields are completed
+        const photoReady = recipeData.photo !== null;
+        setIsPhotoReadyComplete(photoReady);
+    }, [recipeData.photo]);
     console.log(props.recipeToUpdate);
     //-----------  call UPDATE -----
     const updateRecipe = async (event: { preventDefault: () => void }) => {
@@ -147,7 +183,14 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
             console.error(error);
         }
         setTimeout(() => {
-            window.location.href = `/showlist`;
+           const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
         }, 500);
     };
     return (
@@ -318,7 +361,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                                 type="file"
                                 id="photo"
                                 accept="image/png, image/jpeg"
-                                value={recipeData.photo}
+                                //value={recipeData.photo}
                                 onChange={handleRecipeDataChange}
                             />
                         </p>

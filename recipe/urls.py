@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 
-from recipe.views import RecipeViewSet
+from recipe.views import RecipeViewSet, RecipeUserView
 
 router = DefaultRouter()
 router.register('', RecipeViewSet, basename='recipe')
@@ -12,6 +12,6 @@ urlpatterns = [
     path('', include(router.urls)),
 
     # Non-API views
-    path('<int:id>/', RecipeViewSet.recipe_detail, name='recipe-detail'),
+    path('user/<int:id>/', RecipeUserView.as_view(), name='recipe-user'),
     path('<int:id>/download/', RecipeViewSet.download_recipe_pdf, name='recipe-download-pdf'),
 ]

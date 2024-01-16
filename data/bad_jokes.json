@@ -1,0 +1,16 @@
+[
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 1,
+    "fields": {
+      "joke": "Q: What happened after an explosion at a French cheese factory? A: All that was left was de brie."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 2,
+    "fields": {
+      "joke": "Q: Which dessert is perfect for eating in bed? A: A sheet cake."
+    }
+  }
+]
