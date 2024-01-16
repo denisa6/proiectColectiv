@@ -346,7 +346,6 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                     />
                     <div>
                         <h5>Upload your yummy image 😜❤ </h5>
-
                         <div>
                             {recipeData.photo && (
                                 <img
@@ -357,7 +356,6 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                                 />
                             )}
                         </div>
-
                         <p>
                             <input
                                 type="file"

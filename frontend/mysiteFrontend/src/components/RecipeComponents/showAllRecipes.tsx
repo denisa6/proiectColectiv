@@ -7,6 +7,7 @@ import DeleteRecipe from "./deleteRecipe";
 import RecipeDetailsForm from "./recipeDetailsForm";
 import "../recipesTable.css";
 import UserRecipeList from "./userRecipes";
+import WelcomeMessage from "../userComponents/welcomeUser";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -191,6 +192,7 @@ const RecipeList = () => {
     return (
         <div style={styles.modalContainer}>
             <div style={styles.header}>
+                <WelcomeMessage></WelcomeMessage>
                 <Link to="/logout">
                     <button style={styles.logoutButton}>Logout</button>
                 </Link>
