@@ -193,7 +193,7 @@ const AddRecipeForm = () => {
             else{
                 window.location.href = `/showlist/`;
             }
-            }, 50000);
+            }, 500);
         }
     };
 
