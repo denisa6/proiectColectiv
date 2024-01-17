@@ -63,7 +63,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
         type_recipe: props.recipeToUpdate.type_recipe,
         estimated_price: props.recipeToUpdate.estimated_price,
         total_calories: props.recipeToUpdate.total_calories,
-        photo: "",
+        photo: props.recipeToUpdate.photo,
         creator: getUserID(),
     });
 
@@ -75,6 +75,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     const selectOptionsIngredients = selectOptions.sort((a, b) =>
         a.label.localeCompare(b.label)
     );
+    console.log(selectOptionsIngredients);
 
     const selectOptionsRecipeTypes = [
         { value: "lunch", label: "Lunch" },
@@ -148,51 +149,78 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
         setIsPhotoReadyComplete(photoReady);
     }, [recipeData.photo]);
     console.log(props.recipeToUpdate);
+    console.log("ingredients");
+    console.log(selectedIngredients);
+    console.log("type");
+    console.log(selectedRecipeType);
+    console.log("photo");
+    console.log(recipeData.photo);
     //-----------  call UPDATE -----
     const updateRecipe = async (event: { preventDefault: () => void }) => {
-        event.preventDefault();
-        try {
-            fetch(`http://127.0.0.1:8000/recipe/${props.recipeToUpdate.id}/`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    difficulty: recipeData.difficulty,
-                    name: recipeData.name,
-                    description: recipeData.description,
-                    ingredients: selectedIngredients,
-                    time_min: recipeData.time_min,
-                    time_max: recipeData.time_max,
-                    number_people: recipeData.number_people,
-                    type_recipe: selectedRecipeType,
-                    estimated_price: recipeData.estimated_price,
-                    total_calories: recipeData.total_calories,
-                    photo: recipeData.photo,
-                    creator: getUserID(),
-                }),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type":
-                        "application/json;charset=UTF-8;multipart/form-data",
-                    Authorization: "Bearer " + getAuthToken(),
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                });
-        } catch (error) {
-            console.error(error);
-        }
-        setTimeout(() => {
-           const isUserRecipePage = window.location.href.includes('/userRecipes');
+    event.preventDefault();
+    let type;
+    let img;
 
-            if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
-                window.location.href = `/showlist/`;
-            }
-        }, 500);
-    };
+    try {
+        // if (selectedIngredients.length == 0) {
+        //     ing = recipeData.ingredients;
+        // } else {
+        //     ing = selectedIngredients;
+        // }
+        // console.log(selectedIngredients.length);
+
+        if(selectedRecipeType){
+            type = selectedRecipeType;
+        }else{
+            type = recipeData.type_recipe;
+        }
+
+        const updatedData = {
+            difficulty: recipeData.difficulty,
+            name: recipeData.name,
+            description: recipeData.description,
+            ingredients: recipeData.ingredients,
+            time_min: recipeData.time_min,
+            time_max: recipeData.time_max,
+            number_people: recipeData.number_people,
+            type_recipe: type,
+            estimated_price: recipeData.estimated_price,
+            total_calories: recipeData.total_calories,
+            photo: recipeData.photo,
+            creator: getUserID(),
+        };
+
+        fetch(`http://127.0.0.1:8000/recipe/${props.recipeToUpdate.id}/?user=${getUserID()}`, {
+            method: "PUT",
+            body: JSON.stringify(updatedData),
+            headers: {
+                Accept: "application/json",
+                "Content-Type":
+                    "application/json;charset=UTF-8;multipart/form-data",
+                Authorization: `Bearer ${getAuthToken()}`, // Include the Authorization header with the token
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                console.log(selectedIngredients);
+        console.log(selectedRecipeType);
+        console.log(recipeData.photo);
+            });
+    } catch (error) {
+        console.error(error);
+    }
+
+    setTimeout(() => {
+        const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+        if (isUserRecipePage) {
+            window.location.href = `/userRecipes/`;
+        } else {
+            window.location.href = `/showlist/`;
+        }
+    }, 500);
+};
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
@@ -220,11 +248,14 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                     </label>
                     <label style={styles.label}>
                         Description:
-                        <input
-                            type="string"
+                        <textarea
                             name="description"
                             value={recipeData.description}
-                            onChange={handleRecipeDataChange}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                                handleRecipeDataChange(e)
+                            }
+                            rows={4} // You can adjust the number of rows as needed
+                            style={{resize: "vertical"}} // Optional: Allow vertical resizing
                         />
                     </label>
                     <label style={styles.label}>
@@ -400,6 +431,8 @@ const styles: { [key: string]: CSSProperties } = {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
         textAlign: "center",
         color: "black",
+        overflowY: "auto",
+        maxHeight: "80vh",
     },
     form: {
         display: "flex",

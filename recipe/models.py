@@ -31,7 +31,10 @@ class RecipeTypeChoices(models.TextChoices):
 
 def get_random_photo_filename():
     random_photo_number = random.randint(1, 5)
-    return f'photos/{random_photo_number}.jpg'
+    file1 = open(f'media\photos\{random_photo_number}.txt', "r")
+    print(random_photo_number)
+    img = file1.read()
+    return img
 
 
 class Recipe(models.Model):
@@ -45,7 +48,7 @@ class Recipe(models.Model):
     type_recipe = models.CharField(max_length=50, choices=RecipeTypeChoices.choices, default=RecipeTypeChoices.REGULAR)
     estimated_price = models.IntegerField()
     total_calories = models.FloatField()
-    photo = models.TextField(blank = True)
+    photo = models.TextField(default=get_random_photo_filename())
     creator = models.ForeignKey(RegularUser, on_delete=models.CASCADE, null=True)
 
     class Meta:

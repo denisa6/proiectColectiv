@@ -114,15 +114,24 @@ const AddRecipeForm = () => {
         // Extract the selected ingredient IDs and update the state
         const selectedIds = selectedOptions.map((option: any) => option.value);
         setSelectedIngredients(selectedIds);
+        console.log(selectedIngredients);
     };
 
     const handleSelectRecipeTypeChange = (selectedOption: any) => {
         setSelectedRecipeType(selectedOption.value);
         console.log(selectedOption.value);
+        console.log(selectedIngredients);
     };
 
     const handleCancel = () => {
-        window.location.href = `/showlist/`;
+        const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
     };
 
     const addRecipe = async (event: { preventDefault: () => void }) => {
@@ -176,8 +185,14 @@ const AddRecipeForm = () => {
                 console.error(error);
             }
             setTimeout(() => {
-                window.location.href = `/showlist`;
-                console.log(selectedIngredients);
+                const isUserRecipePage = window.location.href.includes('/userRecipes');
+
+            if (isUserRecipePage) {
+                    window.location.href = `/userRecipes/`;
+                }
+            else{
+                window.location.href = `/showlist/`;
+            }
             }, 500);
         }
     };
@@ -223,11 +238,14 @@ const AddRecipeForm = () => {
                     </label>
                     <label style={styles.label}>
                         Description:
-                        <input
-                            type="string"
+                        <textarea
                             name="description"
                             value={recipeData.description}
-                            onChange={handleRecipeDataChange}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                                handleRecipeDataChange(e)
+                            }
+                            rows={4} // You can adjust the number of rows as needed
+                            style={{resize: "vertical"}} // Optional: Allow vertical resizing
                         />
                     </label>
                     <label style={styles.label}>
@@ -400,6 +418,8 @@ const styles: { [key: string]: CSSProperties } = {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
         textAlign: "center",
         color: "black",
+        overflowY: "auto", // Add overflowY to enable vertical scrolling
+        maxHeight: "60vh", // Set a maximum height to fit the viewport
     },
     form: {
         display: "flex",
