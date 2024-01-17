@@ -206,7 +206,7 @@ const RecipeList = () => {
                         style={styles.filterButton}
                         onClick={handleFilterClickName}
                     >
-                        Filter by Name
+                        Filters
                     </button>
                 </div>
             </div>

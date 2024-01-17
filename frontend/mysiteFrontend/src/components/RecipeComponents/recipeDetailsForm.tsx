@@ -131,10 +131,11 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
             <div style={styles.modal} modal-class="modal-fullscreen">
                 <div style={styles.header}>
                     <button onClick={handleDownloadPDF}>Download PDF</button>
-                    {/* <button style={styles.exitButton} onClick={handleCancel}>
+                    <button style={styles.exitButton} onClick={handleExitDetail}>
                         Exit
-                    </button> */}
+                    </button>
                 </div>
+
                 <h1>{props.recipeDetail.name}</h1>
                 {/* {formData.photo && (
                     <div>
@@ -204,62 +205,8 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                 </p>
                 <h2>Ingredients: </h2>
                 <p>{currentIngredients.join(", ")}</p>
-                <h2>Recipe Information: </h2>
-                <p>
-                    <small>
-                        <i>
-                            {"Difficulty: ".concat(
-                                formData.difficulty.toString()
-                            )}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Estimated Time: ".concat(
-                                formData.time_min.toString()
-                            )}{" "}
-                            - {formData.time_max}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Number of People: ".concat(
-                                formData.number_people.toString()
-                            )}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Estimated Price: ".concat(
-                                formData.estimated_price.toString()
-                            )}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Total Calories: ".concat(
-                                formData.total_calories.toString()
-                            )}{" "}
-                        </i>
-                    </small>
-                </p>
-                <div id="buttons-container">
-                    {/* <button onClick={handleCancel}>Exit</button> */}
-                    <button onClick={handleExitDetail}>Exit</button>
-                </div>
+                <h2>Description: </h2>
+                <p>{String(formData.description)}</p>
                 {props.recipeDetail.creator == getUserID() && (
                     <div>
                         {" "}
@@ -287,10 +234,10 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                 )}
             </div>
             {desiredCommand === 0 && (
-                <DeleteRecipe recipeToDelete={props.recipeDetail} />
+                <DeleteRecipe recipeToDelete={props.recipeDetail}/>
             )}
             {desiredCommand === 1 && (
-                <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
+                <UpdateRecipeForm recipeToUpdate={props.recipeDetail}/>
             )}
         </div>
     );
