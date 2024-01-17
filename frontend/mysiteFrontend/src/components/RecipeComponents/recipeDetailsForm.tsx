@@ -54,9 +54,9 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     };
     const currentIngredientsSet = new Set();
     props.recipeDetail.ingredients.forEach((item: number) => {
-        // Ensure 'ingredients' array is defined and item is a valid index
-        if (ingredients && ingredients[item] && ingredients[item].name) {
-            currentIngredientsSet.add(ingredients[item].name);
+    // Ensure 'ingredients' array is defined and item is a valid index
+        if (ingredients && ingredients[item - 1] && ingredients[item - 1].name) {
+            currentIngredientsSet.add(ingredients[item - 1].name);
         } else {
             console.error(
                 `Invalid index or missing 'name' property for ingredient at index ${item}`
