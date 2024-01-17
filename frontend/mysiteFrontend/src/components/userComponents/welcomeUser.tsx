@@ -4,7 +4,7 @@ import { getUsername } from "../../util/auth";
 const WelcomeMessage = () => {
     return (
         <div>
-            <p>Welcome back, {getUsername()}!</p>
+            <p>Welcome back, {getUsername()} !</p>
         </div>
     );
 };

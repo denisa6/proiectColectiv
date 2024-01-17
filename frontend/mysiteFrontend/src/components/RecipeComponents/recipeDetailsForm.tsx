@@ -114,14 +114,13 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredientNames, setIngredientNames] = useState<string[]>([]);
 
     const handleExitDetail = () => {
-        const isUserRecipePage = window.location.href.includes('/userRecipes');
+        const isUserRecipePage = window.location.href.includes("/userRecipes");
 
-            if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
-                window.location.href = `/showlist/`;
-            }
+        if (isUserRecipePage) {
+            window.location.href = `/userRecipes/`;
+        } else {
+            window.location.href = `/showlist/`;
+        }
     };
     const handleCancel = () => {
         setDesiredCommand(-1);
@@ -285,13 +284,13 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                         </td>
                     </div>
                 )}
+                {desiredCommand === 0 && (
+                    <DeleteRecipe recipeToDelete={props.recipeDetail} />
+                )}
+                {desiredCommand === 1 && (
+                    <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
+                )}
             </div>
-            {desiredCommand === 0 && (
-                <DeleteRecipe recipeToDelete={props.recipeDetail} />
-            )}
-            {desiredCommand === 1 && (
-                <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
-            )}
         </div>
     );
 };
@@ -307,6 +306,7 @@ const styles: { [key: string]: CSSProperties } = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        color: "white",
     },
     modal: {
         background: "#000",
@@ -351,6 +351,9 @@ const styles: { [key: string]: CSSProperties } = {
     content: {
         overflow: "auto", // Add scrollbar if content exceeds the available space
         maxHeight: "calc(100% - 40px)", // Set the maximum height, considering header and padding
+    },
+    generic: {
+        color: "white",
     },
 };
 
