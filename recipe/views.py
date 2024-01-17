@@ -2,7 +2,7 @@
 from django.core.paginator import Paginator
 from io import BytesIO
 
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from reportlab.lib import colors
@@ -14,7 +14,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from recipe.models import Recipe
+from recipe.models import Recipe, get_random_photo_filename
 from recipe.serializers import RecipeSerializer
 
 import base64
@@ -145,6 +145,15 @@ def split_description(description_text, max_paragraph_length=300):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+
+    def create(self, request, *args, **kwargs):
+        if request.data["photo"] == "":
+            # If "photo" is not in the request, assign a random photo
+            random_photo_filename = get_random_photo_filename()
+            if isinstance(request.data, QueryDict):
+                request.data._mutable = True
+            request.data["photo"] = random_photo_filename
+        return super().create(request)
 
     def update(self, request, *args, **kwargs):
         # Get the instance of the recipe

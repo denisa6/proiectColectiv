@@ -193,7 +193,7 @@ const AddRecipeForm = () => {
             else{
                 window.location.href = `/showlist/`;
             }
-            }, 500);
+            }, 50000);
         }
     };
 
@@ -201,9 +201,7 @@ const AddRecipeForm = () => {
         value: ingredient.id,
         label: ingredient.name,
     }));
-    const selectOptionsIngredients = selectOptions.sort((a, b) =>
-        a.label.localeCompare(b.label)
-    );
+   const selectOptionsIngredients = selectOptions;
 
     const selectOptionsRecipeTypes = [
         { value: "lunch", label: "Lunch" },
