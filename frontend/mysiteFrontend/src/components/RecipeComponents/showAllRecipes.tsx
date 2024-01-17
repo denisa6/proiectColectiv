@@ -201,7 +201,7 @@ const RecipeList = () => {
                 </div>
                 <Link to="/userRecipes">
                     <button style={styles.inputButton}>
-                        {getUsername()}'s recipes{" "}
+                        {getUsername()?.toUpperCase()}'s recipes{" "}
                     </button>
                 </Link>
 
