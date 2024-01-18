@@ -391,13 +391,13 @@ const UserRecipeList = () => {
             <button
                 style={styles.inputButton}
                 onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 10)}
+                disabled={currentPage === Math.ceil(allrecipes.length / 9)}
             >
                 Next
             </button>
 
             <Routes>
-                <Route path="showlist/add-recipe" element={<AddRecipeForm />} />
+                <Route path="showlist/add-recipe" element={<AddRecipeForm/>}/>
             </Routes>
         </div>
     );

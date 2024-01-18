@@ -3,6 +3,7 @@ import Select, { components } from "react-select";
 import { useEffect } from "react";
 import { Ingredient } from "../../models/Ingredient";
 import { getAuthToken, getUsername, getUserID } from "../../util/auth";
+import Confetti from "react-dom-confetti";
 
 const AddRecipeForm = () => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
@@ -11,6 +12,7 @@ const AddRecipeForm = () => {
     );
     const [selectedRecipeType, setSelectedRecipeType] = useState(String);
     const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
+     const [isRecipeAdded, setIsRecipeAdded] = useState(false);
 
     interface ExtendedFile extends File {
         base64?: string; // Extend the File type with an optional base64 property
@@ -179,6 +181,7 @@ const AddRecipeForm = () => {
                     .then((response) => response.json())
                     .then((data) => {
                         console.log(data);
+                        setIsRecipeAdded(true);
                     });
             } catch (error) {
                 console.error(error);
@@ -192,7 +195,7 @@ const AddRecipeForm = () => {
                 } else {
                     window.location.href = `/showlist/`;
                 }
-            }, 500);
+            }, 2500);
         }
     };
 
@@ -214,6 +217,21 @@ const AddRecipeForm = () => {
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 <h2>Add New Recipe</h2>
+                <Confetti
+            active={isRecipeAdded}
+            config={{
+                angle: 90,
+                spread: 360,
+                startVelocity: 40,
+                elementCount: 1500,
+                dragFriction: 0.1,
+                duration: 3000,
+                stagger: 3,
+                width: "10px",
+                height: "10px",
+                colors: ["#ecb753", "#ffffff", "#ff0000"],
+            }}
+        />
                 <form onSubmit={addRecipe} style={styles.form}>
                     <label style={styles.label}>
                         Difficulty:
