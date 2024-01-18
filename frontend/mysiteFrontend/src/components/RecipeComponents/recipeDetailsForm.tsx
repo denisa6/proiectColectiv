@@ -142,6 +142,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                         Exit
                     </button>
                 </div>
+
                 <h1>{props.recipeDetail.name}</h1>
                 {/* {formData.photo && (
                     <div>

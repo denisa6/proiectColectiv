@@ -148,13 +148,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         # Get the instance of the recipe
+        if "user" in self.request.GET:
+            user = int(self.request.GET["user"])
         instance = self.get_object()
 
         # Check if the current user is the creator of the recipe
-        if request.user != instance.creator:
+        if user != instance.creator.id:
             return Response({'detail': 'You are not allowed to update this recipe.'}, status=status.HTTP_403_FORBIDDEN)
 
-        super().update(request) 
+        super().update(request)
 
     @api_view(['GET'])
     def recipe_detail(self, request, id):

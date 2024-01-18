@@ -54,7 +54,7 @@ function App() {
                 <Route path="/logout" element={<Logout></Logout>} />
 
                 <Route
-                    path="/userRecipes"
+                    path="/userRecipes/*"
                     element={<UserRecipeList ></UserRecipeList>}
                 />
             </Routes>

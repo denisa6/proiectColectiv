@@ -397,11 +397,19 @@ const UserRecipeList = () => {
             </button>
 
             <Routes>
-                <Route path="showlist/add-recipe" Component={AddRecipeForm} />
+                <Route
+                    path="showlist/add-recipe"
+                    element={<AddRecipeForm />}
+                />
             </Routes>
         </div>
     );
 };
+              
+
+            </div>
+            );
+            };
 
 //////===========================================   STYLES  =====================================================
 
