@@ -114,14 +114,13 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredientNames, setIngredientNames] = useState<string[]>([]);
 
     const handleExitDetail = () => {
-        const isUserRecipePage = window.location.href.includes('/userRecipes');
+        const isUserRecipePage = window.location.href.includes("/userRecipes");
 
-            if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
-                window.location.href = `/showlist/`;
-            }
+        if (isUserRecipePage) {
+            window.location.href = `/userRecipes/`;
+        } else {
+            window.location.href = `/showlist/`;
+        }
     };
     const handleCancel = () => {
         setDesiredCommand(-1);
@@ -130,8 +129,16 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
         <div style={styles.overlay}>
             <div style={styles.modal} modal-class="modal-fullscreen">
                 <div style={styles.header}>
-                    <button onClick={handleDownloadPDF}>Download PDF</button>
-                    <button style={styles.exitButton} onClick={handleExitDetail}>
+                    <button
+                        style={styles.inputButton}
+                        onClick={handleDownloadPDF}
+                    >
+                        Download PDF
+                    </button>
+                    <button
+                        style={styles.exitButton}
+                        onClick={handleExitDetail}
+                    >
                         Exit
                     </button>
                 </div>
@@ -142,108 +149,120 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                         <img src={formData.photo} alt="My Image" />
                     </div>
                 )} */}
-                {true && (
-                    <td>
-                        <img
-                            src={props.recipeDetail?.photo}
-                            alt="Problem getting your photo"
-                            width="300"
-                            height="200"
-                        />
-                    </td>
-                )}
 
-                <h2>Recipe Information: </h2>
-                <p>
-                    <small>
-                        <i>
-                            {"Difficulty: ".concat(String(formData.difficulty))}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Estimated Time: ".concat(
-                                String(formData.time_min)
-                            )}{" "}
-                            - {formData.time_max}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Number of People: ".concat(
-                                String(formData.number_people)
-                            )}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>{"Recipe Type: ".concat(formData.type_recipe)}</i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Estimated Price: ".concat(
-                                String(formData.estimated_price)
-                            )}
-                        </i>
-                    </small>
-                </p>
-                <p>
-                    <small>
-                        <i>
-                            {"Total Calories: ".concat(
-                                String(formData.total_calories)
-                            )}{" "}
-                        </i>
-                    </small>
-                </p>
-                <h2>Ingredients: </h2>
-                <p>{currentIngredients.join(", ")}</p>
-                <h2>Description: </h2>
-                <p>{String(formData.description)}</p>
-                {props.recipeDetail.creator == getUserID() && (
-                    <div>
-                        {" "}
-                        <td>
-                            {/* <Link to={`/delete-recipe`}> */}
-                            <button
-                                onClick={() => {
-                                    setDesiredCommand(0);
-                                }}
-                            >
-                                Delete
-                            </button>
-                            {/* </Link> */}
-                        </td>
-                        <td>
-                            <button
-                                onClick={() => {
-                                    setDesiredCommand(1);
-                                }}
-                            >
-                                Update
-                            </button>
-                        </td>
+                <div style={styles.ingredientsAndPhotoContainer}>
+                    <div style={styles.infoContainer}>
+                        <h2>Recipe Information: </h2>
+                        <p>
+                            <b>
+                                {"Difficulty: ".concat(
+                                    String(formData.difficulty)
+                                )}
+                            </b>
+                        </p>
+                        <p>
+                            <b>
+                                {"Estimated Time: ".concat(
+                                    String(formData.time_min)
+                                )}{" "}
+                                - {formData.time_max}
+                            </b>
+                        </p>
+                        <p>
+                            <b>
+                                {"Number of People: ".concat(
+                                    String(formData.number_people)
+                                )}
+                            </b>
+                        </p>
+                        <p>
+                            <b>
+                                {"Recipe Type: ".concat(formData.type_recipe)}
+                            </b>
+                        </p>
+                        <p>
+                            <b>
+                                {"Estimated Price: ".concat(
+                                    String(formData.estimated_price)
+                                )}
+                            </b>
+                        </p>
+                        <p>
+                            <b>
+                                {"Total Calories: ".concat(
+                                    String(formData.total_calories)
+                                )}{" "}
+                            </b>
+                        </p>
                     </div>
-                )}
+                    <div style={styles.ingredientsContainer}>
+                        <h2>Ingredients:</h2>
+                        <ul>
+                            {currentIngredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient.toString()}</li> // APARE EROARE NU STIU DE CE DAR IN BROWSER NU ARE NIMIC
+                            ))}
+                        </ul>
+                    </div>
+                    {true && (
+                        <div style={styles.photoContainer}>
+                            <img
+                                src={props.recipeDetail?.photo}
+                                alt="Problem getting your photo"
+                                width="300"
+                                height="200"
+                            />
+                        </div>
+                    )}
+                </div>
+                <div style={styles.descriptionContainer}>
+                    {props.recipeDetail.description}
+                </div>
+
+                <div id="buttons-container">
+                    {props.recipeDetail.creator == getUserID() && (
+                        <div>
+                            {" "}
+                            <td>
+                                {/* <Link to={`/delete-recipe`}> */}
+                                <button
+                                    style={styles.inputButton}
+                                    onClick={() => {
+                                        setDesiredCommand(0);
+                                    }}
+                                >
+                                    Delete
+                                </button>
+                                {/* </Link> */}
+                            </td>
+                            <td>
+                                <button
+                                    style={styles.inputButton}
+                                    onClick={() => {
+                                        setDesiredCommand(1);
+                                    }}
+                                >
+                                    Update
+                                </button>
+                            </td>
+                        </div>
+                    )}
+                    {desiredCommand === 0 && (
+                        <DeleteRecipe recipeToDelete={props.recipeDetail} />
+                    )}
+                    {desiredCommand === 1 && (
+                        <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
+                    )}
+                </div>
             </div>
-            {desiredCommand === 0 && (
-                <DeleteRecipe recipeToDelete={props.recipeDetail}/>
-            )}
-            {desiredCommand === 1 && (
-                <UpdateRecipeForm recipeToUpdate={props.recipeDetail}/>
-            )}
         </div>
     );
 };
 
 const styles: { [key: string]: CSSProperties } = {
+    title: {
+        alignItems: "center",
+        background: "#ecb753",
+    },
     overlay: {
         position: "fixed",
         top: 0,
@@ -254,9 +273,11 @@ const styles: { [key: string]: CSSProperties } = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        color: "black",
+        background: "rgba(236, 183, 83, 0.8)", // Adjust the alpha value to control transparencyyyy
     },
     modal: {
-        background: "#000",
+        background: "white",
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
@@ -288,7 +309,7 @@ const styles: { [key: string]: CSSProperties } = {
     },
 
     exitButton: {
-        background: "none",
+        backgroundColor: "red",
         border: "none",
         color: "#fff",
         cursor: "pointer",
@@ -298,6 +319,43 @@ const styles: { [key: string]: CSSProperties } = {
     content: {
         overflow: "auto", // Add scrollbar if content exceeds the available space
         maxHeight: "calc(100% - 40px)", // Set the maximum height, considering header and padding
+    },
+    generic: {
+        color: "white",
+    },
+    inputButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color
+        color: "#333333", // Dark gray text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginRight: "20px",
+        marginLeft: "20px",
+    },
+
+    ingredientsAndPhotoContainer: {
+        display: "flex",
+        //flexDirection: "column", // Display children in a column
+        alignItems: "flex-start", // Align items to the start of the cross axis
+        justifyContent: "space-evenly",
+    },
+    ingredientsContainer: {
+        marginBottom: "20px", // Add margin between ingredients and photo
+    },
+    photoContainer: {
+        alignSelf: "flex-start", // Align photo to the start of the cross axis
+    },
+    infoContainer: {
+        display: "flex",
+        flexDirection: "column",
+    },
+    descriptionContainer: {
+        marginRight: "40px",
+        marginLeft: "40px",
+        marginBottom: "40px",
+        marginTop: "40px",
     },
 };
 

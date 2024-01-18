@@ -94,14 +94,15 @@ const SignUp = (props: any) => {
     };
 
     return (
-        <div className={"mainContainer"}>
-            <div className={"titleContainer"}>
+        <div className={"mainContainer"} style={styles.mainContainer}>
+            <div className={"titleContainer"} style={styles.titleContainer}>
                 <div>SignUp</div>
             </div>
             <br />
-            <div className="inputContainer">
+            <div className="inputContainer" style={styles.inputContainer}>
                 <input
                     value={username}
+                    style={styles.inputBox}
                     placeholder="Enter your username here"
                     onChange={(ev) => setUsername(ev.target.value)}
                     className="inputBox"
@@ -111,9 +112,10 @@ const SignUp = (props: any) => {
             <br />
 
             {/* FIRST NAME */}
-            <div className="inputContainer">
+            <div className="inputContainer" style={styles.inputField}>
                 <input
                     value={first_name}
+                    style={styles.inputBox}
                     placeholder="Enter your first name here"
                     onChange={(ev) => setFirstName(ev.target.value)}
                     className="inputBox"
@@ -122,9 +124,10 @@ const SignUp = (props: any) => {
             </div>
             {/* LAST NAME */}
             <br />
-            <div className="inputContainer">
+            <div className="inputContainer" style={styles.inputField}>
                 <input
                     value={last_name}
+                    style={styles.inputBox}
                     placeholder="Enter your last name here"
                     onChange={(ev) => setLastName(ev.target.value)}
                     className="inputBox"
@@ -135,9 +138,10 @@ const SignUp = (props: any) => {
             {/* EMAIL */}
             <br />
 
-            <div className={"inputContainer"}>
+            <div className={"inputContainer"} style={styles.inputField}>
                 <input
                     value={email}
+                    style={styles.inputBox}
                     placeholder="Enter your email here"
                     onChange={(ev) => setEmail(ev.target.value)}
                     className={"inputBox"}
@@ -147,8 +151,9 @@ const SignUp = (props: any) => {
             <br />
 
             {/* PASSWORD 1 */}
-            <div className="inputContainer">
+            <div className="inputContainer" style={styles.inputField}>
                 <input
+                    style={styles.inputBox}
                     value={password1}
                     placeholder="Enter your password here"
                     onChange={(ev) => setPassword1(ev.target.value)}
@@ -160,9 +165,10 @@ const SignUp = (props: any) => {
             {/* PASSWORD 2 */}
             <br />
 
-            <div className="inputContainer">
+            <div className="inputContainer" style={styles.inputField}>
                 <input
                     value={password2}
+                    style={styles.inputBox}
                     placeholder="Confirm your password here"
                     onChange={(ev) => setPassword2(ev.target.value)}
                     className="inputBox"
@@ -176,15 +182,17 @@ const SignUp = (props: any) => {
             <br />
 
             {/* SIGN UP BUTTON */}
-            <div className={"inputContainer"}>
+            <div className={"inputContainer"} style={styles.buttonContainer}>
                 <input
                     className={"inputButton"}
+                    style={styles.inputButton}
                     type="button"
                     onClick={addNewUser}
                     value={"Sign Up"}
                 />
                 <input
                     className={"inputButton"}
+                    style={styles.inputButton}
                     type="button"
                     onClick={handleCancel}
                     value={"Cancel"}
@@ -192,6 +200,104 @@ const SignUp = (props: any) => {
             </div>
         </div>
     );
+};
+
+const styles: { [key: string]: React.CSSProperties } = {
+    body: {
+        backgroundColor: "red",
+        margin: 0,
+        fontFamily: "Arial, sans-serif",
+    },
+    mainContainer: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "40px", // Increased padding for larger size
+        backgroundColor: "#ffffff", // White background
+        borderRadius: "10px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        margin: "40px", // Increased margin for larger size
+    },
+
+    titleContainer: {
+        fontSize: "24px",
+        fontWeight: "bold",
+        marginBottom: "15px",
+        color: "black",
+    },
+
+    signInButton: {
+        backgroundColor: "#ecb753",
+        color: "black",
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+    },
+
+    inputContainer: {
+        margin: "10px 0",
+    },
+
+    inputBox: {
+        height: "30px",
+        width: "300px",
+        backgroundColor: "#f0f0f0", // Light gray input background
+        border: "1px solid #ccc",
+        borderRadius: "3px",
+        padding: "0 10px",
+        fontSize: "14px",
+        fontWeight: "300",
+        color: "#333333", // Dark gray text color
+        outline: "none",
+    },
+
+    passwordInputContainer: {
+        display: "flex",
+        alignItems: "center",
+    },
+
+    eyeButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color
+        color: "#333333", // Dark gray text color
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginLeft: "5px",
+    },
+
+    buttonContainer: {
+        display: "flex",
+        marginTop: "20px",
+    },
+
+    inputButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color
+        color: "#333333", // Dark gray text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginBottom: "10px",
+        marginRight: "10px", // Margin between buttons
+    },
+
+    cancelButton: {
+        backgroundColor: "#666666", // Dark gray button color
+        color: "#ffffff", // White text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+    },
+
+    errorLabel: {
+        color: "#ff5555", // Red error text color
+        marginTop: "5px",
+    },
 };
 
 export default SignUp;
