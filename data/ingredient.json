@@ -4,39 +4,6 @@
     "pk": 1,
     "fields": {
       "price": "L",
-      "name": "Quinoa",
-      "calories": 120,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": [16]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 2,
-    "fields": {
-      "price": "H",
-      "name": "Salmon",
-      "calories": 200,
-      "tags": [3, 4, 5, 6, 7, 8, 9],
-      "allergens": [8]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 3,
-    "fields": {
-      "price": "L",
-      "name": "Kale",
-      "calories": 50,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 4,
-    "fields": {
-      "price": "L",
       "name": "Almond Milk",
       "calories": 60,
       "tags": [1, 6, 7, 8, 9],
@@ -45,51 +12,7 @@
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 5,
-    "fields": {
-      "price": "H",
-      "name": "Chicken Breast",
-      "calories": 100,
-      "tags": [4, 5, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 6,
-    "fields": {
-      "price": "L",
-      "name": "Oats",
-      "calories": 100,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": [5]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 7,
-    "fields": {
-      "price": "L",
-      "name": "Greek Yogurt",
-      "calories": 120,
-      "tags": [2, 6, 8, 9],
-      "allergens": [5]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 8,
-    "fields": {
-      "price": "L",
-      "name": "Lentils",
-      "calories": 120,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 9,
+    "pk": 2,
     "fields": {
       "price": "L",
       "name": "Avocado",
@@ -100,238 +23,7 @@
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 10,
-    "fields": {
-      "price": "L",
-      "name": "Broccoli",
-      "calories": 55,
-      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 11,
-    "fields": {
-      "price": "L",
-      "name": "Brown Rice",
-      "calories": 215,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": [5]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 12,
-    "fields": {
-      "price": "L",
-      "name": "Chickpeas",
-      "calories": 134,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 13,
-    "fields": {
-      "price": "L",
-      "name": "Tomatoes",
-      "calories": 22,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 14,
-    "fields": {
-      "price": "H",
-      "name": "Olive Oil",
-      "calories": 119,
-      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
-      "allergens": [6]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 15,
-    "fields": {
-      "price": "L",
-      "name": "Black Beans",
-      "calories": 114,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 16,
-    "fields": {
-      "price": "L",
-      "name": "Spinach",
-      "calories": 23,
-      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 17,
-    "fields": {
-      "price": "L",
-      "name": "Cauliflower",
-      "calories": 29,
-      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 18,
-    "fields": {
-      "price": "L",
-      "name": "Cucumber",
-      "calories": 16,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 19,
-    "fields": {
-      "price": "L",
-      "name": "Eggs",
-      "calories": 55,
-      "tags": [2, 4, 5, 6, 7, 8, 9],
-      "allergens": [2]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 20,
-    "fields": {
-      "price": "L",
-      "name": "Milk",
-      "calories": 75,
-      "tags": [2, 6, 8, 9],
-      "allergens": [1]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 21,
-    "fields": {
-      "price": "H",
-      "name": "Pork",
-      "calories": 150,
-      "tags": [6, 7],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 22,
-    "fields": {
-      "price": "L",
-      "name": "Spaghetti",
-      "calories": 200,
-      "tags": [7],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 23,
-    "fields": {
-      "price": "L",
-      "name": "Carrots",
-      "calories": 41,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 24,
-    "fields": {
-      "price": "L",
-      "name": "Celery",
-      "calories": 6,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": [11]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 25,
-    "fields": {
-      "price": "L",
-      "name": "Onions",
-      "calories": 40,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 26,
-    "fields": {
-      "price": "L",
-      "name": "Garlic",
-      "calories": 5,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 27,
-    "fields": {
-      "price": "L",
-      "name": "Potatoes",
-      "calories": 130,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 28,
-    "fields": {
-      "price": "L",
-      "name": "Strawberries",
-      "calories": 32,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 29,
-    "fields": {
-      "price": "L",
-      "name": "Bananas",
-      "calories": 105,
-      "tags": [1, 2, 4, 6, 7, 8, 9],
-      "allergens": [14]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 30,
-    "fields": {
-      "price": "L",
-      "name": "Chocolate",
-      "calories": 546,
-      "tags": [],
-      "allergens": [6]
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 31,
+    "pk": 3,
     "fields": {
       "price": "L",
       "name": "Baking Powder",
@@ -342,40 +34,29 @@
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 32,
+    "pk": 4,
     "fields": {
       "price": "L",
-      "name": "Sugar",
-      "calories": 49,
-      "tags": [6, 7, 8, 9],
-      "allergens": []
+      "name": "Bananas",
+      "calories": 105,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": [14]
     }
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 33,
+    "pk": 5,
     "fields": {
-      "price": "L",
-      "name": "Flour",
-      "calories": 50,
-      "tags": [1, 2, 7, 8, 9],
+      "price": "H",
+      "name": "Beef",
+      "calories": 200,
+      "tags": [6, 7],
       "allergens": []
     }
   },
-  {
+   {
     "model": "ingredient.Ingredient",
-    "pk": 34,
-    "fields": {
-      "price": "L",
-      "name": "Sweet Potatoes",
-      "calories": 112,
-      "tags": [1, 2, 6, 7, 8, 9],
-      "allergens": []
-    }
-  },
-  {
-    "model": "ingredient.Ingredient",
-    "pk": 35,
+    "pk": 6,
     "fields": {
       "price": "L",
       "name": "Bell Peppers",
@@ -386,29 +67,128 @@
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 36,
+    "pk": 7,
     "fields": {
-      "price": "H",
-      "name": "Beef",
-      "calories": 200,
-      "tags": [6, 7],
+      "price": "L",
+      "name": "Black Beans",
+      "calories": 114,
+      "tags": [1, 2, 6, 7, 8, 9],
       "allergens": []
     }
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 37,
+    "pk": 8,
     "fields": {
-      "price": "H",
-      "name": "Honey",
-      "calories": 30,
-      "tags": [2],
+      "price": "L",
+      "name": "Broccoli",
+      "calories": 55,
+      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
       "allergens": []
     }
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 38,
+    "pk": 9,
+    "fields": {
+      "price": "L",
+      "name": "Brown Rice",
+      "calories": 215,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": [5]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 10,
+    "fields": {
+      "price": "L",
+      "name": "Carrots",
+      "calories": 41,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 11,
+    "fields": {
+      "price": "L",
+      "name": "Cauliflower",
+      "calories": 29,
+      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 12,
+    "fields": {
+      "price": "L",
+      "name": "Celery",
+      "calories": 6,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": [11]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 13,
+    "fields": {
+      "price": "H",
+      "name": "Chicken Breast",
+      "calories": 100,
+      "tags": [4, 5, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 14,
+    "fields": {
+      "price": "L",
+      "name": "Chickpeas",
+      "calories": 134,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 15,
+    "fields": {
+      "price": "L",
+      "name": "Chocolate",
+      "calories": 546,
+      "tags": [],
+      "allergens": [6]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 16,
+    "fields": {
+      "price": "L",
+      "name": "Cucumber",
+      "calories": 16,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 17,
+    "fields": {
+      "price": "L",
+      "name": "Eggs",
+      "calories": 55,
+      "tags": [2, 4, 5, 6, 7, 8, 9],
+      "allergens": [2]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 18,
     "fields": {
       "price": "L",
       "name": "Feta",
@@ -419,7 +199,128 @@
   },
   {
     "model": "ingredient.Ingredient",
-    "pk": 39,
+    "pk": 19,
+    "fields": {
+      "price": "L",
+      "name": "Flour",
+      "calories": 50,
+      "tags": [1, 2, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 20,
+    "fields": {
+      "price": "L",
+      "name": "Garlic",
+      "calories": 5,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 21,
+    "fields": {
+      "price": "L",
+      "name": "Greek Yogurt",
+      "calories": 120,
+      "tags": [2, 6, 8, 9],
+      "allergens": [5]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 22,
+    "fields": {
+      "price": "H",
+      "name": "Honey",
+      "calories": 30,
+      "tags": [2],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 23,
+    "fields": {
+      "price": "L",
+      "name": "Kale",
+      "calories": 50,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 24,
+    "fields": {
+      "price": "L",
+      "name": "Lentils",
+      "calories": 120,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 25,
+    "fields": {
+      "price": "L",
+      "name": "Milk",
+      "calories": 75,
+      "tags": [2, 6, 8, 9],
+      "allergens": [1]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 26,
+    "fields": {
+      "price": "L",
+      "name": "Mozzarella",
+      "calories": 90,
+      "tags": [],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 27,
+    "fields": {
+      "price": "L",
+      "name": "Oats",
+      "calories": 100,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": [5]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 28,
+    "fields": {
+      "price": "H",
+      "name": "Olive Oil",
+      "calories": 119,
+      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
+      "allergens": [6]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 29,
+    "fields": {
+      "price": "L",
+      "name": "Onions",
+      "calories": 40,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 30,
     "fields": {
       "price": "H",
       "name": "Parmesan",
@@ -430,12 +331,111 @@
   },
   {
     "model": "ingredient.Ingredient",
+    "pk": 31,
+    "fields": {
+      "price": "H",
+      "name": "Pork",
+      "calories": 150,
+      "tags": [6, 7],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 32,
+    "fields": {
+      "price": "L",
+      "name": "Potatoes",
+      "calories": 130,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 33,
+    "fields": {
+      "price": "L",
+      "name": "Quinoa",
+      "calories": 120,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": [16]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 34,
+    "fields": {
+      "price": "H",
+      "name": "Salmon",
+      "calories": 200,
+      "tags": [3, 4, 5, 6, 7, 8, 9],
+      "allergens": [8]
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 35,
+    "fields": {
+      "price": "L",
+      "name": "Spinach",
+      "calories": 23,
+      "tags": [1, 2, 4, 5, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 36,
+    "fields": {
+      "price": "L",
+      "name": "Spaghetti",
+      "calories": 200,
+      "tags": [7],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 37,
+    "fields": {
+      "price": "L",
+      "name": "Strawberries",
+      "calories": 32,
+      "tags": [1, 2, 4, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 38,
+    "fields": {
+      "price": "L",
+      "name": "Sugar",
+      "calories": 49,
+      "tags": [6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
+    "pk": 39,
+    "fields": {
+      "price": "L",
+      "name": "Sweet Potatoes",
+      "calories": 112,
+      "tags": [1, 2, 6, 7, 8, 9],
+      "allergens": []
+    }
+  },
+  {
+    "model": "ingredient.Ingredient",
     "pk": 40,
     "fields": {
       "price": "L",
-      "name": "Mozzarella",
-      "calories": 90,
-      "tags": [],
+      "name": "Tomatoes",
+      "calories": 22,
+      "tags": [1, 2, 6, 7, 8, 9],
       "allergens": []
     }
   }
