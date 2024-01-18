@@ -200,7 +200,7 @@ const AddRecipeForm = () => {
         value: ingredient.id,
         label: ingredient.name,
     }));
-   const selectOptionsIngredients = selectOptions;
+    const selectOptionsIngredients = selectOptions;
 
     const selectOptionsRecipeTypes = [
         { value: "lunch", label: "Lunch" },
@@ -237,15 +237,13 @@ const AddRecipeForm = () => {
                     </label>
                     <label style={styles.label}>
                         Description:
-                        <textarea
-                            style={styles.inputBox}
+                        <input
+                            style={styles.inputBox} // Uncomment this line if you want to apply styling
                             name="description"
                             value={recipeData.description}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLTextAreaElement>
-                            ) => handleRecipeDataChange(e)}
-                            rows={4} // You can adjust the number of rows as needed
-                            //style={{ resize: "vertical" }} // Optional: Allow vertical resizing
+                            onChange={handleRecipeDataChange}
+                            //rows={8} // Adjust the number of rows as needed
+                            // style={{ resize: "vertical" }} // Optional: Allow vertical resizing
                         />
                     </label>
                     <label style={styles.label}>
