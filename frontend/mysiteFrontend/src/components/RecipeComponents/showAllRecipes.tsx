@@ -1,5 +1,5 @@
 import { Recipe } from "../../models/Recipe";
-import { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useEffect, CSSProperties } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import AddRecipeForm from "./addRecipeForm";
 import UpdateRecipeForm from "./updateRecipeForm";
@@ -9,6 +9,7 @@ import "../recipesTable.css";
 import UserRecipeList from "./userRecipes";
 import WelcomeMessage from "../userComponents/welcomeUser";
 import BadJokeForm from "./BadJokeForm.tsx";
+import Confetti from "react-dom-confetti";
 
 import { getUserID, getUsername } from "../../util/auth";
 
@@ -36,6 +37,7 @@ const RecipeList = () => {
     const [recipeForDetail, setRecipeForDetail] = useState<Recipe>();
     const [showDeleteFilters, setShowDeleteFilters] = useState(false);
     let [filters, setFilters] = useState("");
+    const [isRecipeAdded, setIsRecipeAdded] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -432,7 +434,7 @@ const RecipeList = () => {
             <button
                 style={styles.inputButton}
                 onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 10)}
+                disabled={currentPage === Math.ceil(allrecipes.length / 9)}
             >
                 Next
             </button>

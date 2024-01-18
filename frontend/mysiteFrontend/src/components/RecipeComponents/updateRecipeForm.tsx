@@ -8,9 +8,12 @@ import {
     getUserRole,
     getUsername,
 } from "../../util/auth";
+import Confetti from "react-dom-confetti";
 
 const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
+         const [isRecipeAdded, setIsRecipeAdded] = useState(false);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -205,8 +208,9 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
             .then((data) => {
                 console.log(data);
                 console.log(selectedIngredients);
-        console.log(selectedRecipeType);
-        console.log(recipeData.photo);
+                console.log(selectedRecipeType);
+                console.log(recipeData.photo);
+                setIsRecipeAdded(true);
             });
     } catch (error) {
         console.error(error);
@@ -220,12 +224,27 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
         } else {
             window.location.href = `/showlist/`;
         }
-    }, 500);
+    }, 2500);
 };
     return (
         <div style={styles.overlay}>
             <div style={styles.modal}>
                 <h2>Update the Recipe's Fields</h2>
+                <Confetti
+            active={isRecipeAdded}
+            config={{
+                angle: 90,
+                spread: 360,
+                startVelocity: 40,
+                elementCount: 1500,
+                dragFriction: 0.1,
+                duration: 3000,
+                stagger: 3,
+                width: "10px",
+                height: "10px",
+                colors: ["#ecb753", "#ffffff", "#ff0000"],
+            }}
+        />
                 <form onSubmit={updateRecipe} style={styles.form}>
                     {/* Render your form fields here */}
                     <label style={styles.label}>
