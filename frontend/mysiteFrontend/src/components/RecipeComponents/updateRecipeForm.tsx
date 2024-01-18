@@ -107,7 +107,8 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     const handleSelectIngredientChange = (selectedOptions: any) => {
         // Extract the selected ingredient IDs and update the state
         const selectedIds = selectedOptions.map((option: any) => option.value);
-        setSelectedIngredients(selectedIds);
+        setSelectedIngredients(selectedIds);console.log(selectedIngredients);
+
     };
 
     const handleCancel = () => {
@@ -159,15 +160,15 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     const updateRecipe = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     let type;
-    let img;
+    let ing;
 
     try {
-        // if (selectedIngredients.length == 0) {
-        //     ing = recipeData.ingredients;
-        // } else {
-        //     ing = selectedIngredients;
-        // }
-        // console.log(selectedIngredients.length);
+        if (selectedIngredients.length == 0) {
+            ing = recipeData.ingredients;
+        } else {
+            ing = selectedIngredients;
+        }
+        console.log(selectedIngredients.length);
 
         if(selectedRecipeType){
             type = selectedRecipeType;
@@ -179,7 +180,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
             difficulty: recipeData.difficulty,
             name: recipeData.name,
             description: recipeData.description,
-            ingredients: recipeData.ingredients,
+            ingredients: ing,
             time_min: recipeData.time_min,
             time_max: recipeData.time_max,
             number_people: recipeData.number_people,

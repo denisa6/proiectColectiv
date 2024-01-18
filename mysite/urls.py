@@ -18,6 +18,7 @@ from dj_rest_auth.views import LogoutView
 from django.contrib import admin
 from django.urls import path, include
 
+from bad_jokes.views import BadJokesList
 from user.views import AuthentificationView, RegularUserRegisterView
 
 urlpatterns = [
@@ -25,8 +26,8 @@ urlpatterns = [
     path('users/', include('user.urls')),
     path('recipe/', include('recipe.urls')),
     path('tag/', include('tag.urls')),
-    path('bad_jokes/', include('bad_jokes.urls')),
     path('allergen/', include('allergen.urls')),
+    path('bad_jokes/', BadJokesList.as_view(), name='bad_jokes'),
     path('ingredient/', include('ingredient.urls')),
     path('dj-rest-auth/login/', AuthentificationView.as_view(), name='rest_login'),
     path('dj-rest-auth/registration/', RegularUserRegisterView.as_view(), name='register'),

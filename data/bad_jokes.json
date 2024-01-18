@@ -12,5 +12,1215 @@
     "fields": {
       "joke": "Q: Which dessert is perfect for eating in bed? A: A sheet cake."
     }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 3,
+    "fields": {
+      "joke": "My friend thinks he is smart... He told me an onion is the only food that makes you cry, so I threw a coconut at his face."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 4,
+    "fields": {
+      "joke": "Your Mama so fat, the Bears hid their food when she goes camping"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 5,
+    "fields": {
+      "joke": "Why did the peanut butter run across the busy highway? It was nuts."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 6,
+    "fields": {
+      "joke": "A teacher asked her students to use the word “beans” in a sentence.\n“My father grows beans,” said one girl.\n“My mother cooks beans,” said a boy.\nA third student spoke up, “We are all human beans.”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 7,
+    "fields": {
+      "joke": "Relationships are like Indian food.\nThey start out hot and spicy but end up with someone on the toilet crying and saying why me.\n\n"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 8,
+    "fields": {
+      "joke": "My Chinese waiter thinks all white people look alike and gave my food to the wrong customer\nWait. Never mind. That wasn’t my waiter."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 9,
+    "fields": {
+      "joke": "Why did the cookie go to the hospital?\nBecause it felt crummy."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 10,
+    "fields": {
+      "joke": "I placed an order to pick up some food for dinner.\nThe person taking my order asked for a name and number.\nI said, “Stephen… and let’s go with 7”.\n\n"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 11,
+    "fields": {
+      "joke": "I had Indian food for lunch and almost choked on it.\nTalk about a paneer-death experience"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 12,
+    "fields": {
+      "joke": "“Look Dad! The clowns are leaving the circus to go get food!”\n“Son how many times do I have to tell you? Those are called *Senators* leaving the *Capitol*”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 13,
+    "fields": {
+      "joke": ""
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 14,
+    "fields": {
+      "joke": "I started a business that takes stock photos of food.\nI call it Spaghetti images.\n\n"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 15,
+    "fields": {
+      "joke": "What do you call a fake noodle?\nAn Impasta!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 16,
+    "fields": {
+      "joke": "I made a vegetable joke\nBut no one carrot all."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 17,
+    "fields": {
+      "joke": "Yesterday I gave my food to a beggar... \n ...and today the beggar gave me a book titled “HOW TO COOK”."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 18,
+    "fields": {
+      "joke": "This guy was claiming that onions are the only food that can make you cry.\nSo I threw a coconut at his face."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 19,
+    "fields": {
+      "joke": "I was hosting a dinner party and everyone thought my food was bad.\nExcept the smoke detector, that thought it was fire"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 20,
+    "fields": {
+      "joke": "What do you call cheese that isn’t yours?\nNacho cheese"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 21,
+    "fields": {
+      "joke": "What does an upset chef make food with?\nAngrydients."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 22,
+    "fields": {
+      "joke": "What do you call stoned Mexicans?\nBaked beans."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 23,
+    "fields": {
+      "joke": "What is the trigonometry teacher’s favorite food?\nCOS Law!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 24,
+    "fields": {
+      "joke": "\nWhat do you call a fast food company that also manufactures airliners?\nMcDonald’s Douglas"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 25,
+    "fields": {
+      "joke": "Why did the can crusher quit his job?\nBecause it was soda pressing."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 26,
+    "fields": {
+      "joke": "What is it called when an injured man dies from food poisoning?\nSoup de grace."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 27,
+    "fields": {
+      "joke": "What Does Enya Use To Season Her Food?\nOnly Thyme."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 28,
+    "fields": {
+      "joke": "What do you call a baptized Mexican?\nBean dip."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 29,
+    "fields": {
+      "joke": "How much room is needed for fungi to grow?\nAs mushroom as possible"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 30,
+    "fields": {
+      "joke": "\nWhat do horses say when their food gets stolen?\nHay come back!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 31,
+    "fields": {
+      "joke": "In which school do you learn to make ice cream?\nSundae School"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 32,
+    "fields": {
+      "joke": "Why do hamburgers go to the gym?\nTo get better buns!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 33,
+    "fields": {
+      "joke": "What do you call a food fight that’s been going on for years?\nA war of nutrition"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 34,
+    "fields": {
+      "joke": "Why don’t people In wheelchairs make food by a recipe?\nThe recipe needs to go step-by-step"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 35,
+    "fields": {
+      "joke": "My least favorite food?\nSausage, specifically from Germany…They’re the wurst."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 36,
+    "fields": {
+      "joke": "What food delivery service does Harry Potter prefer?\nDumble-Door Dash"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 37,
+    "fields": {
+      "joke": "Why do bananas have to wear sunscreen?\nBecause they peel."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 38,
+    "fields": {
+      "joke": "What is Batman’s least favorite food?\nChinese takeout."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 39,
+    "fields": {
+      "joke": "Why did the vegetable call the plumber?\n\nIt had a leek."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 40,
+    "fields": {
+      "joke": "What’s a potato’s favorite animal?\n\nAn alli-tator."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 41,
+    "fields": {
+      "joke": "What do vegetables always order on their pizza?\n\nPepperoni."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 42,
+    "fields": {
+      "joke": "What’s a vegetable’s favorite kind of joke?\n\nA corny joke."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 43,
+    "fields": {
+      "joke": "Why did the pod excuse itself from the dinner table?\n\nIt had to pea!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 44,
+    "fields": {
+      "joke": "What did the vegetable say to its love?\n\nI love you from my head to-ma-toes."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 45,
+    "fields": {
+      "joke": "Why do beets always win?\n\nThey are un-beet-able."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 46,
+    "fields": {
+      "joke": "What’s a turnip’s favorite soda?\n\nRoot beer."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 47,
+    "fields": {
+      "joke": "Why was the artichoke so generous?\n\nIt had a big heart!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 48,
+    "fields": {
+      "joke": "What’s a vegetable’s favorite backyard game?\n\nCornhole."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 49,
+    "fields": {
+      "joke": "What do you call a band of berries practicing music?\n\nA jam session."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 50,
+    "fields": {
+      "joke": "What’s a banana’s favorite way to say 'thank you'?\n\nThanks a bunch!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 51,
+    "fields": {
+      "joke": "What’s an apple’s favorite airline to fly?\n\nFruit flies."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 52,
+    "fields": {
+      "joke": "What did the strawberry write to its crush?\n\nI’m berry fond of you."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 53,
+    "fields": {
+      "joke": "Why did the peach buy deodorant?\n\nTo freshen up its pits."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 54,
+    "fields": {
+      "joke": "How do you address a pineapple princess?\n\nYour pine-ness."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 55,
+    "fields": {
+      "joke": "What’s a fruit’s favorite motivational quote?\n\nSeeds the day!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 56,
+    "fields": {
+      "joke": "What did the fruit say to its best pal?\n\nYou’re pretty grape."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 57,
+    "fields": {
+      "joke": "What book did the lime let the lemon borrow?\n\nA Wrinkle in Lime."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 58,
+    "fields": {
+      "joke": "What do you call a cow in an earthquake?\n\nA milkshake."
+    }
+  },{
+    "model": "bad_jokes.BadJokes",
+    "pk": 59,
+    "fields": {
+      "joke": "What’s a turnip’s favorite soda?\n\nRoot beer."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 60,
+    "fields": {
+      "joke": "Why was the artichoke so generous?\n\nIt had a big heart!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 61,
+    "fields": {
+      "joke": "Why did the man go to the yogurt museum?\n\nTo get a little culture."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 62,
+    "fields": {
+      "joke": "What cheese is not yours?\n\nNacho cheese."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 63,
+    "fields": {
+      "joke": "Who brings cows money when they lose their teeth?\n\nThe Tooth Dairy."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 64,
+    "fields": {
+      "joke": "What’s a cow’s favorite galaxy?\n\nThe Milky Way!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 65,
+    "fields": {
+      "joke": "What did one cheese scientist say to the other?\n\n“You’re brie-lliant!”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 66,
+    "fields": {
+      "joke": "What’s a slice of bread’s favorite name?\n\nRye-n."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 67,
+    "fields": {
+      "joke": "What do you call a bagel that can fly?\n\nA plane bagel."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 68,
+    "fields": {
+      "joke": "Why didn’t the slice of bread laugh when someone told it a joke?\n\nIt was a little stale."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 69,
+    "fields": {
+      "joke": "What did one slice of bread say to the other during a fight?\n\n“You’re toast!”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 70,
+    "fields": {
+      "joke": "Why did the slice of bread get sent home from school?\n\nIt was feeling crumby."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 71,
+    "fields": {
+      "joke": "What did the bun do when its plans suddenly changed?\n\nIt rolled with it."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 72,
+    "fields": {
+      "joke": "What’s a piece of bread’s least favorite chore?\n\nDoing a loaf of laundry."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 73,
+    "fields": {
+      "joke": "Why did the loaf of bread decide to adopt a puppy?\n\nIt thought the puppy was a-dough-rable."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 74,
+    "fields": {
+      "joke": "Why did the slice of bread snuggle up in a blanket?\n\nTo get toasty warm."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 75,
+    "fields": {
+      "joke": "What did the loaf of bread write in a note to its sweetheart?\n\nI loaf you!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 76,
+    "fields": {
+      "joke": "What’s a noodle’s favorite song?\n\n“Crazy Pho You.”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 77,
+    "fields": {
+      "joke": "How did the mac ‘n’ cheese noodle fix the sink?\n\nWith a little elbow grease."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 78,
+    "fields": {
+      "joke": "What did the pasta noodle get for winning the spelling bee?\n\nA trofie!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 79,
+    "fields": {
+      "joke": "What did the mother noodle say to its son at the dinner table?\n\n“Pasta salt, please.”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 80,
+    "fields": {
+      "joke": "Why did the pasta noodle run out of the haunted house?\n\nIt was a-fraido!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 81,
+    "fields": {
+      "joke": "What’s a noodle’s favorite action movie?\n\nMission Impastable."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 82,
+    "fields": {
+      "joke": "What’s a bed’s favorite dessert?\n\nA sheet cake."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 83,
+    "fields": {
+      "joke": "What do you call an ice cream cone in each hand?\n\nA balanced diet."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 84,
+    "fields": {
+      "joke": "What’s a math teacher’s favorite dessert?\n\nPie!"
+    }
+  }, {
+    "model": "bad_jokes.BadJokes",
+    "pk": 85,
+    "fields": {
+      "joke": "If it took six kids six hours to eat all the apples in the apple orchard, how many hours would it take three kids? None, because the first six kids have already eaten them all."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 86,
+    "fields": {
+      "joke": "What kind of apple isn’t an apple? A pineapple!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 87,
+    "fields": {
+      "joke": "What did the apple skin say to the apple? I’ve got you covered!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 88,
+    "fields": {
+      "joke": "What kind of vegetable do you need for a flat tire? A-spare-agus!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 89,
+    "fields": {
+      "joke": "Why did the banana go to the hairdresser? Because it had split ends!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 90,
+    "fields": {
+      "joke": "Knock knock! Who’s there? Bean. Bean who? Bean awhile since I’ve seen you!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 91,
+    "fields": {
+      "joke": "Where did the spaghetti go to dance? The meat-ball!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 92,
+    "fields": {
+      "joke": "Why did the people dance to the vegetable band? Because it had a good beet!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 93,
+    "fields": {
+      "joke": "What do you call someone who raps about vegetables? A beet boxer!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 94,
+    "fields": {
+      "joke": "What do you call a rabbit eating a pepper in a hotel lobby? The bell-hop!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 95,
+    "fields": {
+      "joke": "What’s a ghost’s favorite fruit? A boo-berry!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 96,
+    "fields": {
+      "joke": "What do you call a dinosaur that eats its veggies? A broccoli-saurus"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 97,
+    "fields": {
+      "joke": "What’s the strongest vegetable? Muscle sprouts!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 98,
+    "fields": {
+      "joke": "What’s the sound kids make who love their vegetables? Brussel shouts!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 99,
+    "fields": {
+      "joke": "What is a taxi driver’s favorite kind of vegetable? A cab-bage!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 100,
+    "fields": {
+      "joke": "What do you call a raspberry playing the guitar? A jam session!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 101,
+    "fields": {
+      "joke": "Did you hear about the carrot detective? He got to the root of every case!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 102,
+    "fields": {
+      "joke": "What’s a vegetable’s favorite martial art? Carr-o-tee!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 103,
+    "fields": {
+      "joke": "What’s orange and sounds like a parrot? A carrot!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 104,
+    "fields": {
+      "joke": "What do you get when you cross a dog with a daisy? A collie-flower!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 105,
+    "fields": {
+      "joke": "What kind of vegetable should never be put in a vase? A cauliflower!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 106,
+    "fields": {
+      "joke": "How do you get a mouse to smile? Say, “cheese!”"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 107,
+    "fields": {
+      "joke": "What did the cherry tree wear to the pool party? Swimming trunks!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 108,
+    "fields": {
+      "joke": "What’s a chicken’s favorite kind of vegetable? An eggplant!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 109,
+    "fields": {
+      "joke": "Knock knock! Who’s there? Chicken! Chicken, who? Chicken in my pocket, I can’t find my keys!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 110,
+    "fields": {
+      "joke": "Why shouldn’t you tell secrets in a cornfield? There are too many ears!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 111,
+    "fields": {
+      "joke": "What does corn get when you leave it in the barn too long? COB webs!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 112,
+    "fields": {
+      "joke": "What did the baby corn call his dad? Pop-corn!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 113,
+    "fields": {
+      "joke": "What did the corn say when he received a compliment? Aw, shucks!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 114,
+    "fields": {
+      "joke": "Why doesn’t anyone laugh at the gardener’s jokes? Because they’re too corny!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 115,
+    "fields": {
+      "joke": "What do you call a mythical veggie? A unicorn!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 116,
+    "fields": {
+      "joke": "What’s a chicken’s favorite vegetable? An eggplant!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 117,
+    "fields": {
+      "joke": "Why don’t eggs tell jokes? They’d crack each other up!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 118,
+    "fields": {
+      "joke": "Why aren’t grapes ever lonely? Because they come in bunches!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 119,
+    "fields": {
+      "joke": "Why did the grape stop in the middle of the road? He ran out of juice!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 120,
+    "fields": {
+      "joke": "What’s a tailor’s favorite kind of vegetable? A string bean!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 121,
+    "fields": {
+      "joke": "What do you call a movie about leafy greens? A fairy-kale!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 122,
+    "fields": {
+      "joke": "What kind of key doesn’t open a lock? A key-wi!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 123,
+    "fields": {
+      "joke": "What do you call a movie about leafy greens? A fairy-kale!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 124,
+    "fields": {
+      "joke": "Why are spinach leaves never lonely? They come in bunches!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 125,
+    "fields": {
+      "joke": "What vegetable does a sailor look for? LEEKS!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 126,
+    "fields": {
+      "joke": "What do you call a grumpy cow? MOOOOOO-dy!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 127,
+    "fields": {
+      "joke": "What did the mama cow say to the baby cow? It’s pasture bedtime!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 128,
+    "fields": {
+      "joke": "Why does the mushroom always get invited to parties? Because he’s a fun-gi!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 129,
+    "fields": {
+      "joke": "How do oats send letters? Oatmail!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 130,
+    "fields": {
+      "joke": "I saw an onion ring. So I answered it. Knock knock! Who’s there? Onion! Onion who? Onion mark, get set, go!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 131,
+    "fields": {
+      "joke": "Why did the orange stop rolling down the hill? Because it ran out of juice!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 132,
+    "fields": {
+      "joke": "What do you call the time in between eating peaches? A pit-stop!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 133,
+    "fields": {
+      "joke": "What are twins’ favorite fruit? Pears!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 134,
+    "fields": {
+      "joke": "What vegetables do librarians like? Quiet peas!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 135,
+    "fields": {
+      "joke": "Why do potatoes always get along? They see eye-to-eye!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 136,
+    "fields": {
+      "joke": "How do you fix a cracked pumpkin? With a pumpkin patch!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 137,
+    "fields": {
+      "joke": "What’s a pumpkin’s favorite game? Squash!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 138,
+    "fields": {
+      "joke": "What is small, red and whispers? A hoarse radish!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 139,
+    "fields": {
+      "joke": "What is the coolest vegetable? A rad-ish!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 140,
+    "fields": {
+      "joke": "How does rice say “goodbye”? “I hope to see you a-grain.” Knock knock! Who’s there? Rice. Rice, who? Rice to meet you!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 141,
+    "fields": {
+      "joke": "What did the baby corn call his dad? Pop-corn!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 142,
+    "fields": {
+      "joke": "What’s a penguin’s favorite salad ingredient? Iceburg lettuce!"
+    }
+  },
+
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 143,
+    "fields": {
+      "joke": "Q: What is black; white; green and bumpy?\nA: A pickle wearing a tuxedo."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 144,
+    "fields": {
+      "joke": "Q: What do you call cheese that isn't yours?\nA: Nacho cheese!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 145,
+    "fields": {
+      "joke": "Q: What kind of coffee was served on the Titanic?\nA: Sanka!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 146,
+    "fields": {
+      "joke": "Q: What's the best thing to put into a pie?\nA: Your teeth!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 147,
+    "fields": {
+      "joke": "Q: Waiter, this food tastes kind of funny?\nA: Then why aren't you laughing!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 148,
+    "fields": {
+      "joke": "Q: Did you hear the joke about the peanut butter?\nA: I'm not telling you. You might spread it!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 149,
+    "fields": {
+      "joke": "Q: Why do the French like to eat snails?\nA: Because they don't like fast food!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 150,
+    "fields": {
+      "joke": "Q: Why did the fisherman put peanut butter into the sea?\nA: To go with the jellyfish!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 151,
+    "fields": {
+      "joke": "Q: Why shouldn't you tell an egg a joke?\nA: Because it might crack up!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 152,
+    "fields": {
+      "joke": "Q: What did the baby corn say to its mom?\nA: Where is pop corn?"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 153,
+    "fields": {
+      "joke": "Q: What do you call candy that was stolen?\nA: Hot chocolate!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 154,
+    "fields": {
+      "joke": "Q: What kind of nuts always seems to have a cold?\nA: Cashews!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 155,
+    "fields": {
+      "joke": "Q: Waiter, will my pizza be long?\nA: No sir, it will be round!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 156,
+    "fields": {
+      "joke": "Q: What is green and sings?\nA: Elvis Parsley"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 157,
+    "fields": {
+      "joke": "Q: Why did the banana go to the doctor?\nA: Because it wasn't peeling well!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 158,
+    "fields": {
+      "joke": "Q: What is green and brown and crawls through the grass?\nA: A Girl Scout who has lost her cookie."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 159,
+    "fields": {
+      "joke": "Q: What is white, has a horn, and gives milk?\nA: A dairy truck!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 160,
+    "fields": {
+      "joke": "Q: What candy do you eat on the playground?\nA: Recess pieces."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 161,
+    "fields": {
+      "joke": "Q: Why don't you starve in a desert?\nA: Because of all the 'sand which is' there."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 162,
+    "fields": {
+      "joke": "Q: How do you make a walnut laugh?\nA: Crack it up!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 163,
+    "fields": {
+      "joke": "Q: In which school do you learn to make ice cream?\nA: Sunday School."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 164,
+    "fields": {
+      "joke": "Q: What do elves make sandwiches with?\nA: Shortbread"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 165,
+    "fields": {
+      "joke": "Q: Why shouldn't you tell a secret on a farm?\nA: Because the potatoes have eyes and the corn has ears."
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 166,
+    "fields": {
+      "joke": "Q: What is a pretzel's favorite dance?\nA: The Twist!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 167,
+    "fields": {
+      "joke": "Q: What are twins' favorite fruit?\nA: Pears!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 168,
+    "fields": {
+      "joke": "Q: If a crocodile makes shoes, what does a banana make?\nA: Slippers!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 169,
+    "fields": {
+      "joke": "Q: What do you give to a sick lemon?\nA: Lemon aid!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 170,
+    "fields": {
+      "joke": "Q: Why did the lady love to drink hot chocolate?\nA: Because she was a cocoanut!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 171,
+    "fields": {
+      "joke": "Q: How do you make a milk shake?\nA: Give it a good scare!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 172,
+    "fields": {
+      "joke": "Q: What do you call a peanut in a spacesuit?\nA: An astronut!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 173,
+    "fields": {
+      "joke": "Q: What kind of keys do kids like to carry?\nA: Cookies!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 174,
+    "fields": {
+      "joke": "Q: Why don't they serve chocolate in prison?\nA: Because it makes you break out!"
+    }
+  },
+  {
+    "model": "bad_jokes.BadJokes",
+    "pk": 175,
+    "fields": {
+      "joke": "Q: What cheese is made backward?\nA: Edam."
+    }
   }
 ]

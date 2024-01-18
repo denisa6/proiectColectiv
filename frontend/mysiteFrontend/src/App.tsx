@@ -10,6 +10,7 @@ import Logout from "./components/LoginSignUpComponents/Logout";
 
 import UserRecipeList from "./components/RecipeComponents/userRecipes";
 import RecipeDetailsForm from "./components/RecipeComponents/recipeDetailsForm.tsx";
+import BadJokeForm from "./components/RecipeComponents/BadJokeForm.tsx";
 
 function App() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/logout" element={<Logout></Logout>} />
 
                 <Route
+
                     path="/userRecipes/*"
                     element={<UserRecipeList ></UserRecipeList>}
                 />

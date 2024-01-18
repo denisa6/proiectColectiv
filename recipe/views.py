@@ -165,7 +165,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if user != instance.creator.id:
             return Response({'detail': 'You are not allowed to update this recipe.'}, status=status.HTTP_403_FORBIDDEN)
 
-        super().update(request)
+        return super().update(request)
 
     @api_view(['GET'])
     def recipe_detail(self, request, id):
@@ -266,5 +266,4 @@ class RecipeUserView(APIView):
 
         serializer = RecipeSerializer(recipes, many=True)
         return Response(serializer.data)
-
 
