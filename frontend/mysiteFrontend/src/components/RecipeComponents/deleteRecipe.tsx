@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import { getAuthToken } from "../../util/auth";
 import RecipeDetailsForm from "./recipeDetailsForm";
 
@@ -25,12 +25,12 @@ const DeleteRecipe = (props: { recipeToDelete: any }) => {
                 console.log(data);
             });
         setTimeout(() => {
-            const isUserRecipePage = window.location.href.includes('/userRecipes');
+            const isUserRecipePage =
+                window.location.href.includes("/userRecipes");
 
             if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
+                window.location.href = `/userRecipes/`;
+            } else {
                 window.location.href = `/showlist/`;
             }
             //setShouldShow(0);
@@ -38,14 +38,13 @@ const DeleteRecipe = (props: { recipeToDelete: any }) => {
     };
 
     const handleCancel = () => {
-        const isUserRecipePage = window.location.href.includes('/userRecipes');
+        const isUserRecipePage = window.location.href.includes("/userRecipes");
 
-            if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
-                window.location.href = `/showlist/`;
-            }
+        if (isUserRecipePage) {
+            window.location.href = `/userRecipes/`;
+        } else {
+            window.location.href = `/showlist/`;
+        }
         //setShouldShow(0);
         // <RecipeDetailsForm recipeDetail={props.recipeToDelete} />;
     };
@@ -55,14 +54,32 @@ const DeleteRecipe = (props: { recipeToDelete: any }) => {
             <div id="dialog-content">
                 <p>Are you sure you want to delete this item?</p>
                 <div id="buttons-container">
-                    <button onClick={handleDelete}>Yes</button>
-                    <button onClick={handleCancel}>I am a COWARD</button>
+                    <button style={styles.inputButton} onClick={handleDelete}>
+                        Yes
+                    </button>
+                    <button style={styles.inputButton} onClick={handleCancel}>
+                        I am a COWARD
+                    </button>
                 </div>
             </div>
         );
     } else {
         return;
     }
+};
+
+const styles: { [key: string]: CSSProperties } = {
+    inputButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color
+        color: "#333333", // Dark gray text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginRight: "20px",
+        marginLeft: "20px",
+    },
 };
 
 export default DeleteRecipe;
