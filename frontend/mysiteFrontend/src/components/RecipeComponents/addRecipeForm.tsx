@@ -124,14 +124,13 @@ const AddRecipeForm = () => {
     };
 
     const handleCancel = () => {
-        const isUserRecipePage = window.location.href.includes('/userRecipes');
+        const isUserRecipePage = window.location.href.includes("/userRecipes");
 
-            if (isUserRecipePage) {
-                    window.location.href = `/userRecipes/`;
-                }
-            else{
-                window.location.href = `/showlist/`;
-            }
+        if (isUserRecipePage) {
+            window.location.href = `/userRecipes/`;
+        } else {
+            window.location.href = `/showlist/`;
+        }
     };
 
     const addRecipe = async (event: { preventDefault: () => void }) => {
@@ -185,14 +184,14 @@ const AddRecipeForm = () => {
                 console.error(error);
             }
             setTimeout(() => {
-                const isUserRecipePage = window.location.href.includes('/userRecipes');
+                const isUserRecipePage =
+                    window.location.href.includes("/userRecipes");
 
-            if (isUserRecipePage) {
+                if (isUserRecipePage) {
                     window.location.href = `/userRecipes/`;
+                } else {
+                    window.location.href = `/showlist/`;
                 }
-            else{
-                window.location.href = `/showlist/`;
-            }
             }, 500);
         }
     };
@@ -201,7 +200,7 @@ const AddRecipeForm = () => {
         value: ingredient.id,
         label: ingredient.name,
     }));
-   const selectOptionsIngredients = selectOptions;
+    const selectOptionsIngredients = selectOptions;
 
     const selectOptionsRecipeTypes = [
         { value: "lunch", label: "Lunch" },
@@ -219,6 +218,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Difficulty:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="difficulty"
                             value={recipeData.difficulty}
@@ -228,6 +228,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Name:
                         <input
+                            style={styles.inputBox}
                             type="string"
                             name="name"
                             value={recipeData.name}
@@ -236,19 +237,19 @@ const AddRecipeForm = () => {
                     </label>
                     <label style={styles.label}>
                         Description:
-                        <textarea
+                        <input
+                            style={styles.inputBox} // Uncomment this line if you want to apply styling
                             name="description"
                             value={recipeData.description}
-                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                                handleRecipeDataChange(e)
-                            }
-                            rows={4} // You can adjust the number of rows as needed
-                            style={{resize: "vertical"}} // Optional: Allow vertical resizing
+                            onChange={handleRecipeDataChange}
+                            //rows={8} // Adjust the number of rows as needed
+                            // style={{ resize: "vertical" }} // Optional: Allow vertical resizing
                         />
                     </label>
                     <label style={styles.label}>
                         Time min:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="time_min"
                             value={recipeData.time_min}
@@ -258,6 +259,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Time max:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="time_max"
                             value={recipeData.time_max}
@@ -267,6 +269,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Number of people:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="number_people"
                             value={recipeData.number_people}
@@ -276,6 +279,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Estimated price:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="estimated_price"
                             value={recipeData.estimated_price}
@@ -285,6 +289,7 @@ const AddRecipeForm = () => {
                     <label style={styles.label}>
                         Total calories:
                         <input
+                            style={styles.inputBox}
                             type="number"
                             name="total_calories"
                             value={recipeData.total_calories}
@@ -300,16 +305,16 @@ const AddRecipeForm = () => {
                         styles={{
                             container: (provided) => ({
                                 ...provided,
-                                backgroundColor: "#91972a",
+                                backgroundColor: "#ecb753",
                             }),
                             menu: (provided) => ({
                                 ...provided,
                                 maxHeight: "150px",
-                                backgroundColor: "#b6c454",
+                                backgroundColor: "#ecb753",
                             }),
                             control: (provided) => ({
                                 ...provided,
-                                backgroundColor: "#d8d174",
+                                backgroundColor: "white",
                                 color: "black", // Set the text color inside the select button
                                 borderColor: "black", // Set the border color
                                 textEmphasisColor: "black",
@@ -318,9 +323,9 @@ const AddRecipeForm = () => {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused
-                                    ? "#91972a"
-                                    : "#b6c454", // Set the hover color here
-                                color: state.isFocused ? "black" : "black", // Text color on hover
+                                    ? "grey"
+                                    : "white", // Set the hover color here
+                                color: state.isFocused ? "white" : "black", // Text color on hover
                             }),
                         }}
                     />
@@ -337,11 +342,11 @@ const AddRecipeForm = () => {
                             menu: (provided) => ({
                                 ...provided,
                                 maxHeight: "150px",
-                                backgroundColor: "#b6c454",
+                                backgroundColor: "#ecb753",
                             }),
                             control: (provided) => ({
                                 ...provided,
-                                backgroundColor: "#d8d174",
+                                backgroundColor: "white",
                                 color: "black", // Set the text color inside the select button
                                 borderColor: "black", // Set the border color
                                 textEmphasisColor: "black",
@@ -350,9 +355,9 @@ const AddRecipeForm = () => {
                             option: (provided, state) => ({
                                 ...provided,
                                 backgroundColor: state.isFocused
-                                    ? "#91972a"
-                                    : "#b6c454", // Set the hover color here
-                                color: state.isFocused ? "black" : "black", // Text color on hover
+                                    ? "grey"
+                                    : "white", // Set the hover color here
+                                color: state.isFocused ? "white" : "black", // Text color on hover
                             }),
                         }}
                     />
@@ -404,13 +409,13 @@ const styles: { [key: string]: CSSProperties } = {
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
     },
     modal: {
-        background: "#91972a",
+        background: "#ecb753",
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
@@ -432,8 +437,23 @@ const styles: { [key: string]: CSSProperties } = {
     button: {
         padding: "10px",
         marginTop: "10px",
-        backgroundColor: "#d8d174",
+        backgroundColor: "white",
         color: "black",
+        marginRight: "20px",
+        marginLeft: "20px",
+    },
+
+    inputBox: {
+        height: "30px",
+        width: "300px",
+        backgroundColor: "#f0f0f0", // Light gray input background
+        border: "1px solid #ccc",
+        borderRadius: "3px",
+        padding: "0 10px",
+        fontSize: "14px",
+        fontWeight: "300",
+        color: "#333333", // Dark gray text color
+        outline: "none",
     },
 };
 

@@ -10,6 +10,8 @@ import UserRecipeList from "./userRecipes";
 import WelcomeMessage from "../userComponents/welcomeUser";
 import BadJokeForm from "./BadJokeForm.tsx";
 
+import { getUserID, getUsername } from "../../util/auth";
+
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [allrecipes, setAllRecipes] = useState<Recipe[]>([]);
@@ -101,7 +103,7 @@ const RecipeList = () => {
                         currentPage + 1
                     }&${filters}&format=json`
                 );
-                const data = await response.json()  ;
+                const data = await response.json();
                 setRecipes(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -127,7 +129,7 @@ const RecipeList = () => {
         setCurrentPage(1);
     };
 
-   const handleFilterSubmit = async () => {
+    const handleFilterSubmit = async () => {
         try {
             // Make a backend API call to filter recipes by name
             let url = `http://127.0.0.1:8000/recipe/?name=${filterName}&format=json`;
@@ -168,10 +170,10 @@ const RecipeList = () => {
             console.log(url);
             setFilters(filters);
             const response2 = await fetch(
-                    `http://127.0.0.1:8000/recipe/?${filters}&format=json`
-                );
-                const data2 = await response2.json();
-                setAllRecipes(data2);
+                `http://127.0.0.1:8000/recipe/?${filters}&format=json`
+            );
+            const data2 = await response2.json();
+            setAllRecipes(data2);
             const response = await fetch(url, {
                 method: "GET",
                 headers: {
@@ -233,6 +235,7 @@ const RecipeList = () => {
                             {" "}
                             Name:{" "}
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=""
                                 value={filterName}
@@ -243,6 +246,7 @@ const RecipeList = () => {
                             {" "}
                             Difficulty:{" "}
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=" Between 1 and 5"
                                 value={filterDifficulty}
@@ -254,6 +258,7 @@ const RecipeList = () => {
                         <p>
                             Ingredient:{" "}
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=""
                                 value={filterIngredients}
@@ -265,6 +270,7 @@ const RecipeList = () => {
                         <p>
                             Time:{" "}
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=""
                                 value={filterTime}
@@ -274,6 +280,7 @@ const RecipeList = () => {
                         <p>
                             Number of people:{" "}
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=""
                                 value={filterNbPeople}
@@ -302,15 +309,20 @@ const RecipeList = () => {
                         <p>
                             Price:{" "}
                             <input
+                                style={{
+                                    ...styles.inputBox,
+                                    ...styles.additionalStyles,
+                                }}
                                 type="text"
                                 placeholder=" Minimum"
                                 value={filterPriceMin}
                                 onChange={(e) =>
                                     setFilterPriceMin(e.target.value)
                                 }
-                                style={{ marginRight: "10px" }}
+                                //style={{ marginRight: "10px" }}
                             />
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=" Maximum"
                                 value={filterPriceMax}
@@ -322,15 +334,20 @@ const RecipeList = () => {
                         <p>
                             Calories:{" "}
                             <input
+                                style={{
+                                    ...styles.inputBox,
+                                    ...styles.additionalStyles,
+                                }}
                                 type="text"
                                 placeholder=" Minimum "
                                 value={filterCalMin}
                                 onChange={(e) =>
                                     setFilterCalMin(e.target.value)
                                 }
-                                style={{ marginRight: "10px" }}
+                                //style={{ marginRight: "10px" }}
                             />
                             <input
+                                style={styles.inputBox}
                                 type="text"
                                 placeholder=" Maximum "
                                 value={filterCalMax}
@@ -345,68 +362,67 @@ const RecipeList = () => {
 
             <p></p>
             {isAnyFilterModalOpen && (
-                <button onClick={handleFilterSubmit}>Submit Filters</button>
+                <button style={styles.inputButton} onClick={handleFilterSubmit}>
+                    Submit Filters
+                </button>
             )}
             {isAnyFilterModalOpen && (
-                <button onClick={handleDeleteFilters}>Delete Filters</button>
+                <button
+                    style={styles.inputButton}
+                    onClick={handleDeleteFilters}
+                >
+                    Delete Filters
+                </button>
             )}
             </div>
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
-                <button style={styles.addButton}>Add New Recipe</button>
+                <button style={styles.inputButton}>Add New Recipe</button>
             </Link>
             {/*  the empty ones le am pus sa vad cum le pune daca una sub alta sau langa*/}
             <h2>Recipe List</h2>
-            <table className="recipe-table">
-                <thead>
-                    <tr>
-                        <th>Difficulty</th>
-                        <th>Name</th>
-                        {/* <th>Description</th> */}
-                        <th>Time (min)</th>
-                        <th>Number of People</th>
-                        <th>Type of Recipe</th>
-                        <th>Estimated Price</th>
-                        <th>Total Calories</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {recipes.map((recipe) => (
-                        <tr key={recipe.id}>
-                            {/* <td>{recipe.id}</td> */}
-                            <td>{recipe.difficulty}</td>
-                            <td>{recipe.name}</td>
-                            {/* <td>{recipe.description}</td> */}
-                            <td>
-                                {recipe.time_min} - {recipe.time_max}
-                            </td>
-                            <td>{recipe.number_people}</td>
-                            <td>{recipe.type_recipe}</td>
-                            <td>{recipe.estimated_price}</td>
-                            <td>{recipe.total_calories}</td>
-
-                            <td>
-                                <button
-                                    onClick={() => {
-                                        setSelectedRecipeId(recipe.id!);
-                                        setDesiredCommand(2);
-                                    }}
-                                >
-                                    View Details
-                                </button>
-                            </td>
-                            {selectedRecipeId === recipe.id &&
-                                desiredCommand === 2 && (
-                                    <RecipeDetailsForm recipeDetail={recipe} />
-                                    // setRecipeForDetail(recipe);
-                                )}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <ol style={styles.list}>
+                {recipes.map((recipe, index) => (
+                    <li
+                        key={recipe.id}
+                        style={{
+                            ...styles.listItem,
+                            ...(index % 2 === 0
+                                ? styles.evenItem
+                                : styles.oddItem),
+                        }}
+                    >
+                        <div className="title" style={{ marginBottom: "10px" }}>
+                            {recipe.name}
+                        </div>
+                        <div className="descr" style={{ marginBottom: "10px" }}>
+                            Time: {`${recipe.time_min} - ${recipe.time_max}`} |
+                            Difficulty: {recipe.difficulty}
+                        </div>
+                        <button
+                            style={{
+                                ...styles.button,
+                                ...(index % 2 === 0
+                                    ? styles.whiteButton
+                                    : styles.yellowButton),
+                            }}
+                            onClick={() => {
+                                setSelectedRecipeId(recipe.id!);
+                                setDesiredCommand(2);
+                            }}
+                        >
+                            View Details
+                        </button>
+                        {selectedRecipeId === recipe.id &&
+                            desiredCommand === 2 && (
+                                <RecipeDetailsForm recipeDetail={recipe} />
+                            )}
+                    </li>
+                ))}
+            </ol>
 
             <button
-                style={{ marginRight: "10px" }}
+                style={styles.inputButton}
                 onClick={handleClickPrev}
                 disabled={currentPage === 1}
             >
@@ -414,7 +430,7 @@ const RecipeList = () => {
             </button>
             <button style={{ marginRight: "10px" }}>{currentPage}</button>
             <button
-                style={{ marginRight: "10px" }}
+                style={styles.inputButton}
                 onClick={handleClickNext}
                 disabled={currentPage === Math.ceil(allrecipes.length / 10)}
             >
@@ -436,42 +452,112 @@ const RecipeList = () => {
 //////===========================================   STYLES  =====================================================
 
 const styles: { [key: string]: CSSProperties } = {
-    pageContainer: {
+    list: {
+        listStyle: "none",
+        padding: 0,
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between", // Adjust the space between columns
+    },
+
+    listItem: {
+        width: "30%", // Set width to allow three items on a row with some spacing
+        marginBottom: "30px", // Increase margin for additional spacing
+        border: "1px solid #ecb753",
+        borderRadius: "5px",
+        padding: "15px",
+        boxSizing: "border-box", // Ensure padding is included in the width
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
-        padding: "20px",
     },
-    header: {
+
+    evenItem: {
+        backgroundColor: "#ffffff",
+        color: "black", // White background for even items
+    },
+
+    oddItem: {
+        backgroundColor: "#ecb753",
+        color: "black", // Dark yellow background for odd items
+    },
+
+    button: {
+        marginTop: "15px",
+        padding: "8px 12px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+    },
+
+    whiteButton: {
+        backgroundColor: "#ffffff", // White button color for dark yellow row
+        color: "#ecb753",
+        // Dark yellow text color for button
+    },
+
+    yellowButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color for white row
+        color: "#ffffff", // White text color for button
+    },
+
+    buttonContainer: {
         display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "10px",
-        width: "100%",
+        marginTop: "20px",
     },
+
     logoutButton: {
-        alignSelf: "flex-end",
-    },
-    addButton: {
+        backgroundColor: "red", // Dark yellow button color
+        color: "black", // Dark gray text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginBottom: "10px",
         marginRight: "10px",
+        marginLeft: "15px", // Margin between buttons
     },
-    filterButton: {
-        marginRight: "10px",
+
+    inputButton: {
+        backgroundColor: "#ecb753", // Dark yellow button color
+        color: "#333333", // Dark gray text color
+        padding: "10px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginBottom: "10px",
+        marginRight: "10px", // Margin between buttons
     },
-    filterModal: {
-        // Customize styles for the filter modal
-    },
-    pageContent: {
+
+    headerContainer: {
+        position: "fixed",
+        top: 0,
+        right: 0,
+        padding: "20px",
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
-        width: "100%",
-    },
-    pageContentWithFilter: {
-        display: "flex",
         justifyContent: "space-between",
-        width: "100%",
+
+        color: "#ffffff", // Adjust the text color
     },
-    // Add more styles as needed
+
+    inputBox: {
+        height: "30px",
+        width: "300px",
+        backgroundColor: "#f0f0f0", // Light gray input background
+        border: "1px solid #ccc",
+        borderRadius: "3px",
+        padding: "0 10px",
+        fontSize: "14px",
+        fontWeight: "300",
+        color: "#333333", // Dark gray text color
+        outline: "none",
+    },
+
+    additionalStyles: {
+        marginRight: "15px",
+    },
 };
 
 export default RecipeList;
