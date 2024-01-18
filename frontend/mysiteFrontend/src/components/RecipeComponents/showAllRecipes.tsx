@@ -8,6 +8,7 @@ import RecipeDetailsForm from "./recipeDetailsForm";
 import "../recipesTable.css";
 import UserRecipeList from "./userRecipes";
 import WelcomeMessage from "../userComponents/welcomeUser";
+import BadJokeForm from "./BadJokeForm.tsx";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -60,6 +61,7 @@ const RecipeList = () => {
         setShowDeleteFilters((prev) => !prev);
     };
 
+
     const handleClickPrev = () => {
         setCurrentPage(currentPage - 1);
         console.log(currentPage);
@@ -109,6 +111,7 @@ const RecipeList = () => {
         fetchData();
     };
 
+
    const handleDeleteFilters = () => {
         setFilterName("");
         setFilterDifficulty("");
@@ -132,6 +135,7 @@ const RecipeList = () => {
             setCurrentPage(1);
             if (filterName.trim() !== "") {
                 filters = filters + `name=${filterName}`;
+                console.log(filters);
             }
             if (filterDifficulty !== "") {
                 filters = filters + `&difficulty=${filterDifficulty}`;
@@ -192,23 +196,35 @@ const RecipeList = () => {
     return (
         <div style={styles.modalContainer}>
             <div style={styles.header}>
+                <tbody>
+                <td>
+                    <button
+                        onClick={() => {
+                            setDesiredCommand(3);
+                        }}
+                    >
+                        Unsalty Joke
+                    </button>
+                </td>
+                {desiredCommand === 3 && (
+                    <BadJokeForm/>
+                    // setRecipeForDetail(recipe);
+                )}
+                </tbody>
                 <WelcomeMessage></WelcomeMessage>
                 <Link to="/logout">
                     <button style={styles.logoutButton}>Logout</button>
                 </Link>
-
                 <Link to="/userRecipes">
-                    <button>see your recipes </button>
+                    <button>see your recipes</button>
                 </Link>
-
-                <div style={{ marginBottom: "10px" }}>
-                    <button
-                        style={styles.filterButton}
-                        onClick={handleFilterClickName}
-                    >
-                        Filters
-                    </button>
-                </div>
+            <div style={{ marginBottom: "10px" }}>
+                <button
+                    style={{ marginRight: "10px" }}
+                    onClick={handleFilterClickName}
+                >
+                    Filters
+                </button>
             </div>
             {showFilterModalName && (
                 <div className="filter-modal" style={styles.filterModal}>
@@ -334,7 +350,7 @@ const RecipeList = () => {
             {isAnyFilterModalOpen && (
                 <button onClick={handleDeleteFilters}>Delete Filters</button>
             )}
-
+            </div>
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
                 <button style={styles.addButton}>Add New Recipe</button>
@@ -404,7 +420,6 @@ const RecipeList = () => {
             >
                 Next
             </button>
-
             <Routes>
                 {/* <Route path="showlist/details" element={<RecipeDetailsForm recipeDetail={recipe} />} /> */}
                 <Route path="showlist/add-recipe" Component={AddRecipeForm} />
