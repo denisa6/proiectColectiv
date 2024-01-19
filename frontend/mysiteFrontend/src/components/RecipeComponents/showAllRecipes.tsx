@@ -11,7 +11,9 @@ import WelcomeMessage from "../userComponents/welcomeUser";
 import BadJokeForm from "./BadJokeForm.tsx";
 import Confetti from "react-dom-confetti";
 
+
 import { getUserID, getUsername } from "../../util/auth";
+import LegendProgram from "./LegendProgram.tsx";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -197,9 +199,17 @@ const RecipeList = () => {
         }
     };
 
-    return (
+    return (<div style = {styles.overlay}
+    >
+        <body style={styles.body}>
         <div style={styles.modalContainer}>
             <div style={styles.header}>
+                <div style={styles.headerContainer}>
+                    <WelcomeMessage></WelcomeMessage>
+                <Link to="/logout">
+                    <button style={styles.logoutButton}>Logout</button>
+                </Link>
+                </div>
                 <tbody>
                 <td>
                     <button
@@ -210,172 +220,181 @@ const RecipeList = () => {
                         Unsalty Joke
                     </button>
                 </td>
+                <td>
+                    <button
+                        onClick={() => {
+                            setDesiredCommand(4);
+                        }}
+                    >
+                        Some Details
+                    </button>
+                </td>
                 {desiredCommand === 3 && (
                     <BadJokeForm/>
                     // setRecipeForDetail(recipe);
                 )}
+                {desiredCommand === 4 && (
+                    <LegendProgram/>
+                    // setRecipeForDetail(recipe);
+                )}
                 </tbody>
-                <WelcomeMessage></WelcomeMessage>
-                <Link to="/logout">
-                    <button style={styles.logoutButton}>Logout</button>
-                </Link>
                 <Link to="/userRecipes">
-                    <button>see your recipes</button>
+                    <button>See your recipes</button>
                 </Link>
-            <div style={{ marginBottom: "10px" }}>
-                <button
-                    style={{ marginRight: "10px" }}
-                    onClick={handleFilterClickName}
-                >
-                    Filters
-                </button>
-            </div>
-            {showFilterModalName && (
-                <div className="filter-modal" style={styles.filterModal}>
-                    <div className="filter-modal" style={styles.filterModal}>
-                        <p>
-                            {" "}
-                            Name:{" "}
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=""
-                                value={filterName}
-                                onChange={(e) => setFilterName(e.target.value)}
-                            />
-                        </p>
-                        <p>
-                            {" "}
-                            Difficulty:{" "}
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=" Between 1 and 5"
-                                value={filterDifficulty}
-                                onChange={(e) =>
-                                    setFilterDifficulty(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Ingredient:{" "}
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=""
-                                value={filterIngredients}
-                                onChange={(e) =>
-                                    setFilterIngredients(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Time:{" "}
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=""
-                                value={filterTime}
-                                onChange={(e) => setFilterTime(e.target.value)}
-                            />
-                        </p>
-                        <p>
-                            Number of people:{" "}
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=""
-                                value={filterNbPeople}
-                                onChange={(e) =>
-                                    setFilterNbPeople(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Type of recipe:{" "}
-                            <select
-                                id="typeRecipeDropdown"
-                                value={filterTypeRecipe}
-                                onChange={(e) =>
-                                    setFilterTypeRecipe(e.target.value)
-                                }
-                            >
-                                <option value="">Select an option:</option>
-                                <option value="breakfast">Breakfast</option>
-                                <option value="lunch">Lunch</option>
-                                <option value="dinner">Dinner</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="snack">Snack</option>
-                            </select>
-                        </p>
-                        <p>
-                            Price:{" "}
-                            <input
-                                style={{
-                                    ...styles.inputBox,
-                                    ...styles.additionalStyles,
-                                }}
-                                type="text"
-                                placeholder=" Minimum"
-                                value={filterPriceMin}
-                                onChange={(e) =>
-                                    setFilterPriceMin(e.target.value)
-                                }
-                                //style={{ marginRight: "10px" }}
-                            />
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=" Maximum"
-                                value={filterPriceMax}
-                                onChange={(e) =>
-                                    setFilterPriceMax(e.target.value)
-                                }
-                            />
-                        </p>
-                        <p>
-                            Calories:{" "}
-                            <input
-                                style={{
-                                    ...styles.inputBox,
-                                    ...styles.additionalStyles,
-                                }}
-                                type="text"
-                                placeholder=" Minimum "
-                                value={filterCalMin}
-                                onChange={(e) =>
-                                    setFilterCalMin(e.target.value)
-                                }
-                                //style={{ marginRight: "10px" }}
-                            />
-                            <input
-                                style={styles.inputBox}
-                                type="text"
-                                placeholder=" Maximum "
-                                value={filterCalMax}
-                                onChange={(e) =>
-                                    setFilterCalMax(e.target.value)
-                                }
-                            />
-                        </p>
-                    </div>
+                <div style={{marginBottom: "10px"}}>
+                    <button
+                        style={{marginRight: "10px"}}
+                        onClick={handleFilterClickName}
+                    >
+                        Filters
+                    </button>
                 </div>
-            )}
+                {showFilterModalName && (
+                    <div className="filter-modal" style={styles.filterModal}>
+                        <div className="filter-modal" style={styles.filterModal}>
+                            <p>
+                                {" "}
+                                Name:{" "}
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=""
+                                    value={filterName}
+                                    onChange={(e) => setFilterName(e.target.value)}
+                                />
+                            </p>
+                            <p>
+                                {" "}
+                                Difficulty:{" "}
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=" Between 1 and 5"
+                                    value={filterDifficulty}
+                                    onChange={(e) =>
+                                        setFilterDifficulty(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Ingredient:{" "}
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=""
+                                    value={filterIngredients}
+                                    onChange={(e) =>
+                                        setFilterIngredients(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Time:{" "}
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=""
+                                    value={filterTime}
+                                    onChange={(e) => setFilterTime(e.target.value)}
+                                />
+                            </p>
+                            <p>
+                                Number of people:{" "}
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=""
+                                    value={filterNbPeople}
+                                    onChange={(e) =>
+                                        setFilterNbPeople(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Type of recipe:{" "}
+                                <select
+                                    id="typeRecipeDropdown"
+                                    value={filterTypeRecipe}
+                                    onChange={(e) =>
+                                        setFilterTypeRecipe(e.target.value)
+                                    }
+                                >
+                                    <option value="">Select an option:</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                    <option value="dessert">Dessert</option>
+                                    <option value="snack">Snack</option>
+                                </select>
+                            </p>
+                            <p>
+                                Price:{" "}
+                                <input
+                                    style={{
+                                        ...styles.inputBox,
+                                        ...styles.additionalStyles,
+                                    }}
+                                    type="text"
+                                    placeholder=" Minimum"
+                                    value={filterPriceMin}
+                                    onChange={(e) =>
+                                        setFilterPriceMin(e.target.value)
+                                    }
+                                    //style={{ marginRight: "10px" }}
+                                />
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=" Maximum"
+                                    value={filterPriceMax}
+                                    onChange={(e) =>
+                                        setFilterPriceMax(e.target.value)
+                                    }
+                                />
+                            </p>
+                            <p>
+                                Calories:{" "}
+                                <input
+                                    style={{
+                                        ...styles.inputBox,
+                                        ...styles.additionalStyles,
+                                    }}
+                                    type="text"
+                                    placeholder=" Minimum "
+                                    value={filterCalMin}
+                                    onChange={(e) =>
+                                        setFilterCalMin(e.target.value)
+                                    }
+                                    //style={{ marginRight: "10px" }}
+                                />
+                                <input
+                                    style={styles.inputBox}
+                                    type="text"
+                                    placeholder=" Maximum "
+                                    value={filterCalMax}
+                                    onChange={(e) =>
+                                        setFilterCalMax(e.target.value)
+                                    }
+                                />
+                            </p>
+                        </div>
+                    </div>
+                )}
 
-            <p></p>
-            {isAnyFilterModalOpen && (
-                <button style={styles.inputButton} onClick={handleFilterSubmit}>
-                    Submit Filters
-                </button>
-            )}
-            {isAnyFilterModalOpen && (
-                <button
-                    style={styles.inputButton}
-                    onClick={handleDeleteFilters}
-                >
-                    Delete Filters
-                </button>
-            )}
+                <p></p>
+                {isAnyFilterModalOpen && (
+                    <button style={styles.inputButton} onClick={handleFilterSubmit}>
+                        Submit Filters
+                    </button>
+                )}
+                {isAnyFilterModalOpen && (
+                    <button
+                        style={styles.inputButton}
+                        onClick={handleDeleteFilters}
+                    >
+                        Delete Filters
+                    </button>
+                )}
             </div>
             {/* Add a Link to the new form component */}
             <Link to="showlist/add-recipe">
@@ -434,7 +453,7 @@ const RecipeList = () => {
             <button
                 style={styles.inputButton}
                 onClick={handleClickNext}
-                disabled={currentPage === Math.ceil(allrecipes.length / 9)}
+                disabled={currentPage === Math.ceil(allrecipes.length / 10)}
             >
                 Next
             </button>
@@ -448,7 +467,8 @@ const RecipeList = () => {
                 <Route path="userRecipes" Component={UserRecipeList} />
             </Routes>
         </div>
-    );
+        </body>
+</div>    );
 };
 
 //////===========================================   STYLES  =====================================================
@@ -457,13 +477,12 @@ const styles: { [key: string]: CSSProperties } = {
     list: {
         listStyle: "none",
         padding: 0,
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between", // Adjust the space between columns
+        lexWrap: "wrap",
+        jfustifyContent: "space-between", // Adjust the space between columns
     },
 
     listItem: {
-        width: "30%", // Set width to allow three items on a row with some spacing
+        width: "100%", // Set width to allow three items on a row with some spacing
         marginBottom: "30px", // Increase margin for additional spacing
         border: "1px solid #ecb753",
         borderRadius: "5px",

@@ -13,6 +13,8 @@ const AddRecipeForm = () => {
     const [selectedRecipeType, setSelectedRecipeType] = useState(String);
     const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
      const [isRecipeAdded, setIsRecipeAdded] = useState(false);
+        let [error, setError] = useState<string | null>(null); // New state variable for error
+
 
     interface ExtendedFile extends File {
         base64?: string; // Extend the File type with an optional base64 property
@@ -155,7 +157,7 @@ const AddRecipeForm = () => {
             //FD.append("photo", uploadedPhoto as unknown as File);
 
             try {
-                fetch("http://127.0.0.1:8000/recipe/", {
+                 const response = await fetch("http://127.0.0.1:8000/recipe/", {
                     method: "POST",
                     body: JSON.stringify({
                         difficulty: recipeData.difficulty,
@@ -177,14 +179,28 @@ const AddRecipeForm = () => {
                         "Content-Type":
                             "application/json;charset=UTF-8;multipart/form-data",
                     },
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log(data);
-                        setIsRecipeAdded(true);
-                    });
+                });
+                 if (!response.ok) {
+        // Check the specific HTTP status code
+        if (response.status === 400) {
+            setError("Bad Request: Invalid data");
+        } else {
+            setError("Recipe addition failed");
+        }
+        console.error("Error response:", response.status);
+        console.log(error);
+        // Additional error handling logic as needed
+    } else {
+        // Recipe added successfully
+        const data = await response.json();
+        console.log(data);
+        setIsRecipeAdded(true);
+    }
             } catch (error) {
+                console.log("blaaaaa")
+                console.log(error)
                 console.error(error);
+                setError("An unexpected error occurred");
             }
             setTimeout(() => {
                 const isUserRecipePage =
@@ -223,15 +239,17 @@ const AddRecipeForm = () => {
                 angle: 90,
                 spread: 360,
                 startVelocity: 40,
-                elementCount: 1500,
+                elementCount: 3000,
                 dragFriction: 0.1,
                 duration: 3000,
                 stagger: 3,
-                width: "10px",
-                height: "10px",
+                width: "30px",
+                height: "30px",
                 colors: ["#ecb753", "#ffffff", "#ff0000"],
             }}
         />
+
+
                 <form onSubmit={addRecipe} style={styles.form}>
                     <label style={styles.label}>
                         Difficulty:
@@ -407,7 +425,8 @@ const AddRecipeForm = () => {
                     </div>
 
                     <div id="buttons-container">
-                        <button type="submit" style={styles.button}>
+                        {error && <div style={styles.error}>{error}</div>} {/* Display error message */}
+                        <button type="submit" style={styles.button} disabled={!!error}>
                             Submit
                         </button>
                         <button style={styles.button} onClick={handleCancel}>
@@ -448,10 +467,13 @@ const styles: { [key: string]: CSSProperties } = {
         flexDirection: "column" as "column",
         alignItems: "center",
     },
-    label: {
+     label: {
         marginBottom: 10,
-        textAlign: "center",
+        textAlign: "left", // Align labels to the left
         color: "black",
+        display: "flex",
+        flexDirection: "column", // Stack label and input vertically
+        alignItems: "flex-start", // Align items to the start (left)
     },
     button: {
         padding: "10px",
@@ -485,6 +507,10 @@ const styles: { [key: string]: CSSProperties } = {
         color: "#333333", // Dark gray text color
         outline: "none",
         resize: "vertical"
+    },
+    error: {
+        color: "red",
+        margin: "10px 0",
     },
 };
 

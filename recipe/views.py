@@ -215,7 +215,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         page_number = request_data.get('page')
 
         if page_number:
-            paginator = Paginator(recipes, 9)
+            paginator = Paginator(recipes, 10)
             page_obj = paginator.get_page(page_number)
             recipes = page_obj.object_list
         return recipes
