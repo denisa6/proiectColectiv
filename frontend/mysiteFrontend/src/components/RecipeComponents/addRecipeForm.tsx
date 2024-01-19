@@ -255,13 +255,14 @@ const AddRecipeForm = () => {
                     </label>
                     <label style={styles.label}>
                         Description:
-                        <input
-                            style={styles.inputBox} // Uncomment this line if you want to apply styling
+                        <textarea
                             name="description"
                             value={recipeData.description}
-                            onChange={handleRecipeDataChange}
-                            //rows={8} // Adjust the number of rows as needed
-                            // style={{ resize: "vertical" }} // Optional: Allow vertical resizing
+                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                                handleRecipeDataChange(e)
+                            }
+                            rows={4} // Adjust the number of rows as needed
+                            style={styles.inputBoxDesc} // Optional: Allow vertical resizing
                         />
                     </label>
                     <label style={styles.label}>
@@ -472,6 +473,18 @@ const styles: { [key: string]: CSSProperties } = {
         fontWeight: "300",
         color: "#333333", // Dark gray text color
         outline: "none",
+    },
+     inputBoxDesc: {
+        width: "300px",
+        backgroundColor: "#f0f0f0", // Light gray input background
+        border: "1px solid #ccc",
+        borderRadius: "3px",
+        padding: "0 10px",
+        fontSize: "14px",
+        fontWeight: "300",
+        color: "#333333", // Dark gray text color
+        outline: "none",
+        resize: "vertical"
     },
 };
 
