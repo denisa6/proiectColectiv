@@ -13,6 +13,8 @@ import Confetti from "react-dom-confetti";
 const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     const [isPhotoReadyComplete, setIsPhotoReadyComplete] = useState(false);
          const [isRecipeAdded, setIsRecipeAdded] = useState(false);
+                 let [error, setError] = useState<string | null>(null); // New state variable for error
+
 
 
     useEffect(() => {
@@ -89,16 +91,20 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
     ];
 
     const currentIngredientsSet = new Set();
+
     props.recipeToUpdate.ingredients.forEach((item: number) => {
         // Ensure 'ingredients' array is defined and item is a valid index
-        if (ingredients && ingredients[item] && ingredients[item].name) {
-            currentIngredientsSet.add(ingredients[item].name);
+        const ingredientIndex = item - 1;
+
+        if (ingredients && ingredients[ingredientIndex] && ingredients[ingredientIndex].name) {
+            currentIngredientsSet.add(ingredients[ingredientIndex].name);
         } else {
             console.error(
                 `Invalid index or missing 'name' property for ingredient at index ${item}`
             );
         }
     });
+
     const currentIngredients = Array.from(currentIngredientsSet);
 
     // -----------  HANDLERS -----------
@@ -116,6 +122,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
 
     const handleCancel = () => {
         const isUserRecipePage = window.location.href.includes('/userRecipes');
+
 
             if (isUserRecipePage) {
                     window.location.href = `/userRecipes/`;
@@ -194,7 +201,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
             creator: getUserID(),
         };
 
-        fetch(`http://127.0.0.1:8000/recipe/${props.recipeToUpdate.id}/?user=${getUserID()}`, {
+        const response = await fetch(`http://127.0.0.1:8000/recipe/${props.recipeToUpdate.id}/?user=${getUserID()}`, {
             method: "PUT",
             body: JSON.stringify(updatedData),
             headers: {
@@ -204,14 +211,22 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                 Authorization: `Bearer ${getAuthToken()}`, // Include the Authorization header with the token
             },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                console.log(selectedIngredients);
-                console.log(selectedRecipeType);
-                console.log(recipeData.photo);
-                setIsRecipeAdded(true);
-            });
+            if (!response.ok) {
+        // Check the specific HTTP status code
+        if (response.status === 400) {
+            setError("Bad Request: Invalid data");
+        } else {
+            setError("Recipe addition failed");
+        }
+        console.error("Error response:", response.status);
+        console.log(error);
+        // Additional error handling logic as needed
+    } else {
+        // Recipe added successfully
+        const data = await response.json();
+        console.log(data);
+        setIsRecipeAdded(true);
+    }
     } catch (error) {
         console.error(error);
     }
@@ -236,12 +251,12 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                 angle: 90,
                 spread: 360,
                 startVelocity: 40,
-                elementCount: 1500,
+                elementCount: 3000,
                 dragFriction: 0.1,
                 duration: 3000,
                 stagger: 3,
-                width: "10px",
-                height: "10px",
+                width: "30px",
+                height: "30px",
                 colors: ["#ecb753", "#ffffff", "#ff0000"],
             }}
         />
@@ -333,7 +348,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                     <p>
                         Your current ingredients are:{" "}
                         {currentIngredients.join(", ")}. <br></br>Please note
-                        that you will need to select them again. Sorry for the
+                        that you will need to select them again.<br/> Sorry for the
                         inconvenience.💖
                     </p>
 
@@ -425,6 +440,7 @@ const UpdateRecipeForm = (props: { recipeToUpdate: any }) => {
                         </p>
                     </div>
                     <div id="buttons-container">
+                        {error && <div style={styles.error}>{error}</div>} {/* Display error message */}
                         <button type="submit" style={styles.button}>
                             Submit
                         </button>
@@ -468,8 +484,11 @@ const styles: { [key: string]: CSSProperties } = {
     },
     label: {
         marginBottom: 10,
-        textAlign: "center",
+        textAlign: "left", // Align labels to the left
         color: "black",
+        display: "flex",
+        flexDirection: "column", // Stack label and input vertically
+        alignItems: "flex-start", // Align items to the start (left)
     },
     button: {
         padding: "10px",
@@ -503,6 +522,10 @@ const styles: { [key: string]: CSSProperties } = {
         color: "#333333", // Dark gray text color
         outline: "none",
         resize: "vertical"
+    },
+    error: {
+        color: "red",
+        margin: "10px 0",
     },
 };
 export default UpdateRecipeForm;

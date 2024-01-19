@@ -409,13 +409,12 @@ const styles: { [key: string]: CSSProperties } = {
     list: {
         listStyle: "none",
         padding: 0,
-        display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between", // Adjust the space between columns
     },
 
     listItem: {
-        width: "30%", // Set width to allow three items on a row with some spacing
+        width: "100%", // Set width to allow three items on a row with some spacing
         marginBottom: "30px", // Increase margin for additional spacing
         border: "1px solid #ecb753",
         borderRadius: "5px",

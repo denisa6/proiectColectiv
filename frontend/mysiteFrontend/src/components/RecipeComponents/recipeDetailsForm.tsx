@@ -4,12 +4,22 @@ import { Ingredient } from "../../models/Ingredient";
 import DeleteRecipe from "./deleteRecipe";
 import UpdateRecipeForm from "./updateRecipeForm";
 import { getUserID } from "../../util/auth";
+import Popup from "./PopUp.tsx";
 
 const RecipeDetailsForm = (props: { recipeDetail: any }) => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [desiredCommand, setDesiredCommand] = useState(-1);
     console.log(props.recipeDetail.creator);
     console.log(props.recipeDetail.creator);
+    const [isDeletePopupOpen, setDeletePopupOpen] = useState(false);
+
+    const openDeletePopup = () => {
+        setDeletePopupOpen(true);
+    };
+
+    const closeDeletePopup = () => {
+        setDeletePopupOpen(false);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -228,6 +238,7 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                                     style={styles.inputButton}
                                     onClick={() => {
                                         setDesiredCommand(0);
+                                        openDeletePopup();
                                     }}
                                 >
                                     Delete
@@ -246,12 +257,18 @@ const RecipeDetailsForm = (props: { recipeDetail: any }) => {
                             </td>
                         </div>
                     )}
-                    {desiredCommand === 0 && (
-                        <DeleteRecipe recipeToDelete={props.recipeDetail} />
+                    {desiredCommand === 0 && isDeletePopupOpen && (
+                        <Popup
+                            isOpen={isDeletePopupOpen}
+                            onClose={closeDeletePopup}
+                        >
+                            <DeleteRecipe recipeToDelete={props.recipeDetail} />
+                        </Popup>
                     )}
                     {desiredCommand === 1 && (
                         <UpdateRecipeForm recipeToUpdate={props.recipeDetail} />
                     )}
+
                 </div>
             </div>
         </div>

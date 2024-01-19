@@ -116,7 +116,7 @@ const Login = (props: any) => {
             <div className={"inputContainer"} style={styles.inputField}>
                 <div className="passwordInputContainer">
                     <input
-                        style={styles.inputBox}
+                        style={styles.inputBox2}
                         value={password}
                         placeholder="Enter your password here"
                         onChange={(ev) => setPassword(ev.target.value)}
@@ -198,6 +198,19 @@ const styles: { [key: string]: React.CSSProperties } = {
     inputBox: {
         height: "30px",
         width: "300px",
+        backgroundColor: "#f0f0f0", // Light gray input background
+        border: "1px solid #ccc",
+        borderRadius: "3px",
+        padding: "0 10px",
+        fontSize: "14px",
+        fontWeight: "300",
+        color: "#333333", // Dark gray text color
+        outline: "none",
+    },
+
+    inputBox2: {
+        height: "30px",
+        width: "230px",
         backgroundColor: "#f0f0f0", // Light gray input background
         border: "1px solid #ccc",
         borderRadius: "3px",
